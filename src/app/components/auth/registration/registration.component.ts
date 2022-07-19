@@ -83,7 +83,7 @@ export class RegistrationComponent implements OnInit {
           }
         },
         (error) => {
-          this._toastrService.error(error);
+          this._toastrService.error(error.error.message);
         }
       );
   }
