@@ -11,13 +11,18 @@ import { MatButtonModule } from '@angular/material/button';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatNativeDateModule } from '@angular/material/core';
 import { LoginComponent } from './components/auth/login/login.component';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { NavigationComponent } from './components/navigation/navigation.component';
+import { HttpRequestInterceptor } from './helpers/http.interceptor';
+
 
 
 @NgModule({
   declarations: [
     AppComponent,
     RegistrationComponent,
-    LoginComponent
+    LoginComponent,
+    NavigationComponent
   ],
   imports: [
     BrowserModule,
@@ -28,9 +33,16 @@ import { LoginComponent } from './components/auth/login/login.component';
     MatButtonModule,
     FormsModule,
     ReactiveFormsModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    HttpClientModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpRequestInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

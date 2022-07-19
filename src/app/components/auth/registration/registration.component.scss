@@ -7,7 +7,7 @@
 }
 
 .form-container {
-    height: 90%;
+    height: 98%;
     width: 35em;
     text-align: center;
     padding: 2em;
@@ -29,6 +29,10 @@
 
 .form-field {
     margin-bottom: .5em;
+}
+
+.link {
+    text-align: start;
 }
 
 @media (max-width: 768px) {

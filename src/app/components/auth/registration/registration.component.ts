@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import * as moment from 'moment';
+import { IUserRegistration } from 'src/app/models/user.model';
+import { RegistrationService } from 'src/app/services/registration.service';
 
 @Component({
   selector: 'app-registration',
@@ -28,7 +30,7 @@ export class RegistrationComponent implements OnInit {
     ]),
   });
 
-  constructor() {}
+  constructor(private _registrationService: RegistrationService) {}
 
   ngOnInit(): void {
     this.availableDateOfBirth = new Date(
@@ -60,6 +62,12 @@ export class RegistrationComponent implements OnInit {
   registerUser() {
     let regModel = Object.assign({}, this.regForm.value);
     delete regModel.passwordConfirm;
-    console.log(regModel);
+    this._registrationService.registerUser(regModel as IUserRegistration)
+      .subscribe( res => {
+
+        // if TOTKEN get, localStorage.setItem('TOKEN', JSON.stringify(jwtResponse));
+        // else - error
+        console.log(res)
+      })    
   }
 }
