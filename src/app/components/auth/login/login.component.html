@@ -37,7 +37,11 @@
               matInput
               placeholder="Choose your password"
               formControlName="password"
+              [type]="hidePassword ? 'password' : 'text'"
             />
+            <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hidePassword">
+              <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
             <mat-error
               class="mat-error"
               *ngIf="logForm.controls['password'].hasError('required')"
@@ -52,7 +56,8 @@
           mat-raised-button
           color="primary"
           class="submitButton"
-          (click)="loginUser()"
+          (click)="signInUser()"
+          [disabled]="logForm.invalid"
         >
           Log In
         </button>
