@@ -14,6 +14,8 @@ import { LoginComponent } from './components/auth/login/login.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { HttpRequestInterceptor } from './helpers/http.interceptor';
+import { MatIconModule } from '@angular/material/icon';
+import { ToastrModule } from 'ngx-toastr';
 
 
 
@@ -35,6 +37,12 @@ import { HttpRequestInterceptor } from './helpers/http.interceptor';
     ReactiveFormsModule,
     MatNativeDateModule,
     HttpClientModule,
+    MatIconModule,
+    ToastrModule.forRoot({
+      timeOut: 3000,
+      positionClass: 'toast-top-center',
+      preventDuplicates: true,
+    }),
   ],
   providers: [
     {

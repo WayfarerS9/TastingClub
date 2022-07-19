@@ -92,7 +92,11 @@
             placeholder="Choose your password"
             formControlName="password"
             (input)="updateValidation()"
+            [type]="hidePassword ? 'password' : 'text'"
           />
+          <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hidePassword">
+            <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
           <mat-error
             class="mat-error"
             *ngIf="regForm.controls['password'].hasError('required')"
@@ -107,7 +111,11 @@
             matInput
             placeholder="Confirm your password"
             formControlName="passwordConfirm"
+            [type]="hideRepeatPassword ? 'password' : 'text'"
           />
+          <button mat-icon-button matSuffix (click)="hideRepeatPassword = !hideRepeatPassword" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hideRepeatPassword">
+            <mat-icon>{{hideRepeatPassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
           <mat-error
             class="mat-error"
             *ngIf="regForm.controls['passwordConfirm'].hasError('required')"
@@ -132,7 +140,8 @@
         color="primary"
         class="submitButton"
         (click)="registerUser()"
-      >
+        [disabled]="regForm.invalid"        
+        >
         Register
       </button>
     </form>

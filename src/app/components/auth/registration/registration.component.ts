@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import * as moment from 'moment';
 import { IUserRegistration } from 'src/app/models/user.model';
 import { RegistrationService } from 'src/app/services/registration.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-registration',
@@ -11,6 +12,8 @@ import { RegistrationService } from 'src/app/services/registration.service';
 })
 export class RegistrationComponent implements OnInit {
   availableDateOfBirth?: Date;
+  hidePassword = true;
+  hideRepeatPassword = true;
 
   regForm: FormGroup = new FormGroup({
     firstName: new FormControl(null, [
@@ -30,7 +33,10 @@ export class RegistrationComponent implements OnInit {
     ]),
   });
 
-  constructor(private _registrationService: RegistrationService) {}
+  constructor(
+    private _registrationService: RegistrationService,
+    private _toastrService: ToastrService
+  ) {}
 
   ngOnInit(): void {
     this.availableDateOfBirth = new Date(
@@ -62,12 +68,23 @@ export class RegistrationComponent implements OnInit {
   registerUser() {
     let regModel = Object.assign({}, this.regForm.value);
     delete regModel.passwordConfirm;
-    this._registrationService.registerUser(regModel as IUserRegistration)
-      .subscribe( res => {
+    this._registrationService
+      .registerUser(regModel as IUserRegistration)
+      .subscribe(
+        (res: any) => {
+          this._toastrService.success(res.message);
 
-        // if TOTKEN get, localStorage.setItem('TOKEN', JSON.stringify(jwtResponse));
-        // else - error
-        console.log(res)
-      })    
+          if (res.token) {
+            localStorage.setItem('TOKEN_TASTYCLUB', res.token);
+          }
+
+          if (res.user) {
+            localStorage.setItem('USER_TASTYCLUB', JSON.stringify(res.user));
+          }
+        },
+        (error) => {
+          this._toastrService.error(error);
+        }
+      );
   }
 }
