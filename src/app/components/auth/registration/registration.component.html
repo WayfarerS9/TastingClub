@@ -1,0 +1,139 @@
+<div class="main-container">
+  <div class="form-container mat-elevation-z8">
+    <h1>Registration page</h1>
+    <form class="form" [formGroup]="regForm">
+      <div class="form-fields">
+        <mat-form-field appearance="fill" class="form-field">
+          <mat-label>Name</mat-label>
+          <input
+            matInput
+            placeholder="Enter your name"
+            formControlName="firstName"
+          />
+          <mat-error
+            class="mat-error"
+            *ngIf="
+              regForm.controls['firstName'].hasError('required') ||
+              regForm.controls['firstName'].hasError('justSpaces')
+            "
+          >
+            Required
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="form-field">
+          <mat-label>Surname</mat-label>
+          <input
+            matInput
+            placeholder="Enter your surname"
+            formControlName="lastName"
+          />
+          <mat-error
+            class="mat-error"
+            *ngIf="
+              regForm.controls['lastName'].hasError('required') ||
+              regForm.controls['lastName'].hasError('justSpaces')
+            "
+          >
+            Required
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="form-field">
+          <mat-label>Choose a date of your birth</mat-label>
+          <input
+            matInput
+            [matDatepicker]="picker"
+            formControlName="birthday"
+            [max]="availableDateOfBirth"
+          />
+          <mat-hint>MM/DD/YYYY</mat-hint>
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-error
+            class="mat-error"
+            *ngIf="regForm.controls['birthday'].hasError('required')"
+          >
+            Required
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="form-field">
+          <mat-label>Email</mat-label>
+          <input
+            matInput
+            placeholder="Enter your email"
+            formControlName="email"
+          />
+          <mat-error
+            class="mat-error"
+            *ngIf="regForm.controls['email'].hasError('required')"
+          >
+            Required
+          </mat-error>
+          <mat-error
+            class="mat-error"
+            *ngIf="
+              !regForm.controls['email'].hasError('required') &&
+              regForm.controls['email'].hasError('email')
+            "
+          >
+            Enter a valid email
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="form-field">
+          <mat-label>Password</mat-label>
+          <input
+            matInput
+            placeholder="Choose your password"
+            formControlName="password"
+            (input)="updateValidation()"
+          />
+          <mat-error
+            class="mat-error"
+            *ngIf="regForm.controls['password'].hasError('required')"
+          >
+            Required
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="form-field">
+          <mat-label>Repeat password</mat-label>
+          <input
+            matInput
+            placeholder="Confirm your password"
+            formControlName="passwordConfirm"
+          />
+          <mat-error
+            class="mat-error"
+            *ngIf="regForm.controls['passwordConfirm'].hasError('required')"
+          >
+            Required
+          </mat-error>
+          <mat-error
+            class="mat-error"
+            *ngIf="
+              regForm.controls['passwordConfirm'].hasError(
+                'mismatchPasswordConfirm'
+              )
+            "
+          >
+            Doesn't match with entered password
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <button
+        mat-raised-button
+        color="primary"
+        class="submitButton"
+        (click)="registerUser()"
+      >
+        Register
+      </button>
+    </form>
+  </div>
+</div>
