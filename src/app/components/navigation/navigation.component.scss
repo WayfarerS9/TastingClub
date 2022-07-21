@@ -26,3 +26,25 @@
     width: 140px;
   }
 }
+
+.sidebar-container {
+  padding: 5px 0;
+  width: 300px;
+  height: 100%;
+  box-shadow: 3px 1px 3px grey;
+
+  .search-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    .search-button {
+      display: flex;
+      justify-content: center;
+
+      mat-icon {
+        text-align: center;
+      }
+    }
+  }
+}

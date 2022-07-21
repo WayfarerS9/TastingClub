@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,7 +14,6 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { LoginComponent } from './components/auth/login/login.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NavigationComponent } from './components/navigation/navigation.component';
-// import { HttpRequestInterceptor } from './helpers/http.interceptor';
 import { UserInterceptorService } from './helpers/user.interceptor';
 import { MatIconModule } from '@angular/material/icon';
 import { ToastrModule } from 'ngx-toastr';
@@ -40,6 +40,7 @@ import { Utils } from './auth.utils';
     MatNativeDateModule,
     HttpClientModule,
     MatIconModule,
+    MatSidenavModule,
     ToastrModule.forRoot({
       timeOut: 3000,
       positionClass: 'toast-top-center',

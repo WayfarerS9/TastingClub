@@ -13,3 +13,13 @@
     Log out
   </button>
 </div>
+<mat-drawer-container class="sidebar-container">
+  <div class="search-container">
+    <mat-form-field>
+      <input matInput placeholder="Search" name="search" [(ngModel)]="search" />
+    </mat-form-field>
+    <div class="search-button">
+      <button matSuffix mat-button><mat-icon>search</mat-icon></button>
+    </div>
+  </div>
+</mat-drawer-container>
