@@ -4,14 +4,34 @@
     >. You are welcome!
   </h2>
 
-  <button
-    mat-raised-button
-    color="accent"
-    class="submitButton"
-    (click)="logOut()"
-  >
-    Log out
-  </button>
+  <div class="two-elements">
+    <button mat-button [matMenuTriggerFor]="menu">
+      <img src="./images/usa-isolated-flag-vector.jpg" />
+    </button>
+
+    <mat-menu #menu="matMenu">
+      <button
+        mat-menu-item
+        style="display: flex; justify-content: center; align-items: center"
+      >
+        <img style="width: 70px" src="./images/usa-isolated-flag-vector.jpg" />
+      </button>
+      <button
+        mat-menu-item
+        style="display: flex; justify-content: center; align-items: center"
+      >
+        <img style="width: 70px" src="./images/russian-flag.png" />
+      </button>
+    </mat-menu>
+    <button
+      mat-raised-button
+      color="accent"
+      class="submitButton"
+      (click)="logOut()"
+    >
+      Log out
+    </button>
+  </div>
 </div>
 <mat-drawer-container class="sidebar-container">
   <div class="search-container">
@@ -22,4 +42,5 @@
       <button matSuffix mat-button><mat-icon>search</mat-icon></button>
     </div>
   </div>
+  {{ search }}
 </mat-drawer-container>

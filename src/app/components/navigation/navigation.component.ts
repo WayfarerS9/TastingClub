@@ -8,8 +8,8 @@ import { Router } from '@angular/router';
 })
 export class NavigationComponent implements OnInit {
   user!: any;
-  search : String ="";
-  
+  search: String = '';
+
   constructor(private _router: Router) {}
 
   ngOnInit(): void {
