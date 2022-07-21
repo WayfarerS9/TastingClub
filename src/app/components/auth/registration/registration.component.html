@@ -83,6 +83,12 @@
           >
             Enter a valid email
           </mat-error>
+          <mat-error
+            class="mat-error"
+            *ngIf="regForm.controls['email'].hasError('notUnique')"
+          >
+            That email already exists
+          </mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="fill" class="form-field">
@@ -94,8 +100,16 @@
             (input)="updateValidation()"
             [type]="hidePassword ? 'password' : 'text'"
           />
-          <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hidePassword">
-            <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+          <button
+            mat-icon-button
+            matSuffix
+            (click)="hidePassword = !hidePassword"
+            [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hidePassword"
+          >
+            <mat-icon>{{
+              hidePassword ? "visibility_off" : "visibility"
+            }}</mat-icon>
           </button>
           <mat-error
             class="mat-error"
@@ -113,8 +127,16 @@
             formControlName="passwordConfirm"
             [type]="hideRepeatPassword ? 'password' : 'text'"
           />
-          <button mat-icon-button matSuffix (click)="hideRepeatPassword = !hideRepeatPassword" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hideRepeatPassword">
-            <mat-icon>{{hideRepeatPassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+          <button
+            mat-icon-button
+            matSuffix
+            (click)="hideRepeatPassword = !hideRepeatPassword"
+            [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hideRepeatPassword"
+          >
+            <mat-icon>{{
+              hideRepeatPassword ? "visibility_off" : "visibility"
+            }}</mat-icon>
           </button>
           <mat-error
             class="mat-error"
@@ -133,15 +155,22 @@
             Doesn't match with entered password
           </mat-error>
         </mat-form-field>
-        <a class="link" routerLink="/auth/login">Go to login page</a>
+        <button
+          mat-raised-button
+          color="accent"
+          class="backToLogin"
+          routerLink="/auth/login"
+        >
+          Go to login page
+        </button>
       </div>
       <button
         mat-raised-button
         color="primary"
         class="submitButton"
         (click)="registerUser()"
-        [disabled]="regForm.invalid"        
-        >
+        [disabled]="regForm.invalid"
+      >
         Register
       </button>
     </form>

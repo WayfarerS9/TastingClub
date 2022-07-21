@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('USER_TASTYCLUB', JSON.stringify(res.user));
         }
 
-        this._router.navigate(['home'])
+        this._router.navigate(['home']);
       },
       (error) => {
         this._toastrService.error(error.error.message);

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import * as moment from 'moment';
 import { IUserRegistration } from 'src/app/models/user.model';
-// import { RegistrationService } from 'src/app/services/registration.service';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { ToastrService } from 'ngx-toastr';
 
@@ -37,7 +37,8 @@ export class RegistrationComponent implements OnInit {
   constructor(
     // private _registrationService: RegistrationService,
     private _auth: AuthService,
-    private _toastrService: ToastrService
+    private _toastrService: ToastrService,
+    private _router: Router
   ) {}
 
   ngOnInit(): void {
@@ -70,23 +71,24 @@ export class RegistrationComponent implements OnInit {
   registerUser() {
     let regModel = Object.assign({}, this.regForm.value);
     delete regModel.passwordConfirm;
-    this._auth
-      .registerUser(regModel as IUserRegistration)
-      .subscribe(
-        (res: any) => {
-          this._toastrService.success(res.message);
+    this._auth.registerUser(regModel as IUserRegistration).subscribe(
+      (res: any) => {
+        this._toastrService.success(res.message);
 
-          if (res.token) {
-            localStorage.setItem('TOKEN_TASTYCLUB', res.token);
-          }
-
-          if (res.user) {
-            localStorage.setItem('USER_TASTYCLUB', JSON.stringify(res.user));
-          }
-        },
-        (error) => {
-          this._toastrService.error(error.error.message);
+        if (res.token) {
+          localStorage.setItem('TOKEN_TASTYCLUB', res.token);
         }
-      );
+
+        if (res.user) {
+          localStorage.setItem('USER_TASTYCLUB', JSON.stringify(res.user));
+        }
+
+        this._router.navigate(['home']);
+      },
+      (error) => {
+        this.regForm.controls['email'].setErrors({ notUnique: true || false });
+        this._toastrService.error(error.error.message);
+      }
+    );
   }
 }
