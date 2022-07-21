@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import * as moment from 'moment';
 import { IUserRegistration } from 'src/app/models/user.model';
-import { RegistrationService } from 'src/app/services/registration.service';
+// import { RegistrationService } from 'src/app/services/registration.service';
+import { AuthService } from 'src/app/services/auth.service';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -34,7 +35,8 @@ export class RegistrationComponent implements OnInit {
   });
 
   constructor(
-    private _registrationService: RegistrationService,
+    // private _registrationService: RegistrationService,
+    private _auth: AuthService,
     private _toastrService: ToastrService
   ) {}
 
@@ -68,7 +70,7 @@ export class RegistrationComponent implements OnInit {
   registerUser() {
     let regModel = Object.assign({}, this.regForm.value);
     delete regModel.passwordConfirm;
-    this._registrationService
+    this._auth
       .registerUser(regModel as IUserRegistration)
       .subscribe(
         (res: any) => {

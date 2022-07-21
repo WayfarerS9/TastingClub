@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { IUserSignIn } from 'src/app/models/user.model';
-import { LoginService } from 'src/app/services/login.service';
+// import { LoginService } from 'src/app/services/login.service';
+import { AuthService } from 'src/app/services/auth.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 
@@ -19,7 +20,8 @@ export class LoginComponent implements OnInit {
   });
 
   constructor(
-    private _loginService: LoginService,
+    // private _loginService: LoginService,
+    private _auth: AuthService,
     private _toastrService: ToastrService,
     private _router: Router
   ) {}
@@ -28,7 +30,7 @@ export class LoginComponent implements OnInit {
 
   signInUser() {
     let logModel = Object.assign({}, this.logForm.value);
-    this._loginService.signInUser(logModel as IUserSignIn).subscribe(
+    this._auth.signInUser(logModel as IUserSignIn).subscribe(
       (res: any) => {
         this._toastrService.success(res.message);
 

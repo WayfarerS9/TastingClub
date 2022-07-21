@@ -13,18 +13,20 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { LoginComponent } from './components/auth/login/login.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NavigationComponent } from './components/navigation/navigation.component';
-import { HttpRequestInterceptor } from './helpers/http.interceptor';
+// import { HttpRequestInterceptor } from './helpers/http.interceptor';
+import { UserInterceptorService } from './helpers/user.interceptor';
 import { MatIconModule } from '@angular/material/icon';
 import { ToastrModule } from 'ngx-toastr';
 
-
-
+import { AuthService } from './services/auth.service';
+import { AuthGuard } from './auth.guard';
+import { Utils } from './auth.utils';
 @NgModule({
   declarations: [
     AppComponent,
     RegistrationComponent,
     LoginComponent,
-    NavigationComponent
+    NavigationComponent,
   ],
   imports: [
     BrowserModule,
@@ -45,12 +47,15 @@ import { ToastrModule } from 'ngx-toastr';
     }),
   ],
   providers: [
+    AuthService,
+    AuthGuard,
+    Utils,
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: HttpRequestInterceptor,
+      useClass: UserInterceptorService,
       multi: true,
     },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
