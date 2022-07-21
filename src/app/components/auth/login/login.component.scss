@@ -1,42 +1,55 @@
 .main-container {
-    display: flex;
-    width: 100%;
-    height: 100%;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
 
-    .backToRegister {
-        width: 140px;
-    }
+  h1 {
+    font-family: Kanit;
+  }
+
+  .backToRegister {
+    display: flex;
+    justify-content: center;
+    width: 120px;
+    margin-top: 10px;
+    font-family: Kanit;
+  }
+
+  .submitButton {
+    font-size: 20px;
+    margin-top: 10px;
+    padding: 10px;
+    font-family: Kanit;
+  }
 }
 
 .form-container {
-    height: 55%;
-    width: 35em;
-    text-align: center;
-    padding: 2em;
-    box-sizing: border-box;
+  width: 35em;
+  text-align: center;
+  padding: 2em;
+  box-sizing: border-box;
 }
 
 .form {
-    display: flex;
-    flex-direction: column;
-    height: 80%;
-    justify-content: space-between;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .form-fields {
-    display: flex;
-    justify-content: space-between;
-    flex-direction: column;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
 }
 
 .form-field {
-    margin-bottom: .5em;
+  margin-bottom: .5em;
 }
 
 .link {
-    text-align: start;
+  text-align: start;
 }
 
 /* @media (max-width: 768px) {
