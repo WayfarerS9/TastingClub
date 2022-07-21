@@ -15,13 +15,25 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RegistrationComponent } from './components/auth/registration/registration.component';
 import { LoginComponent } from './components/auth/login/login.component';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import {
+  HttpClientModule,
+  HTTP_INTERCEPTORS,
+  HttpClient,
+} from '@angular/common/http';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { UserInterceptorService } from './helpers/user.interceptor';
 
 import { AuthService } from './services/auth.service';
 import { AuthGuard } from './auth.guard';
 import { Utils } from './auth.utils';
+
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+
+export function HttpLoaderFactory(httpClient: HttpClient): TranslateLoader {
+  return new TranslateHttpLoader(httpClient);
+}
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,6 +59,14 @@ import { Utils } from './auth.utils';
       timeOut: 3000,
       positionClass: 'toast-top-center',
       preventDuplicates: true,
+    }),
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient],
+      },
+      defaultLanguage: 'en-US',
     }),
   ],
   providers: [
