@@ -1,21 +1,25 @@
 <div class="main-container">
   <div class="form-container mat-elevation-z8">
     <h1>Choose you wine sort</h1>
-    <form class="form">
+    <form class="form" [formGroup]="newWineForm">
       <div class="form-fields">
         <mat-form-field appearance="fill" class="form-field">
           <mat-label>You name</mat-label>
           <input
             matInput
             placeholder="Enter your name"
-            formControlName="name"
+            formControlName="userName"
           />
           <mat-error class="mat-error"> Required </mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="fill" class="form-field">
           <mat-label>Type of wine</mat-label>
-          <mat-select [(ngModel)]="selectedValue" name="type">
+          <mat-select
+            [(ngModel)]="selectedType"
+            name="type"
+            formControlName="type"
+          >
             <mat-option *ngFor="let type of typeOfWine" [value]="type.value">
               {{ type.viewValue }}
             </mat-option>
@@ -25,7 +29,11 @@
 
         <mat-form-field appearance="fill" class="form-field">
           <mat-label>Wine name</mat-label>
-          <mat-select [(ngModel)]="selectedWineName" name="wineName">
+          <mat-select
+            [(ngModel)]="selectedWineName"
+            name="wineName"
+            formControlName="wineName"
+          >
             <mat-option *ngFor="let wine of wineName" [value]="wine.value">
               {{ wine.viewValue }}
             </mat-option>
@@ -35,13 +43,17 @@
 
         <mat-form-field appearance="fill" class="form-field">
           <mat-label>Alcohol %</mat-label>
-          <input matInput placeholder="alcohol" formControlName="birthday" />
+          <input matInput placeholder="alcohol" formControlName="alcohol" />
           <mat-error class="mat-error"> Required </mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="fill" class="form-field">
           <mat-label>Produced</mat-label>
-          <mat-select [(ngModel)]="selectedProduced" name="produced">
+          <mat-select
+            [(ngModel)]="selectedProduced"
+            name="produced"
+            formControlName="produced"
+          >
             <mat-option
               *ngFor="let produce of produced"
               [value]="produce.value"
@@ -57,6 +69,7 @@
         mat-raised-button
         color="primary"
         class="submitButton"
+        (click)="addNewWine()"
       >
         Add
       </button>

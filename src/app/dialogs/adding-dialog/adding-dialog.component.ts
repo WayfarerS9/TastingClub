@@ -1,11 +1,15 @@
 import { Component, Inject, OnInit } from '@angular/core';
-
 import {
   MatDialog,
   MatDialogRef,
   MAT_DIALOG_DATA,
 } from '@angular/material/dialog';
-
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 interface TypeOfWine {
   value: string;
   viewValue: string;
@@ -29,12 +33,22 @@ interface Produced {
 export class AddingDialogComponent implements OnInit {
   constructor(
     @Inject(MAT_DIALOG_DATA)
-    public _dialog: MatDialog
+    public _dialog: MatDialog,
+    private _fb: FormBuilder
   ) {}
 
-  selectedValue?: string;
+  selectedType?: string;
   selectedWineName?: string;
   selectedProduced?: string;
+  newUser = '';
+
+  newWineForm = this._fb.group({
+    userName: new FormControl('', [Validators.required]),
+    type: new FormControl('', [Validators.required]),
+    wineName: new FormControl('', [Validators.required]),
+    alcohol: new FormControl('', [Validators.required]),
+    produced: new FormControl('', [Validators.required]),
+  });
 
   typeOfWine: TypeOfWine[] = [
     { value: 'red semi-sweet', viewValue: 'red semi-sweet' },
@@ -58,6 +72,30 @@ export class AddingDialogComponent implements OnInit {
     this._dialog.open(AddingDialogComponent, {
       width: '200px',
     });
+  }
+
+  addNewWine() {
+    this.newUser = this.newWineForm.value;
+    console.log(this.newUser);
+    // this._auth.registerUser(regModel as IUserRegistration).subscribe(
+    //   (res: any) => {
+    //     this._toastrService.success(res.message);
+
+    //     if (res.token) {
+    //       localStorage.setItem('TOKEN_TASTYCLUB', res.token);
+    //     }
+
+    //     if (res.user) {
+    //       localStorage.setItem('USER_TASTYCLUB', JSON.stringify(res.user));
+    //     }
+
+    //     this._router.navigate(['home']);
+    //   },
+    //   (error) => {
+    //     this.regForm.controls['email'].setErrors({ notUnique: true || false });
+    //     this._toastrService.error(error.error.message);
+    //   }
+    // );
   }
   ngOnInit(): void {}
 }
