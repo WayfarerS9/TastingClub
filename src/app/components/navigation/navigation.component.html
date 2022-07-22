@@ -33,14 +33,49 @@
     </button>
   </div>
 </div>
-<mat-drawer-container class="sidebar-container">
-  <div class="search-container">
-    <mat-form-field>
-      <input matInput placeholder="Search" name="search" [(ngModel)]="search" />
-    </mat-form-field>
-    <div class="search-button">
-      <button matSuffix mat-button><mat-icon>search</mat-icon></button>
+<mat-drawer-container class="sidebar-container" autosize>
+  <mat-drawer #drawer class="example-sidenav" mode="side">
+    <div class="search-container">
+      <mat-form-field>
+        <input
+          matInput
+          placeholder="Search"
+          name="search"
+          [(ngModel)]="search"
+        />
+      </mat-form-field>
+      <div class="search-button">
+        <button matSuffix mat-button><mat-icon>search</mat-icon></button>
+      </div>
     </div>
+    {{ search }}
+
+    <div class="drink-type">
+      <h2>Drink type</h2>
+    </div>
+
+    <div class="wine-select">
+      <button type="button" mat-fab (click)="openDialog()">
+        <mat-icon>add</mat-icon>
+      </button>
+      <div class="add-wine">
+        <p>Wine</p>
+      </div>
+    </div>
+
+    <div class="whiskey-select">
+      <button type="button" mat-fab>
+        <mat-icon>add</mat-icon>
+      </button>
+      <div class="add-whiskey">
+        <p>Whiskey</p>
+      </div>
+    </div>
+  </mat-drawer>
+
+  <div class="example-sidenav-content">
+    <button type="button" mat-button (click)="drawer.toggle()">
+      <mat-icon>keyboard_arrow_left</mat-icon>
+    </button>
   </div>
-  {{ search }}
 </mat-drawer-container>

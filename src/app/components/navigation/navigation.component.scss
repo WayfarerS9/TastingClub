@@ -27,22 +27,14 @@
   }
 
   .submitButton {
-    font-size: 20px;
-    padding: 10px;
-    display: flex;
-    justify-content: center;
     margin-right: 20px;
-    width: 140px;
   }
 }
 
 .sidebar-container {
-  padding: 5px;
-  width: 300px;
   height: 100%;
   display: flex;
   align-items: center;
-  box-shadow: 3px 1px 3px grey;
 
   .search-container {
     display: flex;
@@ -57,4 +49,53 @@
       }
     }
   }
+
+  .example-sidenav-content {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+
+    mat-icon {
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      background-color: rgb(11, 131, 243);
+    }
+
+  }
+
+  .example-sidenav {
+    padding: 10px;
+  }
+}
+
+.wine-select,
+.whiskey-select {
+  display: flex;
+}
+
+.mat-fab {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(11, 131, 243);
+  margin-right: 5px;
+}
+
+.add-wine,
+.add-whiskey {
+  padding-top: 5px;
+  text-align: center;
+}
+
+.add-wine,
+.add-whiskey p {
+  font-size: 25px;
 }

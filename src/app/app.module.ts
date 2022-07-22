@@ -10,6 +10,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatIconModule } from '@angular/material/icon';
 import { ToastrModule } from 'ngx-toastr';
+import { MatSelectModule } from '@angular/material/select';
+import { MatDialogModule } from '@angular/material/dialog';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -29,6 +31,7 @@ import { Utils } from './auth.utils';
 
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { AddingDialogComponent } from './dialogs/adding-dialog/adding-dialog.component';
 
 export function HttpLoaderFactory(httpClient: HttpClient): TranslateLoader {
   return new TranslateHttpLoader(httpClient);
@@ -40,6 +43,7 @@ export function HttpLoaderFactory(httpClient: HttpClient): TranslateLoader {
     RegistrationComponent,
     LoginComponent,
     NavigationComponent,
+    AddingDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -55,6 +59,8 @@ export function HttpLoaderFactory(httpClient: HttpClient): TranslateLoader {
     MatIconModule,
     MatSidenavModule,
     MatMenuModule,
+    MatSelectModule,
+    MatDialogModule,
     ToastrModule.forRoot({
       timeOut: 3000,
       positionClass: 'toast-top-center',
