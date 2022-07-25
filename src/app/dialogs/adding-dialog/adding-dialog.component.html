@@ -14,7 +14,7 @@
         </mat-form-field>
 
         <mat-form-field appearance="fill" class="form-field">
-          <mat-label>Type of wine</mat-label>
+          <mat-label>Type of alcohol</mat-label>
           <mat-select
             [(ngModel)]="selectedType"
             name="type"
@@ -28,11 +28,11 @@
         </mat-form-field>
 
         <mat-form-field appearance="fill" class="form-field">
-          <mat-label>Wine name</mat-label>
+          <mat-label>Name of alcohol</mat-label>
           <mat-select
             [(ngModel)]="selectedWineName"
             name="wineName"
-            formControlName="wineName"
+            formControlName="nameOfAlcohol"
           >
             <mat-option *ngFor="let wine of wineName" [value]="wine.value">
               {{ wine.viewValue }}
@@ -43,7 +43,11 @@
 
         <mat-form-field appearance="fill" class="form-field">
           <mat-label>Alcohol %</mat-label>
-          <input matInput placeholder="alcohol" formControlName="alcohol" />
+          <input
+            matInput
+            placeholder="alcohol"
+            formControlName="alcoholContent"
+          />
           <mat-error class="mat-error"> Required </mat-error>
         </mat-form-field>
 

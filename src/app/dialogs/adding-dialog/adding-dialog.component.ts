@@ -47,8 +47,8 @@ export class AddingDialogComponent implements OnInit {
   newWineForm = this._fb.group({
     userName: new FormControl('', [Validators.required]),
     type: new FormControl('', [Validators.required]),
-    wineName: new FormControl('', [Validators.required]),
-    alcohol: new FormControl('', [Validators.required]),
+    nameOfAlcohol: new FormControl('', [Validators.required]),
+    alcoholContent: new FormControl('', [Validators.required]),
     produced: new FormControl('', [Validators.required]),
     // comment: new FormControl('', [Validators.required]),
   });
