@@ -11,7 +11,11 @@ const routes: Routes = [
   { path: 'auth/registration', component: RegistrationComponent },
   { path: 'auth/login', component: LoginComponent },
   { path: 'home', component: NavigationComponent, canActivate: [AuthGuard] },
-  { path: 'add-new-alcohol', component: AlcoholService },
+  {
+    path: 'add-new-alcohol',
+    component: AlcoholService,
+    canActivate: [AuthGuard],
+  },
 ];
 
 @NgModule({

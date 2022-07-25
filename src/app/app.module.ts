@@ -12,6 +12,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { ToastrModule } from 'ngx-toastr';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatTreeModule } from '@angular/material/tree';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -61,6 +62,7 @@ export function HttpLoaderFactory(httpClient: HttpClient): TranslateLoader {
     MatMenuModule,
     MatSelectModule,
     MatDialogModule,
+    MatTreeModule,
     ToastrModule.forRoot({
       timeOut: 3000,
       positionClass: 'toast-top-center',
