@@ -13,7 +13,6 @@ export class UserInterceptorService implements HttpInterceptor {
     let tokenizedReq = req.clone({
       setHeaders: {
         Authorization: `Bearer ${authService.getToken()}`,
-        'Access-Control-Allow-Origin': '*',
       },
     });
     return next.handle(tokenizedReq);
