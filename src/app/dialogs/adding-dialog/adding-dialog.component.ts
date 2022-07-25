@@ -12,6 +12,10 @@ import {
 } from '@angular/forms';
 
 import { Wines } from './../../interface/wine.interface';
+import { AlcoholService } from 'src/app/services/newAlcohol.service';
+import { NewAlcohol } from 'src/app/models/alcohol.model';
+import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 interface TypeOfWine {
   value: string;
   viewValue: string;
@@ -36,7 +40,10 @@ export class AddingDialogComponent implements OnInit {
   constructor(
     @Inject(MAT_DIALOG_DATA)
     public _dialog: MatDialog,
-    private _fb: FormBuilder
+    private _fb: FormBuilder,
+    private _alcoholService: AlcoholService,
+    private _toastrService: ToastrService,
+    private _router: Router
   ) {}
 
   selectedType?: string;
@@ -79,26 +86,17 @@ export class AddingDialogComponent implements OnInit {
 
   addNewWine() {
     this.newUser = this.newWineForm.value;
-    console.log(this.newUser);
-    // this._auth.registerUser(regModel as IUserRegistration).subscribe(
-    //   (res: any) => {
-    //     this._toastrService.success(res.message);
-
-    //     if (res.token) {
-    //       localStorage.setItem('TOKEN_TASTYCLUB', res.token);
-    //     }
-
-    //     if (res.user) {
-    //       localStorage.setItem('USER_TASTYCLUB', JSON.stringify(res.user));
-    //     }
-
-    //     this._router.navigate(['home']);
-    //   },
-    //   (error) => {
-    //     this.regForm.controls['email'].setErrors({ notUnique: true || false });
-    //     this._toastrService.error(error.error.message);
-    //   }
-    // );
+    this._alcoholService
+      .newAlcohol(this.newUser as unknown as NewAlcohol)
+      .subscribe(
+        (res: any) => {
+          this._toastrService.success(res.message);
+          this._router.navigate(['home']);
+        },
+        (error) => {
+          this._toastrService.error(error.error.message);
+        }
+      );
   }
   ngOnInit(): void {}
 }
