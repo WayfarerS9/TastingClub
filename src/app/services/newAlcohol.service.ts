@@ -9,6 +9,7 @@ export class AlcoholService {
   constructor(private _http: HttpClient) {}
 
   newAlcohol(model: NewAlcohol) {
+    console.log(model)
     return this._http.post(environment.apiUrl + '/add-new-alcohol', model);
   }
 }
