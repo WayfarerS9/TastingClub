@@ -63,6 +63,11 @@
           </mat-select>
           <mat-error class="mat-error"> Required </mat-error>
         </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Leave a comment</mat-label>
+          <textarea matInput formControlName="comment"></textarea>
+        </mat-form-field>
       </div>
       <button
         type="button"
@@ -71,7 +76,7 @@
         class="submitButton"
         (click)="addNewWine()"
       >
-        Add
+        Add an alcoholic drink
       </button>
     </form>
   </div>

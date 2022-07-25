@@ -10,6 +10,8 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+
+import { Wines } from './../../interface/wine.interface';
 interface TypeOfWine {
   value: string;
   viewValue: string;
@@ -48,6 +50,7 @@ export class AddingDialogComponent implements OnInit {
     wineName: new FormControl('', [Validators.required]),
     alcohol: new FormControl('', [Validators.required]),
     produced: new FormControl('', [Validators.required]),
+    comment: new FormControl('', [Validators.required]),
   });
 
   typeOfWine: TypeOfWine[] = [
