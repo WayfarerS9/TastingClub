@@ -50,7 +50,7 @@ export class AddingDialogComponent implements OnInit {
     wineName: new FormControl('', [Validators.required]),
     alcohol: new FormControl('', [Validators.required]),
     produced: new FormControl('', [Validators.required]),
-    comment: new FormControl('', [Validators.required]),
+    // comment: new FormControl('', [Validators.required]),
   });
 
   typeOfWine: TypeOfWine[] = [

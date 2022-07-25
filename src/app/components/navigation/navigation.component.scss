@@ -73,11 +73,6 @@
     padding: 10px;
   }
 
-  .add-drink-button {
-    display: flex;
-    align-items: flex-end;
-  }
-
 }
 
 .wine-select,
@@ -104,4 +99,9 @@
 .add-wine,
 .add-whiskey p {
   font-size: 25px;
+}
+
+.add-drink-button {
+  position: relative;
+  bottom: -600px;
 }
