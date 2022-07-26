@@ -13,7 +13,7 @@ export class AlcoholService {
     return this._http.post(environment.apiUrl + '/add-new-alcohol', model);
   }
 
-  getAlcohol(model: NewAlcohol) {
-    return this._http.post(environment.apiUrl + '/get-alcohol', model);
+  getAlcohol() {
+    return this._http.get(environment.apiUrl + '/get-alcohol');
   }
 }

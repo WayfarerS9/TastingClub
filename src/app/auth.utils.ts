@@ -6,6 +6,6 @@ export class Utils {
   }
 
   getToken() {
-    return localStorage.getItem('user');
+    return localStorage.getItem('TOKEN_TASTYCLUB');
   }
 }

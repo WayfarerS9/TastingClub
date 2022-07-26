@@ -32,6 +32,7 @@ export class LoginComponent implements OnInit {
     let logModel = Object.assign({}, this.logForm.value);
     this._auth.signInUser(logModel as IUserSignIn).subscribe(
       (res: any) => {
+        console.log(res);
         this._toastrService.success(res.message);
 
         if (res.token) {

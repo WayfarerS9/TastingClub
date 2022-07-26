@@ -23,15 +23,20 @@ export class NavigationComponent implements OnInit {
   TREE_DATA: TypeOfAlcohol[] = [
     {
       id: 1,
-      name: 'Merlot',
-      children: [],
+      name: 'Wines',
+      children: [
+        {
+          id: 1,
+          name: 'Pizdec',
+        },
+      ],
     },
     {
       name: 'Whiskey',
       id: 2,
       children: [
         {
-          name: 'Green',
+          name: 'Captain Nemo',
           id: 2,
           children: [
             { name: 'Broccoli', id: 1 },
@@ -88,6 +93,20 @@ export class NavigationComponent implements OnInit {
   ngOnInit(): void {
     let userString = localStorage.getItem('USER_TASTYCLUB');
     this.user = userString ? JSON.parse(userString) : null;
+    this.getTree();
+  }
+
+  getTree() {
+    this._alcoholService.getAlcohol().subscribe((res: any) => {
+      console.log(res);
+      this.dataSource.data = [
+        {
+          id: 1,
+          name: 'Wines',
+          children: res.result,
+        },
+      ];
+    });
   }
 
   openDialog() {

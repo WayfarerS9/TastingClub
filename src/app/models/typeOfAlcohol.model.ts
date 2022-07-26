@@ -1,7 +1,7 @@
 export interface TypeOfAlcohol {
-  name: string;
+  name: any;
   children?: TypeOfAlcohol[];
-  id: any;
+  id: number;
 }
 
 /** Flat node with expandable and level information */
@@ -9,5 +9,5 @@ export interface ExampleFlatNode {
   expandable: boolean;
   name: string;
   level: number;
-  id: any;
+  id: number;
 }
