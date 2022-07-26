@@ -54,24 +54,6 @@
       <h2>Drink type</h2>
     </div>
 
-    <div class="wine-select">
-      <button type="button" mat-fab>
-        <mat-icon>add</mat-icon>
-      </button>
-      <div class="add-wine">
-        <p>Wine</p>
-      </div>
-    </div>
-
-    <div class="whiskey-select">
-      <button type="button" mat-fab>
-        <mat-icon>add</mat-icon>
-      </button>
-      <div class="add-whiskey">
-        <p>Whiskey</p>
-      </div>
-    </div>
-
     <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
       <!-- This is the tree node template for leaf nodes -->
       <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding>

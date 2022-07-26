@@ -1,4 +1,4 @@
-import { FlatTreeControl, NestedTreeControl } from '@angular/cdk/tree';
+import { FlatTreeControl } from '@angular/cdk/tree';
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import {
@@ -7,38 +7,12 @@ import {
   MatTreeNestedDataSource,
 } from '@angular/material/tree';
 import { Router } from '@angular/router';
-import { AddingDialogComponent } from 'src/app/dialogs/adding-dialog/adding-dialog.component';
-interface FoodNode {
-  name: string;
-  children?: FoodNode[];
-}
-
-const TREE_DATA: FoodNode[] = [
-  {
-    name: 'Fruit',
-    children: [{name: 'Apple'}, {name: 'Banana'}, {name: 'Fruit loops'}],
-  },
-  {
-    name: 'Vegetables',
-    children: [
-      {
-        name: 'Green',
-        children: [{name: 'Broccoli'}, {name: 'Brussels sprouts'}],
-      },
-      {
-        name: 'Orange',
-        children: [{name: 'Pumpkins'}, {name: 'Carrots'}],
-      },
-    ],
-  },
-];
-
-/** Flat node with expandable and level information */
-interface ExampleFlatNode {
-  expandable: boolean;
-  name: string;
-  level: number;
-}
+import {
+  ExampleFlatNode,
+  TypeOfAlcohol,
+} from 'src/app/models/typeOfAlcohol.model';
+import { AddingDialogComponent } from './../../dialogs/adding-dialog/adding-dialog.component';
+import { AlcoholService } from 'src/app/services/newAlcohol.service';
 
 @Component({
   selector: 'app-navigation',
@@ -46,33 +20,67 @@ interface ExampleFlatNode {
   styleUrls: ['./navigation.component.scss'],
 })
 export class NavigationComponent implements OnInit {
-  private _transformer = (node: FoodNode, level: number) => {
+  TREE_DATA: TypeOfAlcohol[] = [
+    {
+      id: 1,
+      name: 'Merlot',
+      children: [],
+    },
+    {
+      name: 'Whiskey',
+      id: 2,
+      children: [
+        {
+          name: 'Green',
+          id: 2,
+          children: [
+            { name: 'Broccoli', id: 1 },
+            { name: 'Brussels sprouts', id: 2 },
+          ],
+        },
+        {
+          name: 'Orange',
+          id: 3,
+          children: [
+            { name: 'Pumpkins', id: 3 },
+            { name: 'Carrots', id: 4 },
+          ],
+        },
+      ],
+    },
+  ];
+
+  private _transformer = (node: TypeOfAlcohol, level: number) => {
     return {
       expandable: !!node.children && node.children.length > 0,
       name: node.name,
       level: level,
+      id: node.id,
     };
   };
 
   treeControl = new FlatTreeControl<ExampleFlatNode>(
-    node => node.level,
-    node => node.expandable,
+    (node) => node.level,
+    (node) => node.expandable
   );
 
   treeFlattener = new MatTreeFlattener(
     this._transformer,
-    node => node.level,
-    node => node.expandable,
-    node => node.children,
+    (node) => node.level,
+    (node) => node.expandable,
+    (node) => node.children
   );
 
   dataSource = new MatTreeFlatDataSource(this.treeControl, this.treeFlattener);
-  constructor(private _router: Router, public _dialog: MatDialog) {
-    this.dataSource.data = TREE_DATA;
+  constructor(
+    private _router: Router,
+    public _dialog: MatDialog,
+    private _alcoholService: AlcoholService
+  ) {
+    this.dataSource.data = this.TREE_DATA;
   }
 
   hasChild = (_: number, node: ExampleFlatNode) => node.expandable;
-  
 
   user!: any;
   search: String = '';
