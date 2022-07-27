@@ -21,12 +21,7 @@ interface TypeOfWine {
   viewValue: string;
 }
 
-interface WineName {
-  value: string;
-  viewValue: string;
-}
-
-interface Produced {
+interface Category {
   value: string;
   viewValue: string;
 }
@@ -52,31 +47,25 @@ export class AddingDialogComponent implements OnInit {
   newUser = '';
 
   newWineForm = this._fb.group({
-    userName: new FormControl('', [Validators.required]),
     type: new FormControl('', [Validators.required]),
     nameOfAlcohol: new FormControl('', [Validators.required]),
-    alcoholContent: new FormControl('', [Validators.required]),
+    category: new FormControl('', [Validators.required]),
     produced: new FormControl('', [Validators.required]),
     // comment: new FormControl('', [Validators.required]),
   });
 
   typeOfWine: TypeOfWine[] = [
-    { value: 'red semi-sweet', viewValue: 'red semi-sweet' },
-    { value: 'white dry', viewValue: 'white dry' },
-    { value: 'red semi-dry', viewValue: 'red semi-dry' },
+    { value: 'Wines', viewValue: 'Wines' },
+    { value: 'Whisky', viewValue: 'Whisky' },
+    { value: 'Vodka', viewValue: 'Vodka' },
+    { value: 'Rom', viewValue: 'Rom' },
+    { value: 'Tequila', viewValue: 'Tequila' },
+    { value: 'Cognac', viewValue: 'Cognac' },
+    { value: 'Liquor', viewValue: 'Liquor' },
+    { value: 'Champagne', viewValue: 'Champagne' },
   ];
 
-  wineName: WineName[] = [
-    { value: 'Cabernet Sauvignon', viewValue: 'Cabernet Sauvignon' },
-    { value: 'Merlot', viewValue: 'Merlot' },
-    { value: 'Pinot Noir', viewValue: 'Pinot Noir' },
-  ];
-
-  produced: Produced[] = [
-    { value: 'France', viewValue: 'France' },
-    { value: 'Italy', viewValue: 'Italy' },
-    { value: 'Georgia', viewValue: 'Georgia' },
-  ];
+  category: Category[] = [];
 
   openDialog(): void {
     this._dialog.open(AddingDialogComponent, {

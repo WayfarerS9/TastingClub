@@ -1,10 +1,9 @@
 import { FlatTreeControl } from '@angular/cdk/tree';
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import {
   MatTreeFlatDataSource,
   MatTreeFlattener,
-  MatTreeNestedDataSource,
 } from '@angular/material/tree';
 import { Router } from '@angular/router';
 import {
@@ -20,41 +19,6 @@ import { AlcoholService } from 'src/app/services/newAlcohol.service';
   styleUrls: ['./navigation.component.scss'],
 })
 export class NavigationComponent implements OnInit {
-  TREE_DATA: TypeOfAlcohol[] = [
-    {
-      id: 1,
-      name: 'Wines',
-      children: [
-        {
-          id: 1,
-          name: 'Pizdec',
-        },
-      ],
-    },
-    {
-      name: 'Whiskey',
-      id: 2,
-      children: [
-        {
-          name: 'Captain Nemo',
-          id: 2,
-          children: [
-            { name: 'Broccoli', id: 1 },
-            { name: 'Brussels sprouts', id: 2 },
-          ],
-        },
-        {
-          name: 'Orange',
-          id: 3,
-          children: [
-            { name: 'Pumpkins', id: 3 },
-            { name: 'Carrots', id: 4 },
-          ],
-        },
-      ],
-    },
-  ];
-
   private _transformer = (node: TypeOfAlcohol, level: number) => {
     return {
       expandable: !!node.children && node.children.length > 0,
@@ -81,14 +45,11 @@ export class NavigationComponent implements OnInit {
     private _router: Router,
     public _dialog: MatDialog,
     private _alcoholService: AlcoholService
-  ) {
-    this.dataSource.data = this.TREE_DATA;
-  }
+  ) {}
 
   hasChild = (_: number, node: ExampleFlatNode) => node.expandable;
 
   user!: any;
-  search: String = '';
 
   ngOnInit(): void {
     let userString = localStorage.getItem('USER_TASTYCLUB');
@@ -98,14 +59,63 @@ export class NavigationComponent implements OnInit {
 
   getTree() {
     this._alcoholService.getAlcohol().subscribe((res: any) => {
-      console.log(res);
-      this.dataSource.data = [
-        {
-          id: 1,
-          name: 'Wines',
-          children: res.result,
-        },
-      ];
+      const getStatus = (array: any) => {
+        let values: {
+          id: number;
+          name: string;
+          children: {
+            name: string;
+            id: 0;
+            children: { id: number; name: string }[];
+          }[];
+        }[] = [];
+
+        array.forEach(function (item: any) {
+          let parent = values.find((el) => el.name === item.typeOfAlcohol);
+          if (parent) {
+            let category = parent.children.find(
+              (el) => el.name === item.category
+            );
+            if (category) {
+              category.children.push({
+                name: item.nameOfAlcohol,
+                id: item.alcoholsId,
+              });
+            } else {
+              parent.children.push({
+                name: item.category,
+                id: 0,
+                children: [
+                  {
+                    name: item.nameOfAlcohol,
+                    id: item.alcoholsId,
+                  },
+                ],
+              });
+            }
+          } else {
+            values.push({
+              id: item.id,
+              name: item.typeOfAlcohol,
+              children: [
+                {
+                  name: item.category,
+                  id: 0,
+                  children: [
+                    {
+                      name: item.nameOfAlcohol,
+                      id: item.alcoholsId,
+                    },
+                  ],
+                },
+              ],
+            });
+          }
+        });
+        return values;
+      };
+      let data: TypeOfAlcohol[] = getStatus(res.result);
+      this.dataSource.data = data;
     });
   }
 
@@ -118,4 +128,5 @@ export class NavigationComponent implements OnInit {
     localStorage.removeItem('TOKEN_TASTYCLUB');
     this._router.navigate(['/auth/login']);
   }
+
 }

@@ -32,7 +32,7 @@
 }
 
 .sidebar-container {
-  height: 100%;
+  height: 90%;
   display: flex;
   align-items: center;
 
@@ -101,7 +101,6 @@
   font-size: 25px;
 }
 
-.add-drink-button {
-  position: relative;
-  bottom: -600px;
+.mat-tree {
+  height: 70vh;
 }

@@ -4,16 +4,6 @@
     <form class="form" [formGroup]="newWineForm">
       <div class="form-fields">
         <mat-form-field appearance="fill" class="form-field">
-          <mat-label>You name</mat-label>
-          <input
-            matInput
-            placeholder="Enter your name"
-            formControlName="userName"
-          />
-          <mat-error class="mat-error"> Required </mat-error>
-        </mat-form-field>
-
-        <mat-form-field appearance="fill" class="form-field">
           <mat-label>Type of alcohol</mat-label>
           <mat-select
             [(ngModel)]="selectedType"
@@ -29,42 +19,25 @@
 
         <mat-form-field appearance="fill" class="form-field">
           <mat-label>Name of alcohol</mat-label>
-          <mat-select
-            [(ngModel)]="selectedWineName"
-            name="wineName"
+          <input
+            matInput
+            placeholder="Enter alcohol name"
             formControlName="nameOfAlcohol"
-          >
-            <mat-option *ngFor="let wine of wineName" [value]="wine.value">
-              {{ wine.viewValue }}
-            </mat-option>
-          </mat-select>
+          />
+
           <mat-error class="mat-error"> Required </mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="fill" class="form-field">
-          <mat-label>Alcohol %</mat-label>
-          <input
-            matInput
-            placeholder="alcohol"
-            formControlName="alcoholContent"
-          />
+          <mat-label>Category</mat-label>
+          <input matInput placeholder="Category" formControlName="category" />
+
           <mat-error class="mat-error"> Required </mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="fill" class="form-field">
           <mat-label>Produced</mat-label>
-          <mat-select
-            [(ngModel)]="selectedProduced"
-            name="produced"
-            formControlName="produced"
-          >
-            <mat-option
-              *ngFor="let produce of produced"
-              [value]="produce.value"
-            >
-              {{ produce.viewValue }}
-            </mat-option>
-          </mat-select>
+          <input matInput placeholder="Produced" formControlName="produced" />
           <mat-error class="mat-error"> Required </mat-error>
         </mat-form-field>
 
@@ -73,15 +46,28 @@
           <textarea matInput formControlName="comment"></textarea>
         </mat-form-field> -->
       </div>
-      <button
-        type="button"
-        mat-raised-button
-        color="primary"
-        class="submitButton"
-        (click)="addNewWine()"
-      >
-        Add an alcoholic drink
-      </button>
+      <div class="two-buttons">
+        <button
+          type="button"
+          mat-raised-button
+          color="primary"
+          class="cancelButton"
+          mat-dialog-close
+        >
+          Cancel
+        </button>
+        <button
+          type="button"
+          mat-raised-button
+          color="primary"
+          class="submitButton"
+          mat-dialog-close
+          cdkFocusInitial
+          (click)="addNewWine()"
+        >
+          Create a liquor drink
+        </button>
+      </div>
     </form>
   </div>
 </div>

@@ -11,12 +11,6 @@
   box-sizing: border-box;
 }
 
-.form {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
 .form-fields {
   display: flex;
   justify-content: space-between;
@@ -31,9 +25,26 @@
   text-align: start;
 }
 
-.submitButton {
+.two-buttons {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cancelButton {
   font-size: 20px;
-  margin-top: 10px;
-  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Kanit;
+  margin-right: 20px;
+}
+
+.submitButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
   font-family: Kanit;
 }
