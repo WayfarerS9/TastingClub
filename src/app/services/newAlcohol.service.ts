@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { NewAlcohol } from '../models/alcohol.model';
+import { INewDrink } from '../models/alcohol.model';
 
 @Injectable({
   providedIn: 'root',
@@ -9,7 +9,7 @@ import { NewAlcohol } from '../models/alcohol.model';
 export class AlcoholService {
   constructor(private _http: HttpClient) {}
 
-  newAlcohol(model: NewAlcohol) {
+  newAlcohol(model: INewDrink) {
     return this._http.post(environment.apiUrl + '/add-new-alcohol', model);
   }
 

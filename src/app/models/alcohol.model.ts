@@ -1,8 +1,16 @@
-export interface NewAlcohol {
-  userName: string;
-  type: string;
-  nameOfAlcohol: string;
-  category: string;
-  alcoholContent: string;
+export interface INewDrink {
+  typeId: number;
+  typeName: string;
+  categoryId: number;
+  categoryName: string;
   produced: string;
+  drinkName: string;
+  userName: string;
+  userId: number;
+}
+
+export interface ICategoryOfType {
+  id: number,
+  typeId: number,
+  categoryName: string
 }

@@ -13,6 +13,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatTreeModule } from '@angular/material/tree';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -63,6 +64,7 @@ export function HttpLoaderFactory(httpClient: HttpClient): TranslateLoader {
     MatSelectModule,
     MatDialogModule,
     MatTreeModule,
+    MatAutocompleteModule,
     ToastrModule.forRoot({
       timeOut: 3000,
       positionClass: 'toast-top-center',

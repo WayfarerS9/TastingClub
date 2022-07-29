@@ -59,6 +59,9 @@ export class NavigationComponent implements OnInit {
 
   getTree() {
     this._alcoholService.getAlcohol().subscribe((res: any) => {
+
+      console.log(res.result)
+
       const getStatus = (array: any) => {
         let values: {
           id: number;

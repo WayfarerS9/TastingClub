@@ -1,17 +1,18 @@
 <div class="main-container">
   <div class="form-container mat-elevation-z8">
     <h1>Choose you wine sort</h1>
-    <form class="form" [formGroup]="newWineForm">
+    <form class="form" [formGroup]="newDrinkForm">
       <div class="form-fields">
         <mat-form-field appearance="fill" class="form-field">
+
           <mat-label>Type of alcohol</mat-label>
           <mat-select
-            [(ngModel)]="selectedType"
-            name="type"
-            formControlName="type"
+            name="typeName"
+            formControlName="typeName"
+            (valueChange)="setTypeId($event)"
           >
-            <mat-option *ngFor="let type of typeOfWine" [value]="type.value">
-              {{ type.viewValue }}
+            <mat-option *ngFor="let type of typesOfAlcohol" [value]="type">
+              {{ type.typeName }}
             </mat-option>
           </mat-select>
           <mat-error class="mat-error"> Required </mat-error>
@@ -22,7 +23,7 @@
           <input
             matInput
             placeholder="Enter alcohol name"
-            formControlName="nameOfAlcohol"
+            formControlName="drinkName"
           />
 
           <mat-error class="mat-error"> Required </mat-error>
@@ -30,7 +31,13 @@
 
         <mat-form-field appearance="fill" class="form-field">
           <mat-label>Category</mat-label>
-          <input matInput placeholder="Category" formControlName="category" />
+          <input matInput placeholder="Category" formControlName="categoryName" [matAutocomplete]="auto" (focus)="subscribeForAutocomplete()" (blur)="unSubscribeForAutocomplete()">
+
+          <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+            <mat-option *ngFor="let option of filteredValidCategories" [value]="option">
+              {{option.categoryName}}
+            </mat-option>
+          </mat-autocomplete>
 
           <mat-error class="mat-error"> Required </mat-error>
         </mat-form-field>
@@ -63,7 +70,7 @@
           class="submitButton"
           mat-dialog-close
           cdkFocusInitial
-          (click)="addNewWine()"
+          (click)="addDrink()"
         >
           Create a liquor drink
         </button>
