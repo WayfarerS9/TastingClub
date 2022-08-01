@@ -1,7 +1,11 @@
+export interface IMyDrinksShort {
+  id: number;
+  name: string;
+  rating: number;
+}
+
 export interface INewDrink {
-  typeId: number;
   typeName: string;
-  categoryId: number;
   categoryName: string;
   produced: string;
   drinkName: string;

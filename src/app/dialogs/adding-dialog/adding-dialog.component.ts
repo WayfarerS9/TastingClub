@@ -6,7 +6,7 @@ import { AlcoholService } from 'src/app/services/newAlcohol.service';
 import { INewDrink, ICategoryOfType } from 'src/app/models/alcohol.model';
 import { ToastrService } from 'ngx-toastr';
 
-import { Observable, Subscription } from 'rxjs';
+import { Observable, Subject, Subscription } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 interface ITypeOfAlcohol {
   id: number,
@@ -33,8 +33,7 @@ export class AddingDialogComponent implements OnInit {
   newDrink!: INewDrink;
   validCategories?: ICategoryOfType[];
   filteredValidCategories?: ICategoryOfType[];
-  subscriptionForMatAutocomplete!: Subscription;
-
+  subscriptionForMatAutocomplete = new Subject<string>()
 
   newDrinkForm = this._fb.group({
     typeId: new FormControl(''),
@@ -47,16 +46,6 @@ export class AddingDialogComponent implements OnInit {
     userId: new FormControl(this.user.id),
     // comment: new FormControl('', [Validators.required]),
   });
-
-
-  observableForMatAutocomplete: Observable<ICategoryOfType[] | undefined>  = this.newDrinkForm.get('categoryName')!.valueChanges
-    .pipe(
-      startWith(''),
-      map(value => {
-        let name = typeof value === 'string' ? value : value.categoryName;      
-        return name ? this._filter(name as string) : this.validCategories?.slice();
-      }),
-    )
 
   typesOfAlcohol: ITypeOfAlcohol[] = [
     { id: 1, typeName: 'Wines'},
@@ -94,15 +83,18 @@ export class AddingDialogComponent implements OnInit {
 
   addDrink() {
     
-    if(typeof this.newDrinkForm.get('categoryName')!.value !== 'string') {
-      this.newDrinkForm.patchValue({ categoryId: this.newDrinkForm.get('categoryName')!.value.id })
+    let modelForAddDrinkDraft: any = {};
+    Object.assign(modelForAddDrinkDraft, this.newDrinkForm.value)
+    
+    modelForAddDrinkDraft.typeName = modelForAddDrinkDraft.typeName.typeName
+    
+    if(typeof modelForAddDrinkDraft.categoryName !== 'string') {
+      modelForAddDrinkDraft.categoryId = modelForAddDrinkDraft.categoryName.id;
+      modelForAddDrinkDraft.categoryName = modelForAddDrinkDraft.categoryName.categoryName;
     }
     
-
-
-/*     this.newDrink = this.newDrinkForm.value;
     this._alcoholService
-      .newAlcohol(this.newDrink as INewDrink)
+      .newAlcohol(modelForAddDrinkDraft as INewDrink)
       .subscribe(
         (res: any) => {
           this._toastrService.success(res.message);
@@ -110,8 +102,7 @@ export class AddingDialogComponent implements OnInit {
         (error) => {
           this._toastrService.error(error.error.message);
         }
-      ); */
-      console.log(this.newDrinkForm.value)
+      );
   }
 
   setTypeId(ev: any) {
@@ -120,26 +111,30 @@ export class AddingDialogComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.subscriptionForMatAutocomplete.subscribe( res => {      
+      this.filterForAutocomplete(res)
+    })
   }
 
-  subscribeForAutocomplete() {    
-      this.subscriptionForMatAutocomplete = this.observableForMatAutocomplete.subscribe( res => {    
-        this.filteredValidCategories = res as ICategoryOfType[]
-      })     
+  getOptions(event: any) {
+    this.subscriptionForMatAutocomplete.next(event.target.value)
   }
 
-  unSubscribeForAutocomplete() {
-    this.subscriptionForMatAutocomplete.unsubscribe()
+  getOptionsIfFocus(value: string) {
+    this.subscriptionForMatAutocomplete.next(value)
   }
 
   displayFn(category: ICategoryOfType): string {
     return category && category.categoryName ? category.categoryName : '';
   }
 
-  private _filter(name: string): ICategoryOfType[] {
-    let filterValue = name.toLowerCase();
-    return this.validCategories!.filter(option => {
-      return option.categoryName.toLowerCase().includes(filterValue)
-    });
+  filterForAutocomplete(criteria: string): void {
+
+    if(this.newDrinkForm.get('typeName')!.value) {
+      let filterValue = criteria.toLowerCase();
+      this.filteredValidCategories = this.validCategories!.filter(option => {
+        return option.categoryName.toLowerCase().includes(filterValue)
+      });
+    }
   }
 }

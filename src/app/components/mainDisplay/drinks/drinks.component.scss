@@ -1,0 +1,43 @@
+.main {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+
+
+    .container {
+        background-color: coral;
+        display: flex;
+        flex-wrap: wrap;
+        width: 100vw;
+        flex-grow: 1;
+
+        .container-header {
+            width: 100%;
+            padding-top: 1.2em;
+            display: flex;
+            position: relative;
+            justify-content: center;
+            align-items: center;
+
+            h2 {
+                margin-bottom: 0;
+            }
+
+            button {
+                position: absolute;
+                top: 8px;
+                left: 9px;
+            }
+        }
+
+        .container-left-side {
+            width: 50%;
+            background-color: aquamarine;
+        }
+
+        .container-right-side {
+            width: 50%;
+            background-color: rgb(17, 236, 163);
+        }
+    }
+}

@@ -34,6 +34,12 @@ import { Utils } from './auth.utils';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { AddingDialogComponent } from './dialogs/adding-dialog/adding-dialog.component';
+import { DashBoardComponent } from './components/dash-board/dash-board.component';
+import { MainHeaderComponent } from './components/main-header/main-header.component';
+import { DrinksComponent } from './components/mainDisplay/drinks/drinks.component';
+import { GroupsComponent } from './components/mainDisplay/groups/groups.component';
+import { EventsComponent } from './components/mainDisplay/events/events.component';
+import { LibraryComponent } from './components/mainDisplay/library/library.component';
 
 export function HttpLoaderFactory(httpClient: HttpClient): TranslateLoader {
   return new TranslateHttpLoader(httpClient);
@@ -46,6 +52,12 @@ export function HttpLoaderFactory(httpClient: HttpClient): TranslateLoader {
     LoginComponent,
     NavigationComponent,
     AddingDialogComponent,
+    DashBoardComponent,
+    MainHeaderComponent,
+    DrinksComponent,
+    GroupsComponent,
+    EventsComponent,
+    LibraryComponent,
   ],
   imports: [
     BrowserModule,
