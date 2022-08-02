@@ -40,6 +40,7 @@ import { DrinksComponent } from './components/mainDisplay/drinks/drinks.componen
 import { GroupsComponent } from './components/mainDisplay/groups/groups.component';
 import { EventsComponent } from './components/mainDisplay/events/events.component';
 import { LibraryComponent } from './components/mainDisplay/library/library.component';
+import { MatSliderModule } from '@angular/material/slider';
 
 export function HttpLoaderFactory(httpClient: HttpClient): TranslateLoader {
   return new TranslateHttpLoader(httpClient);
@@ -77,6 +78,7 @@ export function HttpLoaderFactory(httpClient: HttpClient): TranslateLoader {
     MatDialogModule,
     MatTreeModule,
     MatAutocompleteModule,
+    MatSliderModule,
     ToastrModule.forRoot({
       timeOut: 3000,
       positionClass: 'toast-top-center',
