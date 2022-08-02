@@ -98,19 +98,18 @@ export class AddingDialogComponent implements OnInit {
       this.newDrinkForm.patchValue({ categoryId: this.newDrinkForm.get('categoryName')!.value.id })
     }
     
-
-
-/*     this.newDrink = this.newDrinkForm.value;
+    this.newDrink = this.newDrinkForm.value;
     this._alcoholService
       .newAlcohol(this.newDrink as INewDrink)
       .subscribe(
         (res: any) => {
+          
           this._toastrService.success(res.message);
         },
         (error) => {
           this._toastrService.error(error.error.message);
         }
-      ); */
+      );
       console.log(this.newDrinkForm.value)
   }
 
