@@ -1,6 +1,11 @@
 <div class="main">
   <app-main-header></app-main-header>
-  <button class="goBackButton" mat-raised-button (click)="goBack()">
+  <button
+    class="goBackButton"
+    mat-raised-button
+    color="accent"
+    (click)="goBack()"
+  >
     < BACK
   </button>
 
@@ -10,38 +15,30 @@
     </div>
 
     <div class="container-left-side">
-
-
-
-
       <h3 *ngIf="!isAdd">Drinks I've tasted</h3>
       <h3 *ngIf="isAdd">Type the name of the drink</h3>
 
       <div *ngIf="!isAdd" class="list">
-        <p *ngFor="let drink of myTastedDrinks; let i = index" (click)="selectAndGetDrink(drink)" [ngClass]="{selectedItem: drink === selectedTastedDrink}" class="item">
-          {{i+1}}. {{drink.title}}
+        <p
+          *ngFor="let drink of myTastedDrinks; let i = index"
+          (click)="selectAndGetDrink(drink)"
+          [ngClass]="{ selectedItem: drink === selectedTastedDrink }"
+          class="item"
+        >
+          {{ i + 1 }}. {{ drink.title }}
         </p>
-
-
-
-
-
       </div>
 
-
       <div class="findDrink" *ngIf="isAdd">
-
         <mat-form-field appearance="fill">
           <mat-label>Type the drink</mat-label>
-          <input matInput placeholder="Whiskey" (input)="searchDrinks($event)">
+          <input matInput placeholder="Search" (input)="searchDrinks($event)" />
         </mat-form-field>
 
         <div class="listOfFind">
-
-<!--           <p *ngFor="let drink of myTastedDrinks; let i = index" (click)="selectAndGetDrink(drink)" [ngClass]="{selectedItem: drink === selectedTastedDrink}" class="item">
+          <!--           <p *ngFor="let drink of myTastedDrinks; let i = index" (click)="selectAndGetDrink(drink)" [ngClass]="{selectedItem: drink === selectedTastedDrink}" class="item">
             {{i+1}}. {{drink.title}}
           </p> -->
-
           Drink<br />
           Drink<br />
           Drink<br />
@@ -55,13 +52,8 @@
           Drink<br />
           Drink<br />
           Drink<br />
-
         </div>
-
       </div>
-
-
-
 
       <div>
         <button
@@ -77,17 +69,34 @@
           class="button-add"
           mat-raised-button
           color="primary"
-          *ngIf="isAdd"          
+          *ngIf="isAdd"
         >
           Add Feedback
         </button>
-        <button class="button-edit" mat-raised-button color="accent" (click)="onEdit()" *ngIf="!isAdd && !isEdit">
+        <button
+          class="button-edit"
+          mat-raised-button
+          color="accent"
+          (click)="onEdit()"
+          *ngIf="!isAdd && !isEdit"
+        >
           Edit
         </button>
-        <button class="button-edit" mat-raised-button color="accent" (click)="isEdit = true" *ngIf="isEdit">
+        <button
+          class="button-edit"
+          mat-raised-button
+          color="accent"
+          (click)="isEdit = true"
+          *ngIf="isEdit"
+        >
           Edit Feedback
         </button>
-        <button class="button-back" mat-raised-button *ngIf="isAdd || isEdit" (click)="backToMyDrinks()">
+        <button
+          class="button-back"
+          mat-raised-button
+          *ngIf="isAdd || isEdit"
+          (click)="backToMyDrinks()"
+        >
           Back
         </button>
       </div>
@@ -95,88 +104,76 @@
 
     <div class="container-right-side">
       <div class="feedBack" *ngIf="!isAdd">
-        
         <div class="infAboutDrink">
-          <h3>{{myTastedDrinkFullInfo?.typeOfDrink}} {{myTastedDrinkFullInfo?.name}}</h3>
-          <p><strong>Region:</strong> {{myTastedDrinkFullInfo?.region}}</p>
-          <p><strong>Manufacturer:</strong> {{myTastedDrinkFullInfo?.manufacturer}}</p>
+          <h3>
+            {{ myTastedDrinkFullInfo?.typeOfDrink }}
+            {{ myTastedDrinkFullInfo?.name }}
+          </h3>
+          <p><strong>Region:</strong> {{ myTastedDrinkFullInfo?.region }}</p>
+          <p>
+            <strong>Manufacturer:</strong>
+            {{ myTastedDrinkFullInfo?.manufacturer }}
+          </p>
 
-
-          <p *ngIf="myTastedDrinkFullInfo?.category"><strong>Category:</strong>
+          <p *ngIf="myTastedDrinkFullInfo?.category">
+            <strong>Category:</strong>
             <span *ngFor="let category of myTastedDrinkFullInfo?.category">
-              {{category}},
+              {{ category }},
             </span>
           </p>
-          <p *ngIf="myTastedDrinkFullInfo?.type"><strong>Type:</strong> {{myTastedDrinkFullInfo?.type}}</p>
-          <p *ngIf="myTastedDrinkFullInfo?.grape"><strong>Grape:</strong> {{myTastedDrinkFullInfo?.grape}}</p>
-          <p *ngIf="myTastedDrinkFullInfo?.filtration"><strong>Filtration:</strong> {{myTastedDrinkFullInfo?.filtration}}</p>
-
-
-          <p><strong>Alcohol:</strong> {{myTastedDrinkFullInfo?.strength}}</p>
-          <p><strong>Volume:</strong> {{myTastedDrinkFullInfo?.volume}}</p>
-
-
-
-
-
+          <p *ngIf="myTastedDrinkFullInfo?.type">
+            <strong>Type:</strong> {{ myTastedDrinkFullInfo?.type }}
+          </p>
+          <p *ngIf="myTastedDrinkFullInfo?.grape">
+            <strong>Grape:</strong> {{ myTastedDrinkFullInfo?.grape }}
+          </p>
+          <p *ngIf="myTastedDrinkFullInfo?.filtration">
+            <strong>Filtration:</strong> {{ myTastedDrinkFullInfo?.filtration }}
+          </p>
+          <p><strong>Alcohol:</strong> {{ myTastedDrinkFullInfo?.strength }}</p>
+          <p><strong>Volume:</strong> {{ myTastedDrinkFullInfo?.volume }}</p>
         </div>
         <div class="infAboutTaste" *ngIf="!isEdit">
-          <p><strong>Date of degustation: </strong>{{myTastedDrinkFullInfo?.dateOfDegustation}};</p>
-          <p><strong>My grade: </strong>{{myTastedDrinkFullInfo?.points}} points;</p>
-          <p><strong>My feedback: </strong> {{myTastedDrinkFullInfo?.feedBack}}</p>
+          <p>
+            <strong>Date of degustation: </strong
+            >{{ myTastedDrinkFullInfo?.dateOfDegustation }};
+          </p>
+          <p>
+            <strong>My grade: </strong
+            >{{ myTastedDrinkFullInfo?.points }} points;
+          </p>
+          <p>
+            <strong>My feedback: </strong> {{ myTastedDrinkFullInfo?.feedBack }}
+          </p>
         </div>
 
         <div *ngIf="isEdit">
           Do you want to add a description of your impressions?
 
           <form #feedBackForm="ngForm">
-
-            <mat-slider max="10" min="0" step="1" thumbLabel="true" [(ngModel)]="addUpdateFeedBackModel.points"></mat-slider>
-            <br>
+            <mat-slider
+              max="10"
+              min="0"
+              step="1"
+              thumbLabel="true"
+              [(ngModel)]="addUpdateFeedBackModel.points"
+            ></mat-slider>
+            <br />
 
             <mat-form-field appearance="fill">
               <mat-label>Leave a comment</mat-label>
-              <textarea matInput placeholder="It's a wonderfull drink..." [(ngModel)]="addUpdateFeedBackModel.feedBack" rows="7"></textarea>
+              <textarea
+                matInput
+                placeholder="It's a wonderfull drink..."
+                [(ngModel)]="addUpdateFeedBackModel.feedBack"
+                rows="7"
+              ></textarea>
             </mat-form-field>
           </form>
-
-
-
-
-
-
         </div>
-
       </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      <div class="feedBack" *ngIf="isAdd">
-
-
-      </div>
-
-
-
-
-
-
-
-
+      <div class="feedBack" *ngIf="isAdd"></div>
     </div>
   </div>
 </div>

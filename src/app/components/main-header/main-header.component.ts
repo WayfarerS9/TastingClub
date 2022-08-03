@@ -4,14 +4,12 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-main-header',
   templateUrl: './main-header.component.html',
-  styleUrls: ['./main-header.component.scss']
+  styleUrls: ['./main-header.component.scss'],
 })
 export class MainHeaderComponent implements OnInit {
   user!: any;
 
-  constructor(
-    private _router: Router,
-  ) { }
+  constructor(private _router: Router) {}
 
   ngOnInit(): void {
     let userString = localStorage.getItem('USER_TASTYCLUB');
@@ -23,5 +21,4 @@ export class MainHeaderComponent implements OnInit {
     localStorage.removeItem('TOKEN_TASTYCLUB');
     this._router.navigate(['/auth/login']);
   }
-
 }

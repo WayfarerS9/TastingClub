@@ -3,20 +3,12 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DrinksService {
-
-  constructor(
-    private _http: HttpClient
-  ) { }
-
+  constructor(private _http: HttpClient) {}
 
   searchDrinks(term: string) {
-    return this._http.get(environment.apiUrl + `/search/${term}`);
+    return this._http.get(environment.apiUrl + `/get-by-category/${term}`);
   }
-
-
-
-
 }

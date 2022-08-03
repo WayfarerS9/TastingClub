@@ -3,7 +3,6 @@ export interface IMyDrinksShort {
   name: string;
   rating: number;
 }
-
 export interface INewDrink {
   typeName: string;
   categoryName: string;
@@ -14,52 +13,40 @@ export interface INewDrink {
 }
 
 export interface ICategoryOfType {
-  id: number,
-  typeId: number,
-  categoryName: string
+  id: number;
+  typeId: number;
+  categoryName: string;
 }
-
-
-
-
-
 export interface IDrinkShort {
   id: string;
   name: string;
   typeOfDrink: string;
   region: string;
-  strength: number;  
+  strength: number;
   category?: Array<string>;
   type?: string;
 }
-
 export interface IDrinkFull extends IDrinkShort {
   volume: number;
   manufacturer: string;
   grape?: string;
   filtration?: string;
 }
-
 export class drinkFull implements IDrinkFull {
   id = '';
   name = '';
   typeOfDrink = '';
   region = '';
-  strength = 0;  
+  strength = 0;
   volume = 0;
-  manufacturer = '';  
+  manufacturer = '';
 }
-
-
-
 export interface ITastedDrinkFull extends IDrinkFull {
   userId: number;
   dateOfDegustation: string;
   points: number;
   feedBack: string;
 }
-
-
 
 /* export class tastedDrinkFullWithFeedBack implements ITastedDrinkFullWithFeedBack {
   id = '';
@@ -75,8 +62,6 @@ export interface ITastedDrinkFull extends IDrinkFull {
   feedBack = '';
 } */
 
-
-
 export interface IDrinkForShow {
   id: string;
   title: string;
@@ -88,7 +73,6 @@ export interface IAddUpdateFeedBack {
   points: number;
   feedBack: string;
 }
-
 
 /* export interface IDrinkShortWithFeedback extends IDrinkShort {
 

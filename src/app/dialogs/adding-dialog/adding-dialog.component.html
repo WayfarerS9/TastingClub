@@ -4,7 +4,6 @@
     <form class="form" [formGroup]="newDrinkForm">
       <div class="form-fields">
         <mat-form-field appearance="fill" class="form-field">
-
           <mat-label>Type of alcohol</mat-label>
           <mat-select
             name="typeName"
@@ -29,29 +28,26 @@
           <mat-error class="mat-error"> Required </mat-error>
         </mat-form-field>
 
-
-
-
-
-
         <mat-form-field appearance="fill" class="form-field">
           <mat-label>Category</mat-label>
-          <input #inputCategory matInput placeholder="Category" formControlName="categoryName" [matAutocomplete]="auto" (input)="getOptions($event)" (focus)="getOptionsIfFocus(inputCategory.value)">
+          <input
+            #inputCategory
+            matInput
+            placeholder="Category"
+            formControlName="categoryName"
+            [matAutocomplete]="auto"
+            (input)="getOptions($event)"
+            (focus)="getOptionsIfFocus(inputCategory.value)"
+          />
 
           <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
-            <mat-option *ngFor="let option of filteredValidCategories" [value]="option">
-              {{option.categoryName}}
+            <mat-option
+              *ngFor="let option of filteredValidCategories"
+              [value]="option"
+            >
+              {{ option.categoryName }}
             </mat-option>
           </mat-autocomplete>
-
-
-
-
-
-
-
-
-
           <mat-error class="mat-error"> Required </mat-error>
         </mat-form-field>
 

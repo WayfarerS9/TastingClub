@@ -9,7 +9,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Observable, Subject, Subscription } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 interface ITypeOfAlcohol {
-  id: number,
+  id: number;
   typeName: string;
 }
 
@@ -24,16 +24,16 @@ export class AddingDialogComponent implements OnInit {
     public _dialog: MatDialog,
     private _fb: FormBuilder,
     private _alcoholService: AlcoholService,
-    private _toastrService: ToastrService,
+    private _toastrService: ToastrService
   ) {}
 
-  user = JSON.parse(localStorage.getItem('USER_TASTYCLUB')!)
+  user = JSON.parse(localStorage.getItem('USER_TASTYCLUB')!);
   selectedWineName?: string;
   selectedProduced?: string;
   newDrink!: INewDrink;
   validCategories?: ICategoryOfType[];
   filteredValidCategories?: ICategoryOfType[];
-  subscriptionForMatAutocomplete = new Subject<string>()
+  subscriptionForMatAutocomplete = new Subject<string>();
 
   newDrinkForm = this._fb.group({
     typeId: new FormControl(''),
@@ -48,32 +48,32 @@ export class AddingDialogComponent implements OnInit {
   });
 
   typesOfAlcohol: ITypeOfAlcohol[] = [
-    { id: 1, typeName: 'Wines'},
-    { id: 2, typeName: 'Whisky'},
-    { id: 3, typeName: 'Vodka'},
-    { id: 4, typeName: 'Rom'},
-    { id: 5, typeName: 'Tequila'},
-    { id: 6, typeName: 'Cognac'},
-    { id: 7, typeName: 'Liquor'},
-    { id: 8, typeName: 'Champagne'},
+    { id: 1, typeName: 'Wines' },
+    { id: 2, typeName: 'Whisky' },
+    { id: 3, typeName: 'Vodka' },
+    { id: 4, typeName: 'Rom' },
+    { id: 5, typeName: 'Tequila' },
+    { id: 6, typeName: 'Cognac' },
+    { id: 7, typeName: 'Liquor' },
+    { id: 8, typeName: 'Champagne' },
   ];
 
   typesOfCategory: ICategoryOfType[] = [
-    { id: 1, typeId: 1, categoryName: 'red'},
-    { id: 2, typeId: 1, categoryName: 'white'},
-    { id: 3, typeId: 2, categoryName: 'bourbon'},
-    { id: 4, typeId: 2, categoryName: 'samogon'},
-    { id: 5, typeId: 3, categoryName: 'anis'},
-    { id: 6, typeId: 3, categoryName: 'grappa'},
-    { id: 7, typeId: 4, categoryName: 'black'},
-    { id: 8, typeId: 4, categoryName: 'white'},
-    { id: 9, typeId: 5, categoryName: 'silver'},
-    { id: 10, typeId: 5, categoryName: 'gold'},
-    { id: 11, typeId: 6, categoryName: 'sixYear'},
-    { id: 12, typeId: 6, categoryName: 'sevenYear'},
-    { id: 13, typeId: 7, categoryName: 'sweet'},
-    { id: 14, typeId: 7, categoryName: 'white'},
-  ]
+    { id: 1, typeId: 1, categoryName: 'red' },
+    { id: 2, typeId: 1, categoryName: 'white' },
+    { id: 3, typeId: 2, categoryName: 'bourbon' },
+    { id: 4, typeId: 2, categoryName: 'samogon' },
+    { id: 5, typeId: 3, categoryName: 'anis' },
+    { id: 6, typeId: 3, categoryName: 'grappa' },
+    { id: 7, typeId: 4, categoryName: 'black' },
+    { id: 8, typeId: 4, categoryName: 'white' },
+    { id: 9, typeId: 5, categoryName: 'silver' },
+    { id: 10, typeId: 5, categoryName: 'gold' },
+    { id: 11, typeId: 6, categoryName: 'sixYear' },
+    { id: 12, typeId: 6, categoryName: 'sevenYear' },
+    { id: 13, typeId: 7, categoryName: 'sweet' },
+    { id: 14, typeId: 7, categoryName: 'white' },
+  ];
 
   openDialog(): void {
     this._dialog.open(AddingDialogComponent, {
@@ -82,17 +82,17 @@ export class AddingDialogComponent implements OnInit {
   }
 
   addDrink() {
-    
     let modelForAddDrinkDraft: any = {};
-    Object.assign(modelForAddDrinkDraft, this.newDrinkForm.value)
-    
-    modelForAddDrinkDraft.typeName = modelForAddDrinkDraft.typeName.typeName
-    
-    if(typeof modelForAddDrinkDraft.categoryName !== 'string') {
+    Object.assign(modelForAddDrinkDraft, this.newDrinkForm.value);
+
+    modelForAddDrinkDraft.typeName = modelForAddDrinkDraft.typeName.typeName;
+
+    if (typeof modelForAddDrinkDraft.categoryName !== 'string') {
       modelForAddDrinkDraft.categoryId = modelForAddDrinkDraft.categoryName.id;
-      modelForAddDrinkDraft.categoryName = modelForAddDrinkDraft.categoryName.categoryName;
+      modelForAddDrinkDraft.categoryName =
+        modelForAddDrinkDraft.categoryName.categoryName;
     }
-    
+
     this._alcoholService
       .newAlcohol(modelForAddDrinkDraft as INewDrink)
       .subscribe(
@@ -106,22 +106,24 @@ export class AddingDialogComponent implements OnInit {
   }
 
   setTypeId(ev: any) {
-    this.newDrinkForm.patchValue({ typeId: ev.id })
-    this.validCategories = this.typesOfCategory.filter( category => category.typeId === ev.id)
+    this.newDrinkForm.patchValue({ typeId: ev.id });
+    this.validCategories = this.typesOfCategory.filter(
+      (category) => category.typeId === ev.id
+    );
   }
 
   ngOnInit(): void {
-    this.subscriptionForMatAutocomplete.subscribe( res => {      
-      this.filterForAutocomplete(res)
-    })
+    this.subscriptionForMatAutocomplete.subscribe((res) => {
+      this.filterForAutocomplete(res);
+    });
   }
 
   getOptions(event: any) {
-    this.subscriptionForMatAutocomplete.next(event.target.value)
+    this.subscriptionForMatAutocomplete.next(event.target.value);
   }
 
   getOptionsIfFocus(value: string) {
-    this.subscriptionForMatAutocomplete.next(value)
+    this.subscriptionForMatAutocomplete.next(value);
   }
 
   displayFn(category: ICategoryOfType): string {
@@ -129,11 +131,10 @@ export class AddingDialogComponent implements OnInit {
   }
 
   filterForAutocomplete(criteria: string): void {
-
-    if(this.newDrinkForm.get('typeName')!.value) {
+    if (this.newDrinkForm.get('typeName')!.value) {
       let filterValue = criteria.toLowerCase();
-      this.filteredValidCategories = this.validCategories!.filter(option => {
-        return option.categoryName.toLowerCase().includes(filterValue)
+      this.filteredValidCategories = this.validCategories!.filter((option) => {
+        return option.categoryName.toLowerCase().includes(filterValue);
       });
     }
   }

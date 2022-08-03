@@ -1,4 +1,4 @@
 export interface IMyGroupssShort {
-    id: number;
-    name: string;
-  }
+  id: number;
+  name: string;
+}

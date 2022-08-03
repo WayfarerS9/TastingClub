@@ -59,8 +59,7 @@ export class NavigationComponent implements OnInit {
 
   getTree() {
     this._alcoholService.getAlcohol().subscribe((res: any) => {
-
-      console.log(res.result)
+      console.log(res.result);
 
       const getStatus = (array: any) => {
         let values: {
@@ -131,5 +130,4 @@ export class NavigationComponent implements OnInit {
     localStorage.removeItem('TOKEN_TASTYCLUB');
     this._router.navigate(['/auth/login']);
   }
-
 }
