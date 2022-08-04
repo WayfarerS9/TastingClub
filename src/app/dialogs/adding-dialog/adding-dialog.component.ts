@@ -59,20 +59,20 @@ export class AddingDialogComponent implements OnInit {
   ];
 
   typesOfCategory: ICategoryOfType[] = [
-    { id: 1, typeId: 1, categoryName: 'red' },
-    { id: 2, typeId: 1, categoryName: 'white' },
-    { id: 3, typeId: 2, categoryName: 'bourbon' },
-    { id: 4, typeId: 2, categoryName: 'samogon' },
-    { id: 5, typeId: 3, categoryName: 'anis' },
-    { id: 6, typeId: 3, categoryName: 'grappa' },
-    { id: 7, typeId: 4, categoryName: 'black' },
-    { id: 8, typeId: 4, categoryName: 'white' },
-    { id: 9, typeId: 5, categoryName: 'silver' },
-    { id: 10, typeId: 5, categoryName: 'gold' },
-    { id: 11, typeId: 6, categoryName: 'sixYear' },
-    { id: 12, typeId: 6, categoryName: 'sevenYear' },
-    { id: 13, typeId: 7, categoryName: 'sweet' },
-    { id: 14, typeId: 7, categoryName: 'white' },
+    { _id: 1, typeId: 1, categoryName: 'red' },
+    { _id: 2, typeId: 1, categoryName: 'white' },
+    { _id: 3, typeId: 2, categoryName: 'bourbon' },
+    { _id: 4, typeId: 2, categoryName: 'samogon' },
+    { _id: 5, typeId: 3, categoryName: 'anis' },
+    { _id: 6, typeId: 3, categoryName: 'grappa' },
+    { _id: 7, typeId: 4, categoryName: 'black' },
+    { _id: 8, typeId: 4, categoryName: 'white' },
+    { _id: 9, typeId: 5, categoryName: 'silver' },
+    { _id: 10, typeId: 5, categoryName: 'gold' },
+    { _id: 11, typeId: 6, categoryName: 'sixYear' },
+    { _id: 12, typeId: 6, categoryName: 'sevenYear' },
+    { _id: 13, typeId: 7, categoryName: 'sweet' },
+    { _id: 14, typeId: 7, categoryName: 'white' },
   ];
 
   openDialog(): void {

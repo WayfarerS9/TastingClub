@@ -1,5 +1,5 @@
 export interface IMyDrinksShort {
-  id: number;
+  _id: number;
   name: string;
   rating: number;
 }
@@ -13,12 +13,12 @@ export interface INewDrink {
 }
 
 export interface ICategoryOfType {
-  id: number;
+  _id: number;
   typeId: number;
   categoryName: string;
 }
 export interface IDrinkShort {
-  id: string;
+  _id: string;
   name: string;
   typeOfDrink: string;
   region: string;
@@ -33,7 +33,7 @@ export interface IDrinkFull extends IDrinkShort {
   filtration?: string;
 }
 export class drinkFull implements IDrinkFull {
-  id = '';
+  _id = '';
   name = '';
   typeOfDrink = '';
   region = '';
@@ -42,6 +42,10 @@ export class drinkFull implements IDrinkFull {
   manufacturer = '';
 }
 export interface ITastedDrinkFull extends IDrinkFull {
+  /* это может быть лишним, удалю если что */
+  id: string;
+  title: string;
+  /* ******** */
   userId: number;
   dateOfDegustation: string;
   points: number;
@@ -66,7 +70,6 @@ export interface IDrinkForShow {
   id: string;
   title: string;
 }
-
 export interface IAddUpdateFeedBack {
   userId: number;
   dateOfDegustation: string;

@@ -2,7 +2,7 @@ export interface TypeOfAlcohol {
   name: string;
   children?: TypeOfAlcohol[];
   id: number;
-  expanded?: boolean
+  expanded?: boolean;
 }
 
 /** Flat node with expandable and level information */

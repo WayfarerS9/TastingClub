@@ -8,7 +8,11 @@ import { environment } from 'src/environments/environment';
 export class DrinksService {
   constructor(private _http: HttpClient) {}
 
-  searchDrinks(term: string) {
+  searchByCategoryDrinks(term: string) {
     return this._http.get(environment.apiUrl + `/get-by-category/${term}`);
+  }
+
+  searchByIdDrinks(term: any) {
+    return this._http.get(environment.apiUrl + `/get-by-id/${term.id}`);
   }
 }

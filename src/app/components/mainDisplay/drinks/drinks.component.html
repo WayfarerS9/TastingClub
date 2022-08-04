@@ -19,6 +19,7 @@
       <h3 *ngIf="isAdd">Type the name of the drink</h3>
 
       <div *ngIf="!isAdd" class="list">
+        <!-- Поменял в *ngFor myTastedDrinks на matchingDrinks, который отображает алкоголь, который пользователь выбрал-->
         <p
           *ngFor="let drink of myTastedDrinks; let i = index"
           (click)="selectAndGetDrink(drink)"
@@ -36,22 +37,14 @@
         </mat-form-field>
 
         <div class="listOfFind">
-          <!--           <p *ngFor="let drink of myTastedDrinks; let i = index" (click)="selectAndGetDrink(drink)" [ngClass]="{selectedItem: drink === selectedTastedDrink}" class="item">
-            {{i+1}}. {{drink.title}}
-          </p> -->
-          Drink<br />
-          Drink<br />
-          Drink<br />
-          Drink<br />
-          Drink<br />
-          Drink<br />
-          Drink<br />
-          Drink<br />
-          Drink<br />
-          Drink<br />
-          Drink<br />
-          Drink<br />
-          Drink<br />
+          <p
+            *ngFor="let drink of matchingDrinks; let i = index"
+            class="item"
+            (click)="selectAndGetDrink(drink)"
+            [ngClass]="{ selectedItem: drink === selectedTastedDrink }"
+          >
+            {{ i + 1 }}. {{ drink.title }}
+          </p>
         </div>
       </div>
 
@@ -130,8 +123,12 @@
           <p *ngIf="myTastedDrinkFullInfo?.filtration">
             <strong>Filtration:</strong> {{ myTastedDrinkFullInfo?.filtration }}
           </p>
-          <p><strong>Alcohol:</strong> {{ myTastedDrinkFullInfo?.strength }}</p>
-          <p><strong>Volume:</strong> {{ myTastedDrinkFullInfo?.volume }}</p>
+          <p>
+            <strong>Alcohol:</strong> {{ myTastedDrinkFullInfo?.strength }}%
+          </p>
+          <p>
+            <strong>Volume:</strong> {{ myTastedDrinkFullInfo?.volume }} liter
+          </p>
         </div>
         <div class="infAboutTaste" *ngIf="!isEdit">
           <p>

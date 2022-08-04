@@ -12,7 +12,7 @@ import { DrinksService } from 'src/app/services/drinks.service';
 
 let getedDrinksShort: Array<IDrinkShort> = [
   {
-    id: '85',
+    _id: '85',
     name: 'Rechickoe',
     typeOfDrink: 'Beer',
     region: 'Belarus',
@@ -24,7 +24,7 @@ let getedDrinksShort: Array<IDrinkShort> = [
     feedBack: 'Good beer', */
   },
   {
-    id: '86',
+    _id: '86',
     name: 'Grantz',
     typeOfDrink: 'Whisky',
     region: 'Belarus',
@@ -36,7 +36,7 @@ let getedDrinksShort: Array<IDrinkShort> = [
     feedBack: 'Good whisky', */
   },
   {
-    id: '87',
+    _id: '87',
     name: 'Stolichnaya',
     typeOfDrink: 'Vodka',
     region: 'Russia',
@@ -48,7 +48,7 @@ let getedDrinksShort: Array<IDrinkShort> = [
     feedBack: 'Good vodka', */
   },
   {
-    id: '88',
+    _id: '88',
     name: 'Kindzmaraylli',
     typeOfDrink: 'Vine',
     region: 'Georgia',
@@ -62,7 +62,7 @@ let getedDrinksShort: Array<IDrinkShort> = [
 ];
 
 let getedDrink = {
-  id: '88',
+  _id: '88',
   name: 'Kindzmaraylli',
   typeOfDrink: 'Vine',
   region: 'Georgia',
@@ -89,7 +89,7 @@ export class DrinksComponent implements OnInit {
   isEdit: boolean = false;
   myTastedDrinks?: Array<IDrinkForShow>;
   selectedTastedDrink?: IDrinkForShow;
-  myTastedDrinkFullInfo?: ITastedDrinkFull = getedDrink;
+  myTastedDrinkFullInfo?: ITastedDrinkFull;
   matchingDrinks?: Array<IDrinkForShow>;
   searchCriteriaEmmiter = new Subject<string>();
   subscriptionOnSearchingCriteria!: Subscription;
@@ -107,6 +107,7 @@ export class DrinksComponent implements OnInit {
   ) {}
 
   searchDrinks(event: any) {
+    if (event.target.value.length < 3) this.matchingDrinks = [];
     this.searchCriteriaEmmiter.next(event.target.value);
   }
 
@@ -114,18 +115,16 @@ export class DrinksComponent implements OnInit {
     this.addUpdateFeedBackModel.userId = JSON.parse(
       localStorage.getItem('USER_TASTYCLUB')!
     ).id;
-    this.myTastedDrinks = this.getDrinksForShow(getedDrinksShort);
+    // this.myTastedDrinks = this.getDrinksForShow(getedDrinksShort);
 
     this.subscriptionOnSearchingCriteria = this.searchCriteriaEmmiter
       .pipe(
         filter((value) => value.length >= 3),
         debounceTime(300),
-        distinctUntilChanged(),
-        switchMap((term) => this._drinksService.searchDrinks(term))
+        switchMap((term) => this._drinksService.searchByCategoryDrinks(term))
       )
-      .subscribe((res) => {
-        console.log(res);
-        /* this.getDrinksForShow(res) */
+      .subscribe((res: any) => {
+        this.matchingDrinks = this.getDrinksForShow(res.result);
       });
   }
 
@@ -141,8 +140,8 @@ export class DrinksComponent implements OnInit {
         features = drink.type;
       }
       let result = {
-        id: drink.id,
-        title: `${drink.typeOfDrink} ${drink.name}, region ${drink.region}, ${features}, alcohol: ${drink.strength}%`,
+        id: drink._id,
+        title: `type: ${drink.typeOfDrink}, name: ${drink.name}, region: ${drink.region}, category: ${features}, alcohol: ${drink.strength}%`,
       };
       results.push(result);
     });
@@ -175,5 +174,11 @@ export class DrinksComponent implements OnInit {
   selectAndGetDrink(drink: IDrinkForShow) {
     this.selectedTastedDrink = drink;
     this.isEdit = false;
+    this._drinksService
+      .searchByIdDrinks(this.selectedTastedDrink)
+      .subscribe((res: any) => {
+        this.myTastedDrinkFullInfo = res.result;
+        this.isAdd = false;
+      });
   }
 }
