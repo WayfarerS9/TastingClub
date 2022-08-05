@@ -1,5 +1,5 @@
+<app-main-header></app-main-header>
 <div class="main">
-  <app-main-header></app-main-header>
   <button
     class="goBackButton"
     mat-raised-button
@@ -9,11 +9,11 @@
     < BACK
   </button>
 
-  <div class="container">
-    <div class="container-header">
-      <h2>My Drinks</h2>
-    </div>
+  <div class="container-header">
+    <h2>My Drinks</h2>
+  </div>
 
+  <div class="container">
     <div class="container-left-side">
       <h3 *ngIf="!isAdd">Drinks I've tasted</h3>
       <h3 *ngIf="isAdd">Type the name of the drink</h3>
@@ -21,7 +21,7 @@
       <div *ngIf="!isAdd" class="list">
         <!-- Поменял в *ngFor myTastedDrinks на matchingDrinks, который отображает алкоголь, который пользователь выбрал-->
         <p
-          *ngFor="let drink of myTastedDrinks; let i = index"
+          *ngFor="let drink of matchingDrinks; let i = index"
           (click)="selectAndGetDrink(drink)"
           [ngClass]="{ selectedItem: drink === selectedTastedDrink }"
           class="item"
@@ -48,7 +48,7 @@
         </div>
       </div>
 
-      <div>
+      <div class="four-buttons">
         <button
           class="button-add"
           mat-raised-button
@@ -129,8 +129,6 @@
           <p>
             <strong>Volume:</strong> {{ myTastedDrinkFullInfo?.volume }} liter
           </p>
-        </div>
-        <div class="infAboutTaste" *ngIf="!isEdit">
           <p>
             <strong>Date of degustation: </strong
             >{{ myTastedDrinkFullInfo?.dateOfDegustation }};

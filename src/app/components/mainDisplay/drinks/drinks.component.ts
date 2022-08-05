@@ -141,7 +141,7 @@ export class DrinksComponent implements OnInit {
       }
       let result = {
         id: drink._id,
-        title: `type: ${drink.typeOfDrink}, name: ${drink.name}, region: ${drink.region}, category: ${features}, alcohol: ${drink.strength}%`,
+        title: `${drink.typeOfDrink}, ${drink.name}`,
       };
       results.push(result);
     });
