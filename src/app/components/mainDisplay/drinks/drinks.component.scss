@@ -6,8 +6,9 @@
 
   .goBackButton {
     position: absolute;
-    top: 65px;
+    top: 105px;
     left: 9px;
+    background-color: rgb(231, 56, 56);
   }
 
   .container-header {
@@ -25,22 +26,23 @@
   }
 
   .container {
+    // background-color: red;
     display: flex;
-    flex-wrap: wrap;
-    width: 80vw;
+    justify-content: space-around;
+    align-items: center;
+    width: 65vw;
     height: 80vh;
 
     .container-left-side {
-      width: 40vw;
-      height: 50vh;
+      width: 30vw;
+      height: 55vh;
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
-
       padding: 0 10px;
+      box-shadow: 1px 1px 5px 1px black;
 
       h3 {
-        text-align: center;
         width: 100%;
         font-size: 1.6em;
       }
@@ -81,12 +83,24 @@
       }
 
       .four-buttons {
-        margin: auto;
-        width: 100%;
+        width: 8.5vw;
         display: flex;
+        flex-wrap: wrap;
         justify-content: space-between;
         padding: 10px 0;
         align-items: center;
+
+        .button-add {
+          font-size: 12px;
+        }
+
+        .button-edit-check {
+          background-color: rgb(10, 197, 10);
+        }
+
+        .button-back {
+          background-color: rgb(231, 56, 56);
+        }
 
         .button-add,
         .button-edit,
@@ -94,24 +108,24 @@
           display: flex;
           justify-content: center;
           align-items: center;
-          width: 10vw;
+          width: 3vw;
+          margin: 5px 0;
         }
       }
     }
 
     .container-right-side {
-      width: 40vw;
-      height: 70vh;
+      width: 30vw;
+      height: 55vh;
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
-      padding: 1em;
       box-shadow: 1px 1px 5px 1px black;
 
       .feedBack {
         width: 100%;
         height: 98%;
-        padding: 2em;
+        padding-left: 10px;
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
@@ -120,7 +134,7 @@
           h3 {
             text-align: center;
             width: 100%;
-            // font-size: 1.6em;
+            font-size: 1.6em;
           }
         }
 
@@ -130,6 +144,11 @@
           textarea {
             resize: none;
           }
+        }
+
+        .datepicker {
+          width: 15vw;
+          margin-right: 12px;
         }
       }
     }

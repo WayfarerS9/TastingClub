@@ -1,12 +1,7 @@
 <app-main-header></app-main-header>
 <div class="main">
-  <button
-    class="goBackButton"
-    mat-raised-button
-    color="accent"
-    (click)="goBack()"
-  >
-    < BACK
+  <button class="goBackButton" mat-fab (click)="goBack()">
+    <mat-icon>arrow_back</mat-icon>
   </button>
 
   <div class="container-header">
@@ -20,12 +15,8 @@
 
       <div *ngIf="!isAdd" class="list">
         <!-- Поменял в *ngFor myTastedDrinks на matchingDrinks, который отображает алкоголь, который пользователь выбрал-->
-        <p
-          *ngFor="let drink of matchingDrinks; let i = index"
-          (click)="selectAndGetDrink(drink)"
-          [ngClass]="{ selectedItem: drink === selectedTastedDrink }"
-          class="item"
-        >
+        <p *ngFor="let drink of myTastedDrinks; let i = index" (click)="selectAndGetDrink(drink)"
+          [ngClass]="{ selectedItem: drink === selectedTastedDrink }" class="item">
           {{ i + 1 }}. {{ drink.title }}
         </p>
       </div>
@@ -37,59 +28,32 @@
         </mat-form-field>
 
         <div class="listOfFind">
-          <p
-            *ngFor="let drink of matchingDrinks; let i = index"
-            class="item"
-            (click)="selectAndGetDrink(drink)"
-            [ngClass]="{ selectedItem: drink === selectedTastedDrink }"
-          >
+          <p *ngFor="let drink of matchingDrinks; let i = index" class="item" (click)="selectAndGetDrink(drink)"
+            [ngClass]="{ selectedItem: drink === selectedTastedDrink }">
             {{ i + 1 }}. {{ drink.title }}
           </p>
         </div>
       </div>
 
       <div class="four-buttons">
-        <button
-          class="button-add"
-          mat-raised-button
-          color="primary"
-          (click)="onAdd()"
-          *ngIf="!isAdd && !isEdit"
-        >
-          Add
+        <button class="button-add" mat-fab color="primary" (click)="onAdd()" *ngIf="!isAdd && !isEdit">
+          <mat-icon>search</mat-icon>
         </button>
-        <button
+        <!-- <button
           class="button-add"
           mat-raised-button
           color="primary"
           *ngIf="isAdd"
         >
           Add Feedback
+        </button> -->
+        <button class="button-edit" mat-fab color="accent" (click)="onEdit()" *ngIf="!isAdd && !isEdit">
+          <mat-icon>edit</mat-icon>
         </button>
-        <button
-          class="button-edit"
-          mat-raised-button
-          color="accent"
-          (click)="onEdit()"
-          *ngIf="!isAdd && !isEdit"
-        >
-          Edit
+        <button class="button-edit-check" mat-fab (click)="isEdit = true" *ngIf="isEdit">
+          <mat-icon>check</mat-icon>
         </button>
-        <button
-          class="button-edit"
-          mat-raised-button
-          color="accent"
-          (click)="isEdit = true"
-          *ngIf="isEdit"
-        >
-          Edit Feedback
-        </button>
-        <button
-          class="button-back"
-          mat-raised-button
-          *ngIf="isAdd || isEdit"
-          (click)="backToMyDrinks()"
-        >
+        <button class="button-back" mat-fab *ngIf="isAdd || isEdit" (click)="backToMyDrinks()">
           Back
         </button>
       </div>
@@ -130,12 +94,10 @@
             <strong>Volume:</strong> {{ myTastedDrinkFullInfo?.volume }} liter
           </p>
           <p>
-            <strong>Date of degustation: </strong
-            >{{ myTastedDrinkFullInfo?.dateOfDegustation }};
+            <strong>Date of degustation: </strong>{{ myTastedDrinkFullInfo?.dateOfDegustation }};
           </p>
           <p>
-            <strong>My grade: </strong
-            >{{ myTastedDrinkFullInfo?.points }} points;
+            <strong>My grade: </strong>{{ myTastedDrinkFullInfo?.points }} points;
           </p>
           <p>
             <strong>My feedback: </strong> {{ myTastedDrinkFullInfo?.feedBack }}
@@ -143,26 +105,22 @@
         </div>
 
         <div *ngIf="isEdit">
-          Do you want to add a description of your impressions?
+          <mat-form-field class="datepicker" appearance="fill">
+            <mat-label>Choose a date of degustation</mat-label>
+            <input matInput [matDatepicker]="picker">
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+          <button mat-raised-button color="accent" (click)="picker.open()">Open</button>
 
           <form #feedBackForm="ngForm">
-            <mat-slider
-              max="10"
-              min="0"
-              step="1"
-              thumbLabel="true"
-              [(ngModel)]="addUpdateFeedBackModel.points"
-            ></mat-slider>
+            <mat-slider max="10" min="0" step="1" thumbLabel="true" [(ngModel)]="addUpdateFeedBackModel.points">
+            </mat-slider>
             <br />
 
             <mat-form-field appearance="fill">
               <mat-label>Leave a comment</mat-label>
-              <textarea
-                matInput
-                placeholder="It's a wonderfull drink..."
-                [(ngModel)]="addUpdateFeedBackModel.feedBack"
-                rows="7"
-              ></textarea>
+              <textarea matInput placeholder="It's a wonderfull drink..." [(ngModel)]="addUpdateFeedBackModel.feedBack"
+                rows="2"></textarea>
             </mat-form-field>
           </form>
         </div>
