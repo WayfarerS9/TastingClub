@@ -43,12 +43,12 @@ export class drinkFull implements IDrinkFull {
 }
 export interface ITastedDrinkFull extends IDrinkFull {
   /* это может быть лишним, удалю если что */
-  id: string;
-  title: string;
+  // id: string;
+  // title: string;
   /* ******** */
   userId: number;
   dateOfDegustation: string;
-  points: number;
+  rating: number;
   feedBack: string;
 }
 
@@ -73,7 +73,7 @@ export interface IDrinkForShow {
 export interface IAddUpdateFeedBack {
   userId: number;
   dateOfDegustation: string;
-  points: number;
+  rating: number;
   feedBack: string;
 }
 

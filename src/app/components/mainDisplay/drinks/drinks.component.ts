@@ -93,18 +93,19 @@ export class DrinksComponent implements OnInit {
   matchingDrinks?: Array<IDrinkForShow>;
   searchCriteriaEmmiter = new Subject<string>();
   subscriptionOnSearchingCriteria!: Subscription;
+  starRating = 0;
 
   addUpdateFeedBackModel: IAddUpdateFeedBack = {
     userId: 0,
     dateOfDegustation: '',
-    points: 9,
+    rating: this.starRating,
     feedBack: '',
   };
 
   constructor(
     private _location: Location,
     private _drinksService: DrinksService
-  ) {}
+  ) { }
 
   searchDrinks(event: any) {
     if (event.target.value.length < 3) this.matchingDrinks = [];
@@ -154,10 +155,10 @@ export class DrinksComponent implements OnInit {
 
   onEdit() {
     this.isEdit = true;
-    console.log(this.addUpdateFeedBackModel.points);
-    this.addUpdateFeedBackModel.dateOfDegustation =
-      this.myTastedDrinkFullInfo!.dateOfDegustation;
-    this.addUpdateFeedBackModel.points = this.myTastedDrinkFullInfo!.points;
+    console.log(this.starRating)
+    this.addUpdateFeedBackModel.dateOfDegustation = this.myTastedDrinkFullInfo!.dateOfDegustation;
+    this.addUpdateFeedBackModel.rating = this.starRating;
+    console.log(this.addUpdateFeedBackModel.rating)
     this.addUpdateFeedBackModel.feedBack = this.myTastedDrinkFullInfo!.feedBack;
   }
 
@@ -180,5 +181,11 @@ export class DrinksComponent implements OnInit {
         this.myTastedDrinkFullInfo = res.result;
         this.isAdd = false;
       });
+  }
+
+  update() {
+    this._drinksService.ratingAndReview(this.addUpdateFeedBackModel).subscribe(res => {
+      console.log(res)
+    })
   }
 }

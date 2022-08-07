@@ -50,7 +50,7 @@
         <button class="button-edit" mat-fab color="accent" (click)="onEdit()" *ngIf="!isAdd && !isEdit">
           <mat-icon>edit</mat-icon>
         </button>
-        <button class="button-edit-check" mat-fab (click)="isEdit = true" *ngIf="isEdit">
+        <button class="button-edit-check" mat-fab (click)="update()" *ngIf="isEdit" >
           <mat-icon>check</mat-icon>
         </button>
         <button class="button-back" mat-fab *ngIf="isAdd || isEdit" (click)="backToMyDrinks()">
@@ -97,7 +97,7 @@
             <strong>Date of degustation: </strong>{{ myTastedDrinkFullInfo?.dateOfDegustation }};
           </p>
           <p>
-            <strong>My grade: </strong>{{ myTastedDrinkFullInfo?.points }} points;
+            <strong>My grade: </strong>{{ myTastedDrinkFullInfo?.rating }};
           </p>
           <p>
             <strong>My feedback: </strong> {{ myTastedDrinkFullInfo?.feedBack }}
@@ -113,14 +113,17 @@
           <button mat-raised-button color="accent" (click)="picker.open()">Open</button>
 
           <form #feedBackForm="ngForm">
-            <mat-slider max="10" min="0" step="1" thumbLabel="true" [(ngModel)]="addUpdateFeedBackModel.points">
+            <!-- <mat-slider max="10" min="0" step="1" thumbLabel="true" [(ngModel)]="addUpdateFeedBackModel.points">
             </mat-slider>
-            <br />
+            <br /> -->
+            <ngb-rating [(rate)]="starRating"></ngb-rating>
+            <pre>Rate: <b>{{starRating}}</b></pre>
 
             <mat-form-field appearance="fill">
               <mat-label>Leave a comment</mat-label>
               <textarea matInput placeholder="It's a wonderfull drink..." [(ngModel)]="addUpdateFeedBackModel.feedBack"
                 rows="2"></textarea>
+              <!-- <mat-icon>comment</mat-icon> -->
             </mat-form-field>
           </form>
         </div>
