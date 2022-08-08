@@ -1,13 +1,10 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
-
 import { AlcoholService } from 'src/app/services/newAlcohol.service';
 import { INewDrink, ICategoryOfType } from 'src/app/models/alcohol.model';
 import { ToastrService } from 'ngx-toastr';
-
-import { Observable, Subject, Subscription } from 'rxjs';
-import { map, startWith } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 interface ITypeOfAlcohol {
   id: number;
   typeName: string;

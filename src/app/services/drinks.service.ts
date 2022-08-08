@@ -6,7 +6,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root',
 })
 export class DrinksService {
-  constructor(private _http: HttpClient) {}
+  constructor(private _http: HttpClient) { }
 
   searchByCategoryDrinks(term: string) {
     return this._http.get(environment.apiUrl + `/get-by-category/${term}`);
@@ -15,4 +15,16 @@ export class DrinksService {
   searchByIdDrinks(term: any) {
     return this._http.get(environment.apiUrl + `/get-by-id/${term.id}`);
   }
+
+
+  ratingAndReview(term: any) {
+    console.log(term)
+    return this._http.post(environment.apiUrl + `/update/${term.id}`, {
+      userId: term.id,
+      rating: term.rating,
+      feedBack: term.feedBack,
+      dateOfDegustation: term.dateOfDegustation
+    });
+  }
+
 }

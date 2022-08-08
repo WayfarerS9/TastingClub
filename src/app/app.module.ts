@@ -41,6 +41,7 @@ import { GroupsComponent } from './components/mainDisplay/groups/groups.componen
 import { EventsComponent } from './components/mainDisplay/events/events.component';
 import { LibraryComponent } from './components/mainDisplay/library/library.component';
 import { MatSliderModule } from '@angular/material/slider';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 export function HttpLoaderFactory(httpClient: HttpClient): TranslateLoader {
   return new TranslateHttpLoader(httpClient);
@@ -92,6 +93,7 @@ export function HttpLoaderFactory(httpClient: HttpClient): TranslateLoader {
       },
       defaultLanguage: 'en-US',
     }),
+    NgbModule,
   ],
   providers: [
     AuthService,

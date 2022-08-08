@@ -93,13 +93,13 @@ export class DrinksComponent implements OnInit {
   matchingDrinks?: Array<IDrinkForShow>;
   searchCriteriaEmmiter = new Subject<string>();
   subscriptionOnSearchingCriteria!: Subscription;
+  starRating = 0;
 
   addUpdateFeedBackModel: IAddUpdateFeedBack = {
     userId: 0,
     dateOfDegustation: '',
-    points: 9,
-    feedBack: '', 
-    
+    rating: 9,
+    feedBack: '',
   };
 
   constructor(
@@ -155,10 +155,10 @@ export class DrinksComponent implements OnInit {
 
   onEdit() {
     this.isEdit = true;
-    console.log(this.addUpdateFeedBackModel.points);
+    console.log(this.addUpdateFeedBackModel.rating);
     this.addUpdateFeedBackModel.dateOfDegustation =
       this.myTastedDrinkFullInfo!.dateOfDegustation;
-    this.addUpdateFeedBackModel.points = this.myTastedDrinkFullInfo!.points;
+    this.addUpdateFeedBackModel.rating = this.myTastedDrinkFullInfo!.rating;
     this.addUpdateFeedBackModel.feedBack = this.myTastedDrinkFullInfo!.feedBack;
   }
 
@@ -180,6 +180,14 @@ export class DrinksComponent implements OnInit {
       .subscribe((res: any) => {
         this.myTastedDrinkFullInfo = res.result;
         this.isAdd = false;
+      });
+  }
+
+  update() {
+    this._drinksService
+      .ratingAndReview(this.addUpdateFeedBackModel)
+      .subscribe((res) => {
+        console.log(res);
       });
   }
 }
