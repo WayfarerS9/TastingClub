@@ -9,6 +9,7 @@ import {
 import { Subject, Subscription, switchMap } from 'rxjs';
 import { debounceTime, distinctUntilChanged, filter } from 'rxjs/operators';
 import { DrinksService } from 'src/app/services/drinks.service';
+import { ToastrService } from 'ngx-toastr';
 
 let getedDrinksShort: Array<IDrinkShort> = [
   {
@@ -93,18 +94,23 @@ export class DrinksComponent implements OnInit {
   matchingDrinks?: Array<IDrinkForShow>;
   searchCriteriaEmmiter = new Subject<string>();
   subscriptionOnSearchingCriteria!: Subscription;
-  starRating = 0;
+  starRating: number = 0;
+  datePicker: string = '';
+  result: any;
+  tableResult: any;
 
   addUpdateFeedBackModel: IAddUpdateFeedBack = {
     userId: 0,
+    mongoId: '',
     dateOfDegustation: '',
-    rating: 9,
+    rating: 0,
     feedBack: '',
   };
 
   constructor(
     private _location: Location,
-    private _drinksService: DrinksService
+    private _drinksService: DrinksService,
+    private _toastrService: ToastrService
   ) {}
 
   searchDrinks(event: any) {
@@ -116,7 +122,6 @@ export class DrinksComponent implements OnInit {
     this.addUpdateFeedBackModel.userId = JSON.parse(
       localStorage.getItem('USER_TASTYCLUB')!
     ).id;
-    // this.myTastedDrinks = this.getDrinksForShow(getedDrinksShort);
 
     this.subscriptionOnSearchingCriteria = this.searchCriteriaEmmiter
       .pipe(
@@ -155,7 +160,6 @@ export class DrinksComponent implements OnInit {
 
   onEdit() {
     this.isEdit = true;
-    console.log(this.addUpdateFeedBackModel.rating);
     this.addUpdateFeedBackModel.dateOfDegustation =
       this.myTastedDrinkFullInfo!.dateOfDegustation;
     this.addUpdateFeedBackModel.rating = this.myTastedDrinkFullInfo!.rating;
@@ -179,15 +183,36 @@ export class DrinksComponent implements OnInit {
       .searchByIdDrinks(this.selectedTastedDrink)
       .subscribe((res: any) => {
         this.myTastedDrinkFullInfo = res.result;
+        this.tableResult = res.tableResult[0];
         this.isAdd = false;
       });
   }
 
   update() {
-    this._drinksService
-      .ratingAndReview(this.addUpdateFeedBackModel)
-      .subscribe((res) => {
-        console.log(res);
-      });
+    this.result = {
+      userId: this.addUpdateFeedBackModel.userId,
+      mongoId: this.myTastedDrinkFullInfo?._id,
+      dateOfDegustation: this.datePicker,
+      rating: this.starRating,
+      feedBack: this.addUpdateFeedBackModel.feedBack,
+    };
+
+    this._drinksService.ratingAndReview(this.result).subscribe(
+      (res: any) => {
+        this._toastrService.success(res.message);
+      },
+      (error) => {
+        this._toastrService.success(error);
+      }
+    );
+  }
+
+  /* Function to change star rating value, when user select it */
+  onRateChange(rate: number) {
+    this.starRating = rate;
+  }
+
+  onChangeEvent(event: any) {
+    this.datePicker = event.value;
   }
 }

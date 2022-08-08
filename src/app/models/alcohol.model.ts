@@ -42,11 +42,8 @@ export class drinkFull implements IDrinkFull {
   manufacturer = '';
 }
 export interface ITastedDrinkFull extends IDrinkFull {
-  /* это может быть лишним, удалю если что */
-  // id: string;
-  // title: string;
-  /* ******** */
   userId: number;
+  mongoId: string;
   dateOfDegustation: string;
   rating: number;
   feedBack: string;
@@ -72,6 +69,7 @@ export interface IDrinkForShow {
 }
 export interface IAddUpdateFeedBack {
   userId: number;
+  mongoId: string;
   dateOfDegustation: string;
   rating: number;
   feedBack: string;
