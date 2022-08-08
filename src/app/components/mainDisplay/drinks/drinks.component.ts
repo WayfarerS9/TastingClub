@@ -98,7 +98,8 @@ export class DrinksComponent implements OnInit {
     userId: 0,
     dateOfDegustation: '',
     points: 9,
-    feedBack: '',
+    feedBack: '', 
+    
   };
 
   constructor(
