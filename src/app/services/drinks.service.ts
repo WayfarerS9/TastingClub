@@ -18,6 +18,7 @@ export class DrinksService {
 
   ratingAndReview(term: any) {
     return this._http.put(environment.apiUrl + `/update/${term.userId}`, {
+      firstName: term.firstName,
       userId: term.userId,
       mongoId: term.mongoId,
       rating: term.rating,

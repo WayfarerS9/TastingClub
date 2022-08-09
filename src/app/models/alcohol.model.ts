@@ -68,6 +68,7 @@ export interface IDrinkForShow {
   title: string;
 }
 export interface IAddUpdateFeedBack {
+  firstName: string;
   userId: number;
   mongoId: string;
   dateOfDegustation: string;

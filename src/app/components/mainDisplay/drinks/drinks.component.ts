@@ -100,6 +100,7 @@ export class DrinksComponent implements OnInit {
   tableResult: any;
 
   addUpdateFeedBackModel: IAddUpdateFeedBack = {
+    firstName: '',
     userId: 0,
     mongoId: '',
     dateOfDegustation: '',
@@ -122,6 +123,11 @@ export class DrinksComponent implements OnInit {
     this.addUpdateFeedBackModel.userId = JSON.parse(
       localStorage.getItem('USER_TASTYCLUB')!
     ).id;
+    this.addUpdateFeedBackModel.firstName = JSON.parse(
+      localStorage.getItem('USER_TASTYCLUB')!
+    ).firstName;
+
+    console.log(localStorage.getItem('USER_TASTYCLUB'));
 
     this.subscriptionOnSearchingCriteria = this.searchCriteriaEmmiter
       .pipe(
@@ -190,13 +196,13 @@ export class DrinksComponent implements OnInit {
 
   update() {
     this.result = {
+      firstName: this.addUpdateFeedBackModel.firstName,
       userId: this.addUpdateFeedBackModel.userId,
       mongoId: this.myTastedDrinkFullInfo?._id,
       dateOfDegustation: this.datePicker,
       rating: this.starRating,
       feedBack: this.addUpdateFeedBackModel.feedBack,
     };
-
     this._drinksService.ratingAndReview(this.result).subscribe(
       (res: any) => {
         this._toastrService.success(res.message);
