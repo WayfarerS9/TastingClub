@@ -1,5 +1,5 @@
 export interface IMyDrinksShort {
-  _id: number;
+  _id: string;
   name: string;
   rating: number;
 }
@@ -13,7 +13,7 @@ export interface INewDrink {
 }
 
 export interface ICategoryOfType {
-  _id: number;
+  _id: string;
   typeId: number;
   categoryName: string;
 }
@@ -29,7 +29,7 @@ export interface IDrinkShort {
 export interface IDrinkFull extends IDrinkShort {
   volume: number;
   manufacturer: string;
-  grape?: string;
+  grape?: Array<string>;
   filtration?: string;
 }
 export class drinkFull implements IDrinkFull {
@@ -76,7 +76,21 @@ export interface IAddUpdateFeedBack {
   feedBack: string;
 }
 
-/* export interface IDrinkShortWithFeedback extends IDrinkShort {
-
+export interface IDrinkShortInfo {
+  _id: string;
+  name: string;
+  typeOfDrink: string;
+  region: string;
+  strength: number;
+  category?: Array<string>;
+  type?: string;
+  volume: number;
+  manufacturer: string;
+  grape?: Array<string>;
+  filtration?: string;
+  userId: number;
+  mongoId: string;
+  dateOfDegustation: string;
+  rating: number;
+  feedBack: string;
 }
- */

@@ -51,7 +51,7 @@
         margin-bottom: 10px;
 
         .item {
-          font-size: 20px;
+          font-size: 17px;
         }
 
         .item:hover {
@@ -59,6 +59,10 @@
         }
 
         .selectedItem {
+          background-color: #00000021;
+        }
+
+        .example-card {
           background-color: #00000021;
         }
       }
@@ -83,16 +87,10 @@
       .four-buttons {
         position: absolute;
         bottom: 180px;
-        width: 8.5vw;
+        width: 13vw;
         display: flex;
-        flex-wrap: wrap;
         justify-content: space-between;
-        padding: 10px 0;
         align-items: center;
-
-        .button-add {
-          font-size: 12px;
-        }
 
         .button-edit-check {
           background-color: rgb(10, 197, 10);
@@ -104,11 +102,13 @@
 
         .button-add,
         .button-edit,
-        .button-back {
+        .button-back,
+        .button-edit-check {
           display: flex;
           justify-content: center;
           align-items: center;
-          width: 3vw;
+          width: 5vw;
+          height: 5vh;
           margin: 5px 0;
         }
       }
@@ -132,7 +132,6 @@
 
         .infAboutDrink {
           h3 {
-            text-align: center;
             width: 100%;
             font-size: 1.6em;
           }
