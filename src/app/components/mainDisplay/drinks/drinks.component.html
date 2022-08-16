@@ -118,6 +118,8 @@
             <mat-label>Choose a date</mat-label>
             <input
               matInput
+              [min]="minDate"
+              [max]="maxDate"
               [matDatepicker]="datepicker"
               (dateChange)="onChangeEvent($event)"
               disabled

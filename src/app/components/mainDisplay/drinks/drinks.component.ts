@@ -31,6 +31,9 @@ export class DrinksComponent implements OnInit {
   tableResult: any;
   userId: any;
 
+  minDate = new Date(1990, 0, 1);
+  maxDate = new Date();
+
   addUpdateFeedBackModel: IAddUpdateFeedBack = {
     firstName: '',
     userId: 0,
@@ -172,4 +175,5 @@ export class DrinksComponent implements OnInit {
         this.myTastedDrinks = this.getDrinksForShow(res.result);
       });
   }
+
 }

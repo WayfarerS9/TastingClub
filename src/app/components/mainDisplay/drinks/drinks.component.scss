@@ -45,9 +45,11 @@
       }
 
       .list {
-        height: 35vh;
+        // background-color: red;
+        height: 50vh;
         overflow: auto;
-        margin-bottom: 10px;
+        padding-right: 10px;
+        // margin-bottom: 10px;
 
         .item {
           font-size: 17px;
@@ -58,12 +60,15 @@
         }
 
         .selectedItem {
+          width: 100%;
           background-color: #00000021;
         }
 
         .example-card {
+          width: 100%;
           background-color: #00000021;
         }
+
       }
 
       .listOfFind {
