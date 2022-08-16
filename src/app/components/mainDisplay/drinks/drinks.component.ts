@@ -25,7 +25,7 @@ export class DrinksComponent implements OnInit {
   matchingDrinks?: Array<IDrinkForShow>;
   searchCriteriaEmmiter = new Subject<string>();
   subscriptionOnSearchingCriteria!: Subscription;
-  starRating: number = 0;
+  starRating?: number;
   datePicker: string = '';
   result: any;
   tableResult: any;
@@ -43,8 +43,8 @@ export class DrinksComponent implements OnInit {
   constructor(
     private _location: Location,
     private _drinksService: DrinksService,
-    private _toastrService: ToastrService
-  ) {}
+    private _toastrService: ToastrService,
+  ) { }
 
   searchDrinks(event: any) {
     if (event.target.value.length < 3) this.matchingDrinks = [];
@@ -86,7 +86,11 @@ export class DrinksComponent implements OnInit {
       }
       let result = {
         id: drink._id,
+        type: drink.typeOfDrink,
+        rating: drink.rating,
+        feedBack: drink.feedBack,
         title: `${drink.typeOfDrink} ${drink.name}, ${drink.region}, ${features}, ${drink.strength}%`,
+        name: drink.name,
       };
 
       results.push(result);
@@ -141,10 +145,12 @@ export class DrinksComponent implements OnInit {
       (res: any) => {
         this._toastrService.success(res.message);
         this.isEdit = false;
+        //this.selectAndGetDrink(this.selectedTastedDrink!) и this.shortInfoAboutDrink() отображают изменения которые вносит пользователь, без перезагрузки страницы
         this.selectAndGetDrink(this.selectedTastedDrink!);
+        this.shortInfoAboutDrink();
       },
       (error) => {
-        this._toastrService.error(error);
+        this._toastrService.error(error.error.error);
       }
     );
   }

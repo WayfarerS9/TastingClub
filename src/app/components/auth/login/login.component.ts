@@ -24,9 +24,9 @@ export class LoginComponent implements OnInit {
     private _auth: AuthService,
     private _toastrService: ToastrService,
     private _router: Router
-  ) {}
+  ) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   signInUser() {
     let logModel = Object.assign({}, this.logForm.value);

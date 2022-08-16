@@ -25,6 +25,10 @@ export interface IDrinkShort {
   strength: number;
   category?: Array<string>;
   type?: string;
+  /* добавил сюда поле рейтинг */
+  rating: number;
+  /* добавил сюда поле фидбэк */
+  feedBack: string;
 }
 export interface IDrinkFull extends IDrinkShort {
   volume: number;
@@ -34,12 +38,16 @@ export interface IDrinkFull extends IDrinkShort {
 }
 export class drinkFull implements IDrinkFull {
   _id = '';
+  /* и сдесь добавил поле рейтинг со значением 0 */
+  rating = 0;
   name = '';
   typeOfDrink = '';
   region = '';
   strength = 0;
   volume = 0;
   manufacturer = '';
+  /* и сдесь добавил поле фидбэк */
+  feedBack = '';
 }
 export interface ITastedDrinkFull extends IDrinkFull {
   userId: number;
@@ -66,6 +74,11 @@ export interface ITastedDrinkFull extends IDrinkFull {
 export interface IDrinkForShow {
   id: string;
   title: string;
+  /* добавлены четыре новых поля name, rating, feedBack*/
+  type: string;
+  name: string;
+  rating: number;
+  feedBack: string;
 }
 export interface IAddUpdateFeedBack {
   firstName: string;

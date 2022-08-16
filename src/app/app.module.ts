@@ -42,7 +42,9 @@ import { EventsComponent } from './components/mainDisplay/events/events.componen
 import { LibraryComponent } from './components/mainDisplay/library/library.component';
 import { MatSliderModule } from '@angular/material/slider';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatCardModule } from '@angular/material/card';
+import { DatePipe } from '@angular/common';
 
 export function HttpLoaderFactory(httpClient: HttpClient): TranslateLoader {
   return new TranslateHttpLoader(httpClient);
@@ -82,6 +84,8 @@ export function HttpLoaderFactory(httpClient: HttpClient): TranslateLoader {
     MatAutocompleteModule,
     MatSliderModule,
     MatCardModule,
+    MatSliderModule,
+    MatProgressSpinnerModule,
     ToastrModule.forRoot({
       timeOut: 3000,
       positionClass: 'toast-top-center',
@@ -106,6 +110,7 @@ export function HttpLoaderFactory(httpClient: HttpClient): TranslateLoader {
       useClass: UserInterceptorService,
       multi: true,
     },
+    DatePipe
   ],
   bootstrap: [AppComponent],
 })

@@ -14,7 +14,6 @@
   .container-header {
     width: 100%;
     display: flex;
-    position: relative;
     justify-content: center;
     align-items: center;
     height: 45px;
@@ -34,7 +33,7 @@
 
     .container-left-side {
       width: 30vw;
-      height: 60vh;
+      height: 67vh;
       display: flex;
       flex-direction: column;
       padding: 0 10px;
@@ -86,15 +85,11 @@
 
       .four-buttons {
         position: absolute;
-        bottom: 180px;
+        bottom: 150px;
         width: 13vw;
         display: flex;
         justify-content: space-between;
         align-items: center;
-
-        .button-edit-check {
-          background-color: rgb(10, 197, 10);
-        }
 
         .button-back {
           background-color: rgb(231, 56, 56);
@@ -107,16 +102,17 @@
           display: flex;
           justify-content: center;
           align-items: center;
-          width: 5vw;
+          width: 6vw;
           height: 5vh;
           margin: 5px 0;
+          color: white;
         }
       }
     }
 
     .container-right-side {
       width: 30vw;
-      height: 60vh;
+      height: 67vh;
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
@@ -138,27 +134,38 @@
         }
 
         mat-form-field {
-          width: 100%;
+          width: 98%;
+          height: 8vh;
 
           textarea {
             resize: none;
           }
         }
 
-        .datepicker {
-          width: 15vw;
-          margin-right: 12px;
-        }
-
         ngb-rating {
           color: #FFC107;
-          font-size: 25px;
+          font-size: 30px;
+          margin-bottom: 15px;
         }
 
-        pre {
-          padding-left: 5px;
+        .button-edit {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 7vw;
+          height: 6vh;
         }
 
+        .button-edit-check {
+          margin-top: 30px;
+          color: white;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 6vw;
+          height: 5vh;
+          background-color: rgb(10, 197, 10);
+        }
       }
     }
   }
