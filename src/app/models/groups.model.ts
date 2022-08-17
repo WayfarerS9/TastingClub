@@ -1,4 +1,4 @@
-export interface IMyGroupssShort {
-  id: number;
-  name: string;
+export interface IMyGroupsShort {
+  userId: number;
+  groupName: string;
 }
