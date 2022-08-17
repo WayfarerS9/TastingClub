@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://qaq-api-dev.asist-lab.com/api',
-  // apiUrl: 'http://localhost:3000/api',
+  // apiUrl: 'https://qaq-app-dev.asist-lab.com/api',
+  apiUrl: 'http://localhost:3000/api',
 };
