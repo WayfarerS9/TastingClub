@@ -14,7 +14,7 @@
     position: absolute;
     top: 105px;
     left: 9px;
-    background-color: rgb(231, 56, 56);
+    // background-color: rgb(231, 56, 56);
   }
 
   .header {
@@ -25,24 +25,24 @@
 
   .container {
     display: flex;
-    background-color: rgb(233, 195, 168);
+    // background-color: rgb(233, 195, 168);
     flex-grow: 1;
     justify-content: space-between;
 
     .container-left-side {
       width: 48%;
-      background-color: aquamarine;
+      // background-color: aquamarine;
       display: flex;
       flex-direction: column;
 
       .group-block {
         min-height: 4em;
-        background-color: beige;
+        // background-color: beige;
         margin-bottom: .5em;
       }
 
       .button-container {
-        background-color: bisque;
+        // background-color: bisque;
         margin-top: auto;
         margin-bottom: 0.5em;
         display: flex;
@@ -53,6 +53,6 @@
 
   .container-right-side {
     width: 48%;
-    background-color: rgb(68, 175, 139);
+    // background-color: rgb(68, 175, 139);
   }
 }
