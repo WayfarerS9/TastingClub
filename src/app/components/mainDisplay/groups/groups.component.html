@@ -4,49 +4,77 @@
     <mat-icon>arrow_back</mat-icon>
   </button>
 
-  <div class="container-header">
-    <h2>My Groups</h2>
+  <div class="header">
+    <h2>Groups</h2>
   </div>
 
   <div class="container">
-    <div class="big-container">
-      <div class="group-btn">
-        <button mat-raised-button color="accent" class="create-group">
-          Create new group
-          <mat-icon>group</mat-icon>
+    <div class="container-left-side">
+      <h3>My groups</h3>
+      <div class="group-block" (click)="toInitState()">First group</div>
+      <div class="group-block" (click)="toInitState()">Second group</div>
+      <div class="group-block" (click)="toInitState()">Third group</div>
+      <div class="group-block" (click)="toInitState()">Fourth group</div>
+      <div class="group-block" (click)="toInitState()">Fivth group</div>
+
+      <div class="button-container">
+        <button
+          mat-raised-button
+          color="accent"
+          class="join-group"
+          (click)="onJoin()"
+        >
+          Join group
+        </button>
+
+        <button mat-raised-button color="accent" class="join-group">
+          Leave group
+        </button>
+
+        <button
+          mat-raised-button
+          color="accent"
+          class="join-group"
+          (click)="onCreate()"
+        >
+          Create group
         </button>
       </div>
-      <div class="first-group-container"></div>
-      <div class="second-group-container"></div>
-      <div class="third-group-container"></div>
-      <div class="fourth-group-container"></div>
-      <div class="fifth-group-container"></div>
     </div>
 
-    <div class="medium-container">
-      <div class="join-btn">
-        <button mat-raised-button color="accent" class="join-group">
-          Join group
-          <mat-icon>group_add</mat-icon>
+    <div class="container-right-side">
+      <div *ngIf="!isJoin && !isCreate">
+        <h3>Information about group</h3>
+      </div>
+      <div *ngIf="isJoin">
+        <h3>Find group for join</h3>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Search groups</mat-label>
+          <input
+            matInput
+            placeholder="Type the title of group"
+            (input)="searchGroups($event)"
+          />
+        </mat-form-field>
+      </div>
+      <div *ngIf="isCreate">
+        <h3>Create new group</h3>
+        <mat-form-field appearance="fill">
+          <mat-label>New group</mat-label>
+          <input
+            matInput
+            placeholder="Type the title of new group"
+            [(ngModel)]="groupsShort.groupName"
+            required
+          />
+          <mat-error class="mat-error" *ngIf="isCreate"
+            >Please enter group name</mat-error
+          >
+        </mat-form-field>
+        <button mat-raised-button class="create" (click)="createNewGroup()">
+          Create
         </button>
-        <div class="window-container">
-          <div class="window-title">
-            <h2>Search Groups</h2>
-          </div>
-          <form class="example-form">
-            <mat-form-field class="example-full-width" appearance="fill">
-              <mat-label>Search groups</mat-label>
-              <input
-                type="search"
-                matInput
-                [formControl]="searchGroupsFormControl"
-              />
-            </mat-form-field>
-          </form>
-          <div class="find">
-            <p>find</p>
-          </div>
-        </div>
       </div>
     </div>
   </div>
