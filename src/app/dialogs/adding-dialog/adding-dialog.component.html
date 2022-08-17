@@ -1,0 +1,89 @@
+<div class="main-container">
+  <div class="form-container mat-elevation-z8">
+    <h1>Choose you wine sort</h1>
+    <form class="form" [formGroup]="newDrinkForm">
+      <div class="form-fields">
+        <mat-form-field appearance="fill" class="form-field">
+          <mat-label>Type of alcohol</mat-label>
+          <mat-select
+            name="typeName"
+            formControlName="typeName"
+            (valueChange)="setTypeId($event)"
+          >
+            <mat-option *ngFor="let type of typesOfAlcohol" [value]="type">
+              {{ type.typeName }}
+            </mat-option>
+          </mat-select>
+          <mat-error class="mat-error"> Required </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="form-field">
+          <mat-label>Name of alcohol</mat-label>
+          <input
+            matInput
+            placeholder="Enter alcohol name"
+            formControlName="drinkName"
+          />
+
+          <mat-error class="mat-error"> Required </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="form-field">
+          <mat-label>Category</mat-label>
+          <input
+            #inputCategory
+            matInput
+            placeholder="Category"
+            formControlName="categoryName"
+            [matAutocomplete]="auto"
+            (input)="getOptions($event)"
+            (focus)="getOptionsIfFocus(inputCategory.value)"
+          />
+
+          <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+            <mat-option
+              *ngFor="let option of filteredValidCategories"
+              [value]="option"
+            >
+              {{ option.categoryName }}
+            </mat-option>
+          </mat-autocomplete>
+          <mat-error class="mat-error"> Required </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="form-field">
+          <mat-label>Produced</mat-label>
+          <input matInput placeholder="Produced" formControlName="produced" />
+          <mat-error class="mat-error"> Required </mat-error>
+        </mat-form-field>
+
+        <!-- <mat-form-field appearance="fill">
+          <mat-label>Leave a comment</mat-label>
+          <textarea matInput formControlName="comment"></textarea>
+        </mat-form-field> -->
+      </div>
+      <div class="two-buttons">
+        <button
+          type="button"
+          mat-raised-button
+          color="primary"
+          class="cancelButton"
+          mat-dialog-close
+        >
+          Cancel
+        </button>
+        <button
+          type="button"
+          mat-raised-button
+          color="primary"
+          class="submitButton"
+          mat-dialog-close
+          cdkFocusInitial
+          (click)="addDrink()"
+        >
+          Create a liquor drink
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

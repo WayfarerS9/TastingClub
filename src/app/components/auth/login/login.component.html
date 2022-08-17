@@ -1,0 +1,76 @@
+<div class="main-container">
+  <div class="form-container mat-elevation-z8">
+    <h1>Login page</h1>
+    <form class="form" [formGroup]="logForm">
+      <div class="form-fields">
+        <mat-form-field appearance="fill" class="form-field">
+          <mat-label>Email</mat-label>
+          <input
+            matInput
+            placeholder="Enter your email"
+            formControlName="email"
+          />
+          <mat-error
+            class="mat-error"
+            *ngIf="logForm.controls['email'].hasError('required')"
+          >
+            Required
+          </mat-error>
+          <mat-error
+            class="mat-error"
+            *ngIf="
+              !logForm.controls['email'].hasError('required') &&
+              logForm.controls['email'].hasError('email')
+            "
+          >
+            Enter a valid email
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="form-field">
+          <mat-label>Password</mat-label>
+          <input
+            matInput
+            placeholder="Choose your password"
+            formControlName="password"
+            [type]="hidePassword ? 'password' : 'text'"
+          />
+          <button
+            mat-icon-button
+            matSuffix
+            (click)="hidePassword = !hidePassword"
+            [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hidePassword"
+          >
+            <mat-icon>{{
+              hidePassword ? "visibility_off" : "visibility"
+            }}</mat-icon>
+          </button>
+          <mat-error
+            class="mat-error"
+            *ngIf="logForm.controls['password'].hasError('required')"
+          >
+            Required
+          </mat-error>
+        </mat-form-field>
+        <button
+          mat-raised-button
+          color="accent"
+          class="backToRegister"
+          routerLink="/auth/registration"
+        >
+          Go to sign in page
+        </button>
+      </div>
+      <button
+        mat-raised-button
+        color="primary"
+        class="submitButton"
+        (click)="signInUser()"
+        [disabled]="logForm.invalid"
+      >
+        Log In
+      </button>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,46 @@
+.header {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  width: 100%;
+  background-color: rgb(11, 131, 243);
+  height: 56px;
+
+  h2 {
+    color: white;
+    font-size: 25px;
+    font-family: Kanit;
+    margin-bottom: 0;
+
+    span {
+      color: rgb(228, 247, 59);
+      text-shadow: 2px 1px 3px black;
+    }
+  }
+
+  span {
+    color: white;
+    font-size: 25px;
+    font-family: Kanit;
+    text-shadow: 0px 1px 15px #2afcf2;
+  }
+
+  .two-elements {
+    display: flex;
+    justify-content: space-around;
+
+    img {
+      width: 40px;
+    }
+  }
+
+  .submitButton {
+    margin-right: 20px;
+  }
+
+  .profileButton {
+    margin-right: 20px;
+  }
+}

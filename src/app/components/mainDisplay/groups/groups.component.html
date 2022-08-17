@@ -1,0 +1,53 @@
+<app-main-header></app-main-header>
+<div class="main">
+  <button class="go-back-button" mat-fab (click)="goBack()">
+    <mat-icon>arrow_back</mat-icon>
+  </button>
+
+  <div class="container-header">
+    <h2>My Groups</h2>
+  </div>
+
+  <div class="container">
+    <div class="big-container">
+      <div class="group-btn">
+        <button mat-raised-button color="accent" class="create-group">
+          Create new group
+          <mat-icon>group</mat-icon>
+        </button>
+      </div>
+      <div class="first-group-container"></div>
+      <div class="second-group-container"></div>
+      <div class="third-group-container"></div>
+      <div class="fourth-group-container"></div>
+      <div class="fifth-group-container"></div>
+    </div>
+
+    <div class="medium-container">
+      <div class="join-btn">
+        <button mat-raised-button color="accent" class="join-group">
+          Join group
+          <mat-icon>group_add</mat-icon>
+        </button>
+        <div class="window-container">
+          <div class="window-title">
+            <h2>Search Groups</h2>
+          </div>
+          <form class="example-form">
+            <mat-form-field class="example-full-width" appearance="fill">
+              <mat-label>Search groups</mat-label>
+              <input
+                type="search"
+                matInput
+                [formControl]="searchGroupsFormControl"
+              />
+            </mat-form-field>
+          </form>
+          <div class="find">
+            <p>find</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

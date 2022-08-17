@@ -1,0 +1,97 @@
+<div class="header">
+  <h2>
+    Hello <span>{{ user.firstName }} {{ user.lastName }}</span
+    >. You are welcome!
+  </h2>
+
+  <div class="two-elements">
+    <button mat-button [matMenuTriggerFor]="menu">
+      <img src="./images/usa-isolated-flag-vector.jpg" />
+    </button>
+
+    <mat-menu #menu="matMenu">
+      <button
+        mat-menu-item
+        style="display: flex; justify-content: center; align-items: center"
+      >
+        <img style="width: 70px" src="./images/usa-isolated-flag-vector.jpg" />
+      </button>
+      <button
+        mat-menu-item
+        style="display: flex; justify-content: center; align-items: center"
+      >
+        <img style="width: 70px" src="./images/russian-flag.png" />
+      </button>
+    </mat-menu>
+    <button
+      mat-raised-button
+      color="accent"
+      class="submitButton"
+      (click)="logOut()"
+    >
+      <mat-icon>exit_to_app</mat-icon>
+    </button>
+  </div>
+</div>
+
+<mat-drawer-container class="sidebar-container" autosize>
+  <mat-drawer #drawer class="example-sidenav" mode="side">
+    <div class="search-container">
+      <mat-form-field>
+        <input matInput placeholder="Search" name="search" />
+      </mat-form-field>
+      <div class="search-button">
+        <button matSuffix mat-button><mat-icon>search</mat-icon></button>
+      </div>
+    </div>
+
+    <div class="drink-type">
+      <h2>Drink type</h2>
+    </div>
+
+    <div class="mat-tree">
+      <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
+        <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding>
+          <button mat-icon-button disabled></button>
+          {{ node.name }}
+        </mat-tree-node>
+        <mat-tree-node
+          *matTreeNodeDef="let node; when: hasChild"
+          matTreeNodePadding
+        >
+          <button
+            mat-icon-button
+            matTreeNodeToggle
+            [attr.aria-label]="'Toggle ' + node.name"
+          >
+            <mat-icon class="mat-icon-rtl-mirror">
+              {{
+                treeControl.isExpanded(node) ? "expand_more" : "chevron_right"
+              }}
+            </mat-icon>
+          </button>
+          {{ node.name }}
+        </mat-tree-node>
+      </mat-tree>
+    </div>
+
+    <div class="add-drink-button">
+      <button
+        type="button"
+        mat-raised-button
+        color="primary"
+        (click)="openDialog()"
+        class="add-drink"
+      >
+        Add drink
+      </button>
+    </div>
+  </mat-drawer>
+
+  <div class="example-sidenav-content">
+    <button type="button" mat-button (click)="drawer.toggle()">
+      <mat-icon *ngIf="drawer.opened">keyboard_arrow_left</mat-icon>
+      <mat-icon *ngIf="!drawer.opened">keyboard_arrow_right</mat-icon>
+    </button>
+  </div>
+</mat-drawer-container>
