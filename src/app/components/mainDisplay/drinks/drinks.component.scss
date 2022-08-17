@@ -49,7 +49,6 @@
         height: 50vh;
         overflow: auto;
         padding-right: 10px;
-        // margin-bottom: 10px;
 
         .item {
           font-size: 17px;
@@ -135,6 +134,10 @@
           h3 {
             width: 100%;
             font-size: 1.6em;
+          }
+
+          p {
+            font-size: 16px;
           }
         }
 

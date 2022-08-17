@@ -44,6 +44,7 @@ import { MatSliderModule } from '@angular/material/slider';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatCardModule } from '@angular/material/card';
+import { MatListModule } from '@angular/material/list';
 import { DatePipe } from '@angular/common';
 
 export function HttpLoaderFactory(httpClient: HttpClient): TranslateLoader {
@@ -86,6 +87,7 @@ export function HttpLoaderFactory(httpClient: HttpClient): TranslateLoader {
     MatCardModule,
     MatSliderModule,
     MatProgressSpinnerModule,
+    MatListModule,
     ToastrModule.forRoot({
       timeOut: 3000,
       positionClass: 'toast-top-center',
