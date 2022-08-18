@@ -29,6 +29,8 @@ export interface IDrinkShort {
   rating: number;
   /* добавил сюда поле фидбэк */
   feedBack: string;
+  /* добавил сюда поле image */
+  image: string;
 }
 export interface IDrinkFull extends IDrinkShort {
   volume: number;
@@ -48,6 +50,7 @@ export class drinkFull implements IDrinkFull {
   manufacturer = '';
   /* и сдесь добавил поле фидбэк */
   feedBack = '';
+  image = '';
 }
 export interface ITastedDrinkFull extends IDrinkFull {
   userId: number;
@@ -79,6 +82,7 @@ export interface IDrinkForShow {
   name: string;
   rating: number;
   feedBack: string;
+  image: string;
 }
 export interface IAddUpdateFeedBack {
   firstName: string;
