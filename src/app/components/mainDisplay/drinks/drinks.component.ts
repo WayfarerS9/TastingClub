@@ -178,4 +178,8 @@ export class DrinksComponent implements OnInit {
       });
   }
 
+  delete(event: any) {
+    event.stopPropagation();
+  }
+
 }

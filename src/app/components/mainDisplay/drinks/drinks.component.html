@@ -28,6 +28,11 @@
             <mat-card-subtitle
               >{{ drink.type }}, rating: {{ drink.rating }}</mat-card-subtitle
             >
+            <div class="delete-button-container">
+              <button mat-raised-button color="accent" class="delete-drink" (click)="delete($event)">
+                Delete
+              </button>
+            </div>
           </mat-card>
         </p>
       </div>
@@ -78,7 +83,10 @@
           <div class="image-container" *ngIf="myTastedDrinkFullInfo?.image">
             <img [src]="myTastedDrinkFullInfo?.image" alt="" />
           </div>
-          <div class="description-about-drink" *ngIf="myTastedDrinkFullInfo?.image">
+          <div
+            class="description-about-drink"
+            *ngIf="myTastedDrinkFullInfo?.image"
+          >
             <h3>
               {{ myTastedDrinkFullInfo?.typeOfDrink }}
               {{ myTastedDrinkFullInfo?.name }}
