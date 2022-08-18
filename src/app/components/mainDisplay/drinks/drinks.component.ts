@@ -94,6 +94,7 @@ export class DrinksComponent implements OnInit {
         feedBack: drink.feedBack,
         title: `${drink.typeOfDrink} ${drink.name}, ${drink.region}, ${features}, ${drink.strength}%`,
         name: drink.name,
+        image: drink.image
       };
 
       results.push(result);
@@ -129,6 +130,7 @@ export class DrinksComponent implements OnInit {
     this._drinksService
       .searchByIdDrinks(this.selectedTastedDrink)
       .subscribe((res: any) => {
+        console.log(res.result)
         this.myTastedDrinkFullInfo = res.result;
         this.tableResult = res.tableResult[0];
         this.isAdd = false;

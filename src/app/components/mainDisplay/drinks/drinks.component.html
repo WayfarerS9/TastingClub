@@ -24,6 +24,7 @@
             <mat-card-title>
               {{ drink.name }}
             </mat-card-title>
+            <img mat-card-image [src]="drink.image" />
             <mat-card-subtitle
               >{{ drink.type }}, rating: {{ drink.rating }}</mat-card-subtitle
             >
@@ -74,43 +75,49 @@
     <div class="container-right-side">
       <div class="feedBack" *ngIf="!isAdd">
         <div class="infAboutDrink">
-          <h3>
-            {{ myTastedDrinkFullInfo?.typeOfDrink }}
-            {{ myTastedDrinkFullInfo?.name }}
-          </h3>
-          <p><strong>Region:</strong> {{ myTastedDrinkFullInfo?.region }}</p>
-          <p>
-            <strong>Manufacturer:</strong>
-            {{ myTastedDrinkFullInfo?.manufacturer }}
-          </p>
+          <div class="image-container" *ngIf="myTastedDrinkFullInfo?.image">
+            <img [src]="myTastedDrinkFullInfo?.image" alt="" />
+          </div>
+          <div class="description-about-drink" *ngIf="myTastedDrinkFullInfo?.image">
+            <h3>
+              {{ myTastedDrinkFullInfo?.typeOfDrink }}
+              {{ myTastedDrinkFullInfo?.name }}
+            </h3>
+            <p><strong>Region:</strong> {{ myTastedDrinkFullInfo?.region }}</p>
+            <p>
+              <strong>Manufacturer:</strong>
+              {{ myTastedDrinkFullInfo?.manufacturer }}
+            </p>
 
-          <p *ngIf="myTastedDrinkFullInfo?.category">
-            <strong>Category:</strong>
-            <span *ngFor="let category of myTastedDrinkFullInfo?.category">
-              {{ category }}
-            </span>
-          </p>
-          <p *ngIf="myTastedDrinkFullInfo?.type">
-            <strong>Type:</strong> {{ myTastedDrinkFullInfo?.type }}
-          </p>
-          <p *ngIf="myTastedDrinkFullInfo?.grape">
-            <strong>Grape:</strong> {{ myTastedDrinkFullInfo?.grape }}
-          </p>
-          <p *ngIf="myTastedDrinkFullInfo?.filtration">
-            <strong>Filtration:</strong> {{ myTastedDrinkFullInfo?.filtration }}
-          </p>
-          <p>
-            <strong>Alcohol:</strong> {{ myTastedDrinkFullInfo?.strength }}%
-          </p>
-          <p>
-            <strong>Volume:</strong> {{ myTastedDrinkFullInfo?.volume }} liter
-          </p>
-          <p>
-            <strong>Date of degustation: </strong
-            >{{ tableResult?.dateOfDegustation | date: "yyyy-MM-dd" }}
-          </p>
-          <p><strong>My rating: </strong>{{ tableResult?.rating }}</p>
-          <p><strong>My feedback: </strong> {{ tableResult?.feedBack }}</p>
+            <p *ngIf="myTastedDrinkFullInfo?.category">
+              <strong>Category:</strong>
+              <span *ngFor="let category of myTastedDrinkFullInfo?.category">
+                {{ category }}
+              </span>
+            </p>
+            <p *ngIf="myTastedDrinkFullInfo?.type">
+              <strong>Type:</strong> {{ myTastedDrinkFullInfo?.type }}
+            </p>
+            <p *ngIf="myTastedDrinkFullInfo?.grape">
+              <strong>Grape:</strong> {{ myTastedDrinkFullInfo?.grape }}
+            </p>
+            <p *ngIf="myTastedDrinkFullInfo?.filtration">
+              <strong>Filtration:</strong>
+              {{ myTastedDrinkFullInfo?.filtration }}
+            </p>
+            <p>
+              <strong>Alcohol:</strong> {{ myTastedDrinkFullInfo?.strength }}%
+            </p>
+            <p>
+              <strong>Volume:</strong> {{ myTastedDrinkFullInfo?.volume }} liter
+            </p>
+            <p>
+              <strong>Date of degustation: </strong
+              >{{ tableResult?.dateOfDegustation | date: "yyyy-MM-dd" }}
+            </p>
+            <p><strong>My rating: </strong>{{ tableResult?.rating }}</p>
+            <p><strong>My feedback: </strong> {{ tableResult?.feedBack }}</p>
+          </div>
         </div>
 
         <div *ngIf="isEdit">
