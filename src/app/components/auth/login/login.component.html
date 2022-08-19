@@ -31,9 +31,10 @@
           <mat-label>Password</mat-label>
           <input
             matInput
-            placeholder="Choose your password"
+            placeholder="Enter your password"
             formControlName="password"
             [type]="hidePassword ? 'password' : 'text'"
+            maxlength="20"
           />
           <button
             mat-icon-button
@@ -53,14 +54,6 @@
             Required
           </mat-error>
         </mat-form-field>
-        <button
-          mat-raised-button
-          color="accent"
-          class="backToRegister"
-          routerLink="/auth/registration"
-        >
-          Go to sign in page
-        </button>
       </div>
       <button
         mat-raised-button
@@ -70,6 +63,14 @@
         [disabled]="logForm.invalid"
       >
         Log In
+      </button>
+      <button
+        mat-raised-button
+        color="accent"
+        class="backToRegister"
+        routerLink="/auth/registration"
+      >
+        Sign in
       </button>
     </form>
   </div>

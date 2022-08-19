@@ -15,8 +15,10 @@ export class LoginComponent implements OnInit {
   hidePassword = true;
 
   logForm: FormGroup = new FormGroup({
-    email: new FormControl(null, [Validators.required, Validators.email]),
-    password: new FormControl(null, Validators.required),
+    email: new FormControl(null, [Validators.required, Validators.email, Validators.pattern(
+      '^([a-z0-9_-]+.)*[a-z0-9_-]+@[a-z0-9_-]+(.[a-z0-9_-]+)*.[a-z]{2,6}$'
+    ),]),
+    password: new FormControl(null, [Validators.required, Validators.maxLength(20)]),
   });
 
   constructor(
