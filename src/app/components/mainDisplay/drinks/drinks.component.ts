@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import {
   IAddUpdateFeedBack,
+  IDeleteDrink,
   IDrinkForShow,
   IDrinkShort,
   ITastedDrinkFull,
@@ -42,6 +43,11 @@ export class DrinksComponent implements OnInit {
     rating: 0,
     feedBack: '',
   };
+
+  deleteModel: IDeleteDrink = {
+    userId: 0,
+    mongoId: ''
+  }
 
   constructor(
     private _location: Location,
@@ -130,13 +136,13 @@ export class DrinksComponent implements OnInit {
     this._drinksService
       .searchByIdDrinks(this.selectedTastedDrink)
       .subscribe((res: any) => {
-        console.log(res.result)
         this.myTastedDrinkFullInfo = res.result;
         this.tableResult = res.tableResult[0];
         this.isAdd = false;
       });
   }
 
+  //Update review function
   update() {
     this.result = {
       firstName: this.addUpdateFeedBackModel.firstName,
@@ -178,8 +184,21 @@ export class DrinksComponent implements OnInit {
       });
   }
 
+  //Delete drink function
   delete(event: any) {
     event.stopPropagation();
-  }
+    this.deleteModel = {
+      userId: this.addUpdateFeedBackModel.userId,
+      mongoId: this.myTastedDrinkFullInfo?._id,
+    }
 
+    this._drinksService.deleteDrink(this.deleteModel).subscribe(
+      (res: any) => {
+        this._toastrService.success(res.message);
+      },
+      (error) => {
+        this._toastrService.error(error.error.error);
+      }
+    );
+  }
 }

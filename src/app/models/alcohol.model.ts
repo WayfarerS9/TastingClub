@@ -1,8 +1,10 @@
+//Model for show drink
 export interface IMyDrinksShort {
   _id: string;
   name: string;
   rating: number;
 }
+//Model for creating new drink
 export interface INewDrink {
   typeName: string;
   categoryName: string;
@@ -11,12 +13,12 @@ export interface INewDrink {
   userName: string;
   userId: number;
 }
-
 export interface ICategoryOfType {
   _id: string;
   typeId: number;
   categoryName: string;
 }
+//Model for show info about drink in cards
 export interface IDrinkShort {
   _id: string;
   name: string;
@@ -38,6 +40,7 @@ export interface IDrinkFull extends IDrinkShort {
   grape?: Array<string>;
   filtration?: string;
 }
+//Model for show drink info in list
 export class drinkFull implements IDrinkFull {
   _id = '';
   /* и сдесь добавил поле рейтинг со значением 0 */
@@ -52,6 +55,7 @@ export class drinkFull implements IDrinkFull {
   feedBack = '';
   image = '';
 }
+//Model for when user tasted drink
 export interface ITastedDrinkFull extends IDrinkFull {
   userId: number;
   mongoId: string;
@@ -59,20 +63,6 @@ export interface ITastedDrinkFull extends IDrinkFull {
   rating: number;
   feedBack: string;
 }
-
-/* export class tastedDrinkFullWithFeedBack implements ITastedDrinkFullWithFeedBack {
-  id = '';
-  name = '';
-  typeOfDrink = '';
-  region = '';
-  strength = 0;  
-  volume = 0;
-  manufacturer = '';
-  userId = 0;
-  dateOfDegustation = '';
-  points = 0;
-  feedBack = '';
-} */
 
 export interface IDrinkForShow {
   id: string;
@@ -84,6 +74,7 @@ export interface IDrinkForShow {
   feedBack: string;
   image: string;
 }
+//Model for update drink
 export interface IAddUpdateFeedBack {
   firstName: string;
   userId: number;
@@ -93,21 +84,8 @@ export interface IAddUpdateFeedBack {
   feedBack: string;
 }
 
-export interface IDrinkShortInfo {
-  _id: string;
-  name: string;
-  typeOfDrink: string;
-  region: string;
-  strength: number;
-  category?: Array<string>;
-  type?: string;
-  volume: number;
-  manufacturer: string;
-  grape?: Array<string>;
-  filtration?: string;
-  userId: number;
-  mongoId: string;
-  dateOfDegustation: string;
-  rating: number;
-  feedBack: string;
+//Model for delete drink
+export interface IDeleteDrink {
+  userId: number,
+  mongoId: string | undefined
 }

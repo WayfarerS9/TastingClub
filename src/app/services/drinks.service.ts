@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { IDeleteDrink } from '../models/alcohol.model';
 @Injectable({
   providedIn: 'root',
 })
 export class DrinksService {
-  constructor(private _http: HttpClient) {}
+  constructor(private _http: HttpClient) { }
 
   searchByCategoryDrinks(term: string) {
     return this._http.get(environment.apiUrl + `/get-by-category/${term}`);
@@ -13,6 +14,12 @@ export class DrinksService {
 
   searchByIdDrinks(term: any) {
     return this._http.get(environment.apiUrl + `/get-by-id/${term.id}`);
+  }
+
+  getShortInfoAboutDrink(term: any) {
+    return this._http.get(
+      environment.apiUrl + `/get-short-info?userId=${term}`
+    );
   }
 
   ratingAndReview(term: any) {
@@ -26,9 +33,7 @@ export class DrinksService {
     });
   }
 
-  getShortInfoAboutDrink(term: any) {
-    return this._http.get(
-      environment.apiUrl + `/get-short-info?userId=${term}`
-    );
+  deleteDrink(term: IDeleteDrink) {
+    return this._http.delete(environment.apiUrl + `/delete-drink?userId=${term.userId}&mongoId=${term.mongoId}`)
   }
 }
