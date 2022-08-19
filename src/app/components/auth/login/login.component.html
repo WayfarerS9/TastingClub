@@ -14,7 +14,7 @@
             class="mat-error"
             *ngIf="logForm.controls['email'].hasError('required')"
           >
-            Required
+            Required field
           </mat-error>
           <mat-error
             class="mat-error"
@@ -51,7 +51,7 @@
             class="mat-error"
             *ngIf="logForm.controls['password'].hasError('required')"
           >
-            Required
+            Required field
           </mat-error>
         </mat-form-field>
       </div>
@@ -64,14 +64,9 @@
       >
         Log In
       </button>
-      <button
-        mat-raised-button
-        color="accent"
-        class="backToRegister"
-        routerLink="/auth/registration"
+      <a href="" class="backToRegister" routerLink="/auth/registration"
+        >Sign in</a
       >
-        Sign in
-      </button>
     </form>
   </div>
 </div>

@@ -12,33 +12,39 @@
             matInput
             placeholder="Enter your name"
             formControlName="firstName"
+            pattern="[a-zA-Z ]*"
+            maxlength="20"
+            type="text"
+            required
           />
           <mat-error
-            class="mat-error"
             *ngIf="
-              regForm.controls['firstName'].hasError('required') ||
-              regForm.controls['firstName'].hasError('justSpaces')
+              regForm.controls['firstName'].hasError('pattern') ||
+              regForm.controls['firstName'].hasError('required')
             "
           >
-            Required
+            First name should be enter only letters
           </mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="fill" class="form-field">
-          <mat-label>Surname</mat-label>
+          <mat-label>Last name</mat-label>
           <input
             matInput
-            placeholder="Enter your surname"
+            placeholder="Enter your last name"
             formControlName="lastName"
+            pattern="[a-zA-Z ]*"
+            maxlength="30"
+            type="text"
+            required
           />
           <mat-error
-            class="mat-error"
             *ngIf="
-              regForm.controls['lastName'].hasError('required') ||
-              regForm.controls['lastName'].hasError('justSpaces')
+              regForm.controls['lastName'].hasError('pattern') ||
+              regForm.controls['lastName'].hasError('required')
             "
           >
-            Required
+            Last name should be enter only letters
           </mat-error>
         </mat-form-field>
 
@@ -60,7 +66,7 @@
             class="mat-error"
             *ngIf="regForm.controls['birthday'].hasError('required')"
           >
-            Required
+            Choose you birth day
           </mat-error>
         </mat-form-field>
 
@@ -75,7 +81,7 @@
             class="mat-error"
             *ngIf="regForm.controls['email'].hasError('required')"
           >
-            Required
+            Required field
           </mat-error>
           <mat-error
             class="mat-error"
@@ -98,10 +104,13 @@
           <mat-label>Password</mat-label>
           <input
             matInput
-            placeholder="Choose your password"
+            placeholder="Enter your password"
             formControlName="password"
             (input)="updateValidation()"
             [type]="hidePassword ? 'password' : 'text'"
+            type="password"
+            maxlength="20"
+            required
           />
           <button
             mat-icon-button
@@ -118,7 +127,7 @@
             class="mat-error"
             *ngIf="regForm.controls['password'].hasError('required')"
           >
-            Required
+            Required field
           </mat-error>
         </mat-form-field>
 
@@ -129,6 +138,9 @@
             placeholder="Confirm your password"
             formControlName="passwordConfirm"
             [type]="hideRepeatPassword ? 'password' : 'text'"
+            type="password"
+            maxlength="20"
+            required
           />
           <button
             mat-icon-button
@@ -143,12 +155,6 @@
           </button>
           <mat-error
             class="mat-error"
-            *ngIf="regForm.controls['passwordConfirm'].hasError('required')"
-          >
-            Required
-          </mat-error>
-          <mat-error
-            class="mat-error"
             *ngIf="
               regForm.controls['passwordConfirm'].hasError(
                 'mismatchPasswordConfirm'
@@ -158,14 +164,6 @@
             Doesn't match with entered password
           </mat-error>
         </mat-form-field>
-        <button
-          mat-raised-button
-          color="accent"
-          class="backToLogin"
-          routerLink="/auth/login"
-        >
-          Go to login page
-        </button>
       </div>
       <button
         mat-raised-button
@@ -176,6 +174,8 @@
       >
         Register
       </button>
+
+      <a href="" class="backToLogin" routerLink="/auth/login"> Login </a>
     </form>
   </div>
 </div>

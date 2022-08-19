@@ -17,17 +17,13 @@ export class RegistrationComponent implements OnInit {
   hideRepeatPassword = true;
 
   regForm: FormGroup = new FormGroup({
-    firstName: new FormControl(null, [
-      Validators.required,
-      this.justSpaceValidator,
-    ]),
-    lastName: new FormControl(null, [
-      Validators.required,
-      this.justSpaceValidator,
-    ]),
+    firstName: new FormControl(null, Validators.required),
+    lastName: new FormControl(null, Validators.required),
     birthday: new FormControl(null, Validators.required),
-    email: new FormControl(null, [Validators.required, Validators.email]),
-    password: new FormControl(null, Validators.required),
+    email: new FormControl(null, [Validators.required, Validators.email, Validators.pattern(
+      '^([a-z0-9_-]+.)*[a-z0-9_-]+@[a-z0-9_-]+(.[a-z0-9_-]+)*.[a-z]{2,6}$'
+    )]),
+    password: new FormControl(null, [Validators.required, Validators.maxLength(20)]),
     passwordConfirm: new FormControl(null, [
       Validators.required,
       this.passwordValidator,
@@ -39,7 +35,7 @@ export class RegistrationComponent implements OnInit {
     private _auth: AuthService,
     private _toastrService: ToastrService,
     private _router: Router
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.availableDateOfBirth = new Date(
@@ -53,13 +49,6 @@ export class RegistrationComponent implements OnInit {
       control.parent?.get('passwordConfirm')?.value
     ) {
       return { mismatchPasswordConfirm: true };
-    }
-    return null;
-  }
-
-  justSpaceValidator(control: FormControl): { [s: string]: boolean } | null {
-    if (!control.value?.trimStart()) {
-      return { justSpaces: true };
     }
     return null;
   }
