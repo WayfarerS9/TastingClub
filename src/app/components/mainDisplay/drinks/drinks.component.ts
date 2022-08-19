@@ -19,6 +19,7 @@ import { ToastrService } from 'ngx-toastr';
 export class DrinksComponent implements OnInit {
   isAdd: boolean = false;
   isEdit: boolean = false;
+  isArrowDown: boolean = true;
   getShortInfoAboutDrink?: any;
   myTastedDrinks?: Array<IDrinkForShow>;
   selectedTastedDrink?: IDrinkForShow;
@@ -28,7 +29,7 @@ export class DrinksComponent implements OnInit {
   subscriptionOnSearchingCriteria!: Subscription;
   starRating?: number;
   datePicker: string = '';
-  result: any;
+  updateResult: any;
   tableResult: any;
   userId: any;
 
@@ -144,7 +145,7 @@ export class DrinksComponent implements OnInit {
 
   //Update review function
   update() {
-    this.result = {
+    this.updateResult = {
       firstName: this.addUpdateFeedBackModel.firstName,
       userId: this.addUpdateFeedBackModel.userId,
       mongoId: this.myTastedDrinkFullInfo?._id,
@@ -152,7 +153,7 @@ export class DrinksComponent implements OnInit {
       rating: this.starRating,
       feedBack: this.addUpdateFeedBackModel.feedBack,
     };
-    this._drinksService.ratingAndReview(this.result).subscribe(
+    this._drinksService.ratingAndReview(this.updateResult).subscribe(
       (res: any) => {
         this._toastrService.success(res.message);
         this.isEdit = false;
@@ -200,5 +201,10 @@ export class DrinksComponent implements OnInit {
         this._toastrService.error(error.error.error);
       }
     );
+  }
+
+  upAndDropArrows(event: any) {
+    this.isArrowDown = !this.isArrowDown;
+    event.stopPropagation();
   }
 }

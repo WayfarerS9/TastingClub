@@ -22,7 +22,7 @@ export class AddingDialogComponent implements OnInit {
     private _fb: FormBuilder,
     private _alcoholService: AlcoholService,
     private _toastrService: ToastrService
-  ) {}
+  ) { }
 
   user = JSON.parse(localStorage.getItem('USER_TASTYCLUB')!);
   selectedWineName?: string;

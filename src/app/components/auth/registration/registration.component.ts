@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import * as moment from 'moment';
 import { IUserRegistration } from 'src/app/models/user.model';
 import { Router } from '@angular/router';
@@ -16,15 +16,15 @@ export class RegistrationComponent implements OnInit {
   hidePassword = true;
   hideRepeatPassword = true;
 
-  regForm: FormGroup = new FormGroup({
-    firstName: new FormControl(null, Validators.required),
-    lastName: new FormControl(null, Validators.required),
-    birthday: new FormControl(null, Validators.required),
-    email: new FormControl(null, [Validators.required, Validators.email, Validators.pattern(
+  regForm: UntypedFormGroup = new UntypedFormGroup({
+    firstName: new UntypedFormControl(null, Validators.required),
+    lastName: new UntypedFormControl(null, Validators.required),
+    birthday: new UntypedFormControl(null, Validators.required),
+    email: new UntypedFormControl(null, [Validators.required, Validators.email, Validators.pattern(
       '^([a-z0-9_-]+.)*[a-z0-9_-]+@[a-z0-9_-]+(.[a-z0-9_-]+)*.[a-z]{2,6}$'
     )]),
-    password: new FormControl(null, [Validators.required, Validators.maxLength(20)]),
-    passwordConfirm: new FormControl(null, [
+    password: new UntypedFormControl(null, [Validators.required, Validators.maxLength(20)]),
+    passwordConfirm: new UntypedFormControl(null, [
       Validators.required,
       this.passwordValidator,
     ]),
@@ -43,7 +43,7 @@ export class RegistrationComponent implements OnInit {
     );
   }
 
-  passwordValidator(control: FormControl): { [s: string]: boolean } | null {
+  passwordValidator(control: UntypedFormControl): { [s: string]: boolean } | null {
     if (
       control.parent?.get('password')?.value !==
       control.parent?.get('passwordConfirm')?.value

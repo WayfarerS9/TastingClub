@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { IUserSignIn } from 'src/app/models/user.model';
 // import { LoginService } from 'src/app/services/login.service';
 import { AuthService } from 'src/app/services/auth.service';
@@ -14,11 +14,11 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
   hidePassword = true;
 
-  logForm: FormGroup = new FormGroup({
-    email: new FormControl(null, [Validators.required, Validators.email, Validators.pattern(
+  logForm: UntypedFormGroup = new UntypedFormGroup({
+    email: new UntypedFormControl(null, [Validators.required, Validators.email, Validators.pattern(
       '^([a-z0-9_-]+.)*[a-z0-9_-]+@[a-z0-9_-]+(.[a-z0-9_-]+)*.[a-z]{2,6}$'
     )]),
-    password: new FormControl(null, [Validators.required, Validators.maxLength(20)]),
+    password: new UntypedFormControl(null, [Validators.required, Validators.maxLength(20)]),
   });
 
   constructor(

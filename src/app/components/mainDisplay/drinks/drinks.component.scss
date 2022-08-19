@@ -1,31 +1,43 @@
 .main {
-  display: flex;
-  flex-direction: column;
-  display: flex;
-  align-items: center;
+  // background-color: #FFC107;
+  position: relative;
+  height: 94vh;
 
-  .goBackButton {
+  .for-go-back-button {
     position: absolute;
-    top: 105px;
-    left: 9px;
-    background-color: rgb(231, 56, 56);
-  }
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 50px;
+    left: 0;
+    width: 4vw;
+    padding: 5px;
 
-  .container-header {
-    margin: auto;
-
-    h2 {
-      font-size: 26px;
-      margin-top: 10px;
+    .goBackButton {
+      background-color: rgb(231, 56, 56);
     }
   }
 
-  .container {
+  .container-header {
+    width: 10vw;
+    margin: auto;
+    // background-color: palegreen;
+
+    h2 {
+      text-align: center;
+      font-size: 26px;
+      font-family: Kanit;
+    }
+  }
+
+  .sub-container {
+    margin: auto;
     display: flex;
     justify-content: space-around;
     align-items: center;
-    width: 65vw;
+    width: 90vw;
     height: 80vh;
+    // background-color: brown;
 
     .container-left-side {
       position: relative;
@@ -61,7 +73,7 @@
         }
 
         .example-card {
-          width: 100%;
+          width: 27vw;
           position: relative;
 
           .delete-button-container {
