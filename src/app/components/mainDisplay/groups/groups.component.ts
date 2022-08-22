@@ -21,6 +21,12 @@ export class GroupsComponent implements OnInit {
   isCreate: boolean = false;
   result: any;
 
+  userObjectField: any;
+  /* For creating a group */
+  getUserId: any;
+  getGroupResult: any;
+  /* ****** */
+
   groupsShort: IMyGroupsShort = {
     userId: 0,
     groupName: ''
@@ -30,6 +36,8 @@ export class GroupsComponent implements OnInit {
     this.searchingSubject.subscribe(
       res => console.log(res)
     )
+
+    this.getGroup()
   }
 
   searchGroups($event: any) {
@@ -70,6 +78,22 @@ export class GroupsComponent implements OnInit {
       (res: any) => {
         this._toastrService.success(res.message);
         this.isCreate = false;
+        this.getGroup();
+      },
+      (error) => {
+        this._toastrService.error(error.error.error)
+      }
+    )
+  }
+
+  getGroup() {
+    this.getUserId = JSON.parse(
+      localStorage.getItem('USER_TASTYCLUB')!
+    ).id;
+
+    this._groupsService.getGroup(this.getUserId).subscribe(
+      (res: any) => {
+        this.getGroupResult = res.result;
       },
       (error) => {
         this._toastrService.error(error.error.error)

@@ -47,10 +47,13 @@
       flex-direction: column;
       box-shadow: 0px 1px 3px 1px aqua;
 
-      .group-block {
-        padding: 5px;
-        // background-color: beige;
-        margin-bottom: .5em;
+      .user-groups {
+
+        .group-block {
+          padding: 5px;
+          // background-color: beige;
+          margin-bottom: .5em;
+        }
       }
 
       .button-container {
@@ -68,6 +71,17 @@
 
   .container-right-side {
     width: 30vw;
-    background-color: rgb(68, 175, 139);
+    box-shadow: 0px 1px 3px 1px aqua;
+    padding: 0 5px;
+
+    .create-container {
+
+      mat-form-field {
+        width: 15vw;
+        margin-right: 10px;
+      }
+
+
+    }
   }
 }

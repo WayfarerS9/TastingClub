@@ -13,4 +13,8 @@ export class GroupsService {
     createNewGroup(model: IMyGroupsShort) {
         return this._http.post(environment.apiUrl + `/create-new-group`, model);
     }
+
+    getGroup(term: number) {
+        return this._http.get(environment.apiUrl + `/groups/${term}`);
+    }
 }

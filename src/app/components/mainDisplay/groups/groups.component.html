@@ -11,11 +11,11 @@
   <div class="main-container">
     <div class="container-left-side">
       <h3>My groups</h3>
-      <div class="group-block" (click)="toInitState()">First group</div>
-      <div class="group-block" (click)="toInitState()">Second group</div>
-      <div class="group-block" (click)="toInitState()">Third group</div>
-      <div class="group-block" (click)="toInitState()">Fourth group</div>
-      <div class="group-block" (click)="toInitState()">Fifth group</div>
+      <div class="user-groups" *ngFor="let group of getGroupResult">
+        <div class="group-block" (click)="toInitState()">
+          {{ group.groupName }}
+        </div>
+      </div>
 
       <div class="button-container">
         <button
@@ -60,13 +60,13 @@
           />
         </mat-form-field>
       </div>
-      <div *ngIf="isCreate">
+      <div *ngIf="isCreate" class="create-container">
         <h3>Create new group</h3>
         <mat-form-field appearance="fill">
           <mat-label>New group</mat-label>
           <input
             matInput
-            placeholder="Type the title of new group"
+            placeholder="Please enter the name of the group"
             [(ngModel)]="groupsShort.groupName"
             required
           />
@@ -76,6 +76,7 @@
         </mat-form-field>
         <button mat-raised-button class="create" (click)="createNewGroup()">
           Create
+          <mat-icon>create</mat-icon>
         </button>
       </div>
     </div>

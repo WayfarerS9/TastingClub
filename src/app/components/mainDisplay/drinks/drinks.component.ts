@@ -105,6 +105,7 @@ export class DrinksComponent implements OnInit {
       };
 
       results.push(result);
+
     });
     return results;
   }
@@ -181,6 +182,7 @@ export class DrinksComponent implements OnInit {
     this._drinksService
       .getShortInfoAboutDrink(this.getShortInfoAboutDrink)
       .subscribe((res: any) => {
+        console.log(res)
         this.myTastedDrinks = this.getDrinksForShow(res.result);
       });
   }
