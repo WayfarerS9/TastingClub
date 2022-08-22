@@ -93,6 +93,7 @@ export class GroupsComponent implements OnInit {
 
     this._groupsService.getGroup(this.getUserId).subscribe(
       (res: any) => {
+        console.log(res.result)
         this.getGroupResult = res.result;
       },
       (error) => {

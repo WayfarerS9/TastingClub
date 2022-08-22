@@ -20,9 +20,7 @@ export class RegistrationComponent implements OnInit {
     firstName: new UntypedFormControl(null, Validators.required),
     lastName: new UntypedFormControl(null, Validators.required),
     birthday: new UntypedFormControl(null, Validators.required),
-    email: new UntypedFormControl(null, [Validators.required, Validators.email, Validators.pattern(
-      '^([a-z0-9_-]+.)*[a-z0-9_-]+@[a-z0-9_-]+(.[a-z0-9_-]+)*.[a-z]{2,6}$'
-    )]),
+    email: new UntypedFormControl(null, [Validators.required, Validators.email, Validators.pattern("^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+[.][a-zA-Z0-9-.]+$")]),
     password: new UntypedFormControl(null, [Validators.required, Validators.maxLength(20)]),
     passwordConfirm: new UntypedFormControl(null, [
       Validators.required,

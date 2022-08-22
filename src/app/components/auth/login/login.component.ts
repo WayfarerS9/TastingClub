@@ -15,9 +15,7 @@ export class LoginComponent implements OnInit {
   hidePassword = true;
 
   logForm: UntypedFormGroup = new UntypedFormGroup({
-    email: new UntypedFormControl(null, [Validators.required, Validators.email, Validators.pattern(
-      '^([a-z0-9_-]+.)*[a-z0-9_-]+@[a-z0-9_-]+(.[a-z0-9_-]+)*.[a-z]{2,6}$'
-    )]),
+    email: new UntypedFormControl(null, [Validators.required, Validators.email, Validators.pattern("^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+[.][a-zA-Z0-9-.]+$")]),
     password: new UntypedFormControl(null, [Validators.required, Validators.maxLength(20)]),
   });
 

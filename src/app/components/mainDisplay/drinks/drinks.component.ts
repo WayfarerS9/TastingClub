@@ -138,6 +138,7 @@ export class DrinksComponent implements OnInit {
     this._drinksService
       .searchByIdDrinks(this.selectedTastedDrink)
       .subscribe((res: any) => {
+        console.log(res.result)
         this.myTastedDrinkFullInfo = res.result;
         this.tableResult = res.tableResult[0];
         this.isAdd = false;
@@ -182,21 +183,24 @@ export class DrinksComponent implements OnInit {
     this._drinksService
       .getShortInfoAboutDrink(this.getShortInfoAboutDrink)
       .subscribe((res: any) => {
-        console.log(res)
+        console.log(res.result)
         this.myTastedDrinks = this.getDrinksForShow(res.result);
       });
   }
 
   //Delete drink function
-  delete(event: any) {
+  delete(event: any, drink: any) {
     event.stopPropagation();
+    let mongoId = drink;
+
     this.deleteModel = {
       userId: this.addUpdateFeedBackModel.userId,
-      mongoId: this.myTastedDrinkFullInfo?._id,
+      mongoId: mongoId.id,
     }
 
     this._drinksService.deleteDrink(this.deleteModel).subscribe(
       (res: any) => {
+        this.shortInfoAboutDrink() 
         this._toastrService.success(res.message);
       },
       (error) => {

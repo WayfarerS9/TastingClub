@@ -42,17 +42,20 @@
     .container-left-side {
       position: relative;
       width: 30vw;
-      // background-color: aquamarine;
       display: flex;
       flex-direction: column;
-      box-shadow: 0px 1px 3px 1px aqua;
+      box-shadow: 1px 1px 5px 1px black;
 
-      .user-groups {
+      .groups-list {
+
 
         .group-block {
-          padding: 5px;
-          // background-color: beige;
-          margin-bottom: .5em;
+          padding: 3px;
+          margin: 3px 0;
+        }
+
+        .group-block:hover {
+          cursor: pointer;
         }
       }
 
@@ -71,8 +74,50 @@
 
   .container-right-side {
     width: 30vw;
-    box-shadow: 0px 1px 3px 1px aqua;
+    box-shadow: 1px 1px 5px 1px black;
     padding: 0 5px;
+    // background-color: aqua;
+
+    .title {
+      // background-color: greenyellow;
+    }
+
+    .description-about-group {
+      width: 28vw;
+      display: flex;
+      justify-content: space-around;
+      // background-color: green;
+
+      .group-name-title {
+        // background-color: aqua;
+      }
+
+      .first-small-container {
+        width: 12vw;
+        // background-color: brown;
+
+      }
+
+      .second-small-container {
+        position: relative;
+        width: 15vw;
+        // background-color: blueviolet;
+
+        .plan-new-degustation {
+          position: absolute;
+          bottom: 2px;
+        }
+      }
+    }
+
+    .degustations {
+      width: 10vw;
+      background-color: greenyellow;
+
+      .rating-container {
+        background-color: blueviolet;
+      }
+    }
 
     .create-container {
 

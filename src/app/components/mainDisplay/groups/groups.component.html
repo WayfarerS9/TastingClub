@@ -11,7 +11,7 @@
   <div class="main-container">
     <div class="container-left-side">
       <h3>My groups</h3>
-      <div class="user-groups" *ngFor="let group of getGroupResult">
+      <div class="groups-list" *ngFor="let group of getGroupResult">
         <div class="group-block" (click)="toInitState()">
           {{ group.groupName }}
         </div>
@@ -46,7 +46,39 @@
 
     <div class="container-right-side">
       <div *ngIf="!isJoin && !isCreate">
-        <h3>Information about group</h3>
+        <div class="title">
+          <h3>Information about group</h3>
+        </div>
+
+        <div
+          class="description-about-group"
+          *ngFor="let group of getGroupResult"
+        >
+          <div class="first-small-container">
+            <div class="group-name-title">
+              <h2>{{ group.groupName }}</h2>
+            </div>
+
+            <p>participant 1</p>
+            <p>participant 2</p>
+            <p>participant 3</p>
+            <p>participant 4</p>
+          </div>
+
+          <div class="second-small-container">
+            <div class="rating-container">
+              <p>drink and {{ group.createAt }}</p>
+              <p>
+                Total rating:
+                <button>view</button>
+              </p>
+            </div>
+
+            <div class="plan-new-degustation">
+              <button>plan new degustation</button>
+            </div>
+          </div>
+        </div>
       </div>
       <div *ngIf="isJoin">
         <h3>Find group for join</h3>

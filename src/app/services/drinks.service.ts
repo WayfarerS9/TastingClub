@@ -34,6 +34,7 @@ export class DrinksService {
   }
 
   deleteDrink(term: IDeleteDrink) {
+    console.log(term)
     return this._http.delete(environment.apiUrl + `/delete-drink?userId=${term.userId}&mongoId=${term.mongoId}`)
   }
 }
