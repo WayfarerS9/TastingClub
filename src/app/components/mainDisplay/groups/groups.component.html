@@ -8,14 +8,14 @@
     <h2>Groups</h2>
   </div>
 
-  <div class="container">
+  <div class="main-container">
     <div class="container-left-side">
       <h3>My groups</h3>
       <div class="group-block" (click)="toInitState()">First group</div>
       <div class="group-block" (click)="toInitState()">Second group</div>
       <div class="group-block" (click)="toInitState()">Third group</div>
       <div class="group-block" (click)="toInitState()">Fourth group</div>
-      <div class="group-block" (click)="toInitState()">Fivth group</div>
+      <div class="group-block" (click)="toInitState()">Fifth group</div>
 
       <div class="button-container">
         <button
@@ -25,6 +25,7 @@
           (click)="onJoin()"
         >
           Join group
+          <mat-icon>group</mat-icon>
         </button>
 
         <button mat-raised-button color="accent" class="join-group">
@@ -38,6 +39,7 @@
           (click)="onCreate()"
         >
           Create group
+          <mat-icon>group_add</mat-icon>
         </button>
       </div>
     </div>
