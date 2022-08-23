@@ -54,8 +54,11 @@
       }
 
       .groups-list {
+        margin: 0 5px;
 
         .group-block {
+          background-color: aquamarine;
+          width: 100%;
           position: relative;
           // height: 5vh;
           margin: 3px 0;
