@@ -33,6 +33,8 @@ export class DrinksComponent implements OnInit {
   tableResult: any;
   userId: any;
 
+  defaultValue: string = '';
+
   minDate = new Date(1990, 0, 1);
   maxDate = new Date();
 
@@ -116,10 +118,11 @@ export class DrinksComponent implements OnInit {
 
   onEdit() {
     this.isEdit = true;
-    this.addUpdateFeedBackModel.dateOfDegustation =
-      this.myTastedDrinkFullInfo!.dateOfDegustation;
-    this.addUpdateFeedBackModel.rating = this.myTastedDrinkFullInfo!.rating;
-    this.addUpdateFeedBackModel.feedBack = this.myTastedDrinkFullInfo!.feedBack;
+    this.defaultValue = ''
+    // this.addUpdateFeedBackModel.dateOfDegustation =
+    //   this.myTastedDrinkFullInfo!.dateOfDegustation;
+    // this.addUpdateFeedBackModel.rating = this.myTastedDrinkFullInfo!.rating;
+    // this.addUpdateFeedBackModel.feedBack = this.myTastedDrinkFullInfo!.feedBack;
   }
 
   onAdd() {
@@ -200,7 +203,7 @@ export class DrinksComponent implements OnInit {
 
     this._drinksService.deleteDrink(this.deleteModel).subscribe(
       (res: any) => {
-        this.shortInfoAboutDrink() 
+        this.shortInfoAboutDrink()
         this._toastrService.success(res.message);
       },
       (error) => {
@@ -211,6 +214,10 @@ export class DrinksComponent implements OnInit {
 
   upAndDropArrows(event: any) {
     this.isArrowDown = !this.isArrowDown;
+    event.stopPropagation();
+  }
+
+  matMenu(event: any) {
     event.stopPropagation();
   }
 }

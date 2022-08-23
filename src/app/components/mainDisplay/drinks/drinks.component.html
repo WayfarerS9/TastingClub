@@ -15,41 +15,68 @@
       <h3 *ngIf="isAdd">Type the name of the drink</h3>
 
       <div *ngIf="!isAdd" class="list">
-        <p
-          *ngFor="let drink of myTastedDrinks; let i = index"
-          (click)="selectAndGetDrink(drink)"
-          [ngClass]="{ selectedItem: drink === selectedTastedDrink }"
-          class="item"
-        >
+        <p *ngFor="let drink of myTastedDrinks; let i = index">
           <mat-card class="example-card">
-            <mat-card-title>
-              {{ drink.name }}
-            </mat-card-title>
-            <img mat-card-image [src]="drink.image" />
-            <mat-card-subtitle
-              >{{ drink.type }}, rating: {{ drink.rating }}</mat-card-subtitle
-            >
-            <div class="delete-button-container">
-              <button
-                mat-raised-button
-                color="accent"
-                class="delete-drink"
-                (click)="delete($event, drink)"
+            <div class="container-image">
+              <img mat-card-image [src]="drink.image" />
+            </div>
+            <div class="container-for-drink-info">
+              <mat-card-title>
+                {{ drink.name }}
+              </mat-card-title>
+
+              <mat-card-subtitle>{{ drink.type }}</mat-card-subtitle>
+              <mat-card-subtitle
+                ><ngb-rating
+                  class="rating"
+                  [rate]="drink.rating"
+                  [readonly]="true"
+                ></ngb-rating>
+                <!-- {{ drink.rating }} --></mat-card-subtitle
               >
-                Delete
-              </button>
+              <mat-card-content>
+                <p>
+                  {{ drink.feedBack }}
+                </p>
+              </mat-card-content>
+              <hr />
+              <button mat-raised-button color="primary">Reviews</button>
             </div>
 
-            <mat-card-actions>
+            <div class="mat-menu-container">
               <button
-                mat-button
-                class="open-arrow"
-                (click)="upAndDropArrows($event)"
+                mat-icon-button
+                [matMenuTriggerFor]="menu"
+                aria-label="Example icon-button with a menu"
+                (click)="matMenu($event)"
+                color="primary"
               >
-                <mat-icon *ngIf="isArrowDown">keyboard_arrow_down</mat-icon>
-                <mat-icon *ngIf="!isArrowDown">keyboard_arrow_up</mat-icon>
+                <mat-icon>more_vert</mat-icon>
               </button>
-            </mat-card-actions>
+              <mat-menu #menu="matMenu">
+                <button mat-menu-item (click)="onEdit()" *ngIf="!isAdd">
+                  <button
+                    style="width: 4vw"
+                    color="accent"
+                    mat-raised-button
+                    (click)="selectAndGetDrink(drink)"
+                  >
+                    Edit
+                  </button>
+                </button>
+                <hr />
+                <button mat-menu-item>
+                  <button
+                    style="width: 4vw; color: white"
+                    mat-raised-button
+                    color="warn"
+                    (click)="delete($event, drink)"
+                  >
+                    Delete
+                  </button>
+                </button>
+              </mat-menu>
+            </div>
           </mat-card>
         </p>
       </div>
@@ -75,8 +102,8 @@
       <div class="four-buttons">
         <button
           class="button-add"
+          color="accent"
           mat-raised-button
-          color="primary"
           (click)="onAdd()"
           *ngIf="!isAdd && !isEdit"
         >
@@ -185,6 +212,7 @@
                 [(ngModel)]="addUpdateFeedBackModel.feedBack"
                 rows="2"
                 required
+                [(ngModel)]="defaultValue"
               >
               </textarea>
               <mat-error class="mat-error" *ngIf="!isAdd && isEdit">
@@ -200,6 +228,15 @@
             >
               Save review
             </button>
+
+            <!-- <button
+              class="button-back"
+              mat-raised-button
+              *ngIf="isAdd || isEdit"
+              (click)="backToMyDrinks()"
+            >
+              Back
+            </button> -->
           </form>
         </div>
         <button
