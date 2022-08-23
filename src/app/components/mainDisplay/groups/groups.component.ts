@@ -19,14 +19,19 @@ export class GroupsComponent implements OnInit {
 
   isJoin: boolean = false;
   isCreate: boolean = false;
+
   result: any;
 
   userObjectField: any;
-  /* For creating a group */
+
+  /* For reset input when user create new group */
+  defaultValue: string = '';
+
+  /* For get groups */
   getUserId: any;
   getGroupResult: any;
-  /* ****** */
 
+  /* For creating a group */
   groupsShort: IMyGroupsShort = {
     userId: 0,
     groupName: ''
@@ -37,7 +42,7 @@ export class GroupsComponent implements OnInit {
       res => console.log(res)
     )
 
-    this.getGroup()
+    this.getGroup();
   }
 
   searchGroups($event: any) {
@@ -58,9 +63,10 @@ export class GroupsComponent implements OnInit {
     this.isJoin = false;
   }
 
-  toInitState() {
-    this.isJoin = false;
+  toInitState(group: any) {
     this.isCreate = false;
+    this.isJoin = false;
+    console.log(group)
   }
 
   //New group create function
@@ -77,7 +83,7 @@ export class GroupsComponent implements OnInit {
     this._groupsService.createNewGroup(this.result).subscribe(
       (res: any) => {
         this._toastrService.success(res.message);
-        this.isCreate = false;
+        this.defaultValue = ''
         this.getGroup();
       },
       (error) => {
@@ -93,8 +99,8 @@ export class GroupsComponent implements OnInit {
 
     this._groupsService.getGroup(this.getUserId).subscribe(
       (res: any) => {
-        console.log(res.result)
         this.getGroupResult = res.result;
+        this.isCreate = true;
       },
       (error) => {
         this._toastrService.error(error.error.error)

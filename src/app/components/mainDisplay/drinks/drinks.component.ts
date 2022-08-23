@@ -19,7 +19,6 @@ import { ToastrService } from 'ngx-toastr';
 export class DrinksComponent implements OnInit {
   isAdd: boolean = false;
   isEdit: boolean = false;
-  isArrowDown: boolean = true;
   getShortInfoAboutDrink?: any;
   myTastedDrinks?: Array<IDrinkForShow>;
   selectedTastedDrink?: IDrinkForShow;
@@ -33,6 +32,7 @@ export class DrinksComponent implements OnInit {
   tableResult: any;
   userId: any;
 
+  /* For reset textarea when user leave feed back */
   defaultValue: string = '';
 
   minDate = new Date(1990, 0, 1);
@@ -210,11 +210,6 @@ export class DrinksComponent implements OnInit {
         this._toastrService.error(error.error.error);
       }
     );
-  }
-
-  upAndDropArrows(event: any) {
-    this.isArrowDown = !this.isArrowDown;
-    event.stopPropagation();
   }
 
   matMenu(event: any) {

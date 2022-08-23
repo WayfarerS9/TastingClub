@@ -34,10 +34,10 @@
 
   .main-container {
     display: flex;
-    width: 80vw;
-    height: 80vh;
+    width: 70vw;
+    height: 83vh;
     // background-color: rgb(233, 195, 168);
-    justify-content: space-around;
+    justify-content: space-between;
 
     .container-left-side {
       position: relative;
@@ -45,13 +45,21 @@
       display: flex;
       flex-direction: column;
       box-shadow: 1px 1px 5px 1px black;
+      // background-color: green;
+
+      .left-container {
+        // background-color: gold;
+        height: 60vh;
+        overflow: auto;
+      }
 
       .groups-list {
 
-
         .group-block {
-          padding: 3px;
+          padding: 10px;
           margin: 3px 0;
+          font-size: 18px;
+          font-size: Kanit;
         }
 
         .group-block:hover {

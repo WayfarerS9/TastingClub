@@ -19,15 +19,12 @@
       height: 42%;
       margin-right: 10px;
       display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      align-items: center;
+      align-items: flex-start;
       background-image: url('https://www.ripplesnigeria.com/wp-content/uploads/2022/05/images-2022-05-02T144240.675.jpeg');
       background-position: center;
       background-repeat: no-repeat;
 
       .details {
-        opacity: .9;
         width: 5vw;
         position: absolute;
         right: 0;
@@ -40,14 +37,25 @@
     }
 
     .groups-container {
+      position: relative;
       width: 42%;
       height: 42%;
       display: flex;
-      flex-direction: column;
-      justify-content: space-between;
+      align-items: flex-start;
       background-image: url('https://cdn.corporatefinanceinstitute.com/assets/focus-group-1024x684.jpeg');
       background-position: center;
       background-repeat: no-repeat;
+
+      .groups {
+        width: 5vw;
+        position: absolute;
+        right: 0;
+        bottom: 0;
+      }
+
+      .groups-title {
+        color: white;
+      }
     }
 
     .events-container {

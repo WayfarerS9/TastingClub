@@ -10,37 +10,42 @@
 
   <div class="main-container">
     <div class="container-left-side">
-      <h3>My groups</h3>
-      <div class="groups-list" *ngFor="let group of getGroupResult">
-        <div class="group-block" (click)="toInitState()">
-          {{ group.groupName }}
+      <div class="left-container">
+        <h3>My groups</h3>
+        <div
+          class="groups-list"
+          *ngFor="let group of getGroupResult; let i = index"
+        >
+          <mat-card class="group-block" (click)="toInitState(group)">
+            {{ group.groupName }}
+          </mat-card>
         </div>
-      </div>
 
-      <div class="button-container">
-        <button
-          mat-raised-button
-          color="accent"
-          class="join-group"
-          (click)="onJoin()"
-        >
-          Join group
-          <mat-icon>group</mat-icon>
-        </button>
+        <div class="button-container">
+          <button
+            mat-raised-button
+            color="accent"
+            class="join-group"
+            (click)="onJoin()"
+          >
+            Join group
+            <mat-icon>group</mat-icon>
+          </button>
 
-        <button mat-raised-button color="accent" class="join-group">
-          Leave group
-        </button>
+          <button mat-raised-button color="accent" class="join-group">
+            Leave group
+          </button>
 
-        <button
-          mat-raised-button
-          color="accent"
-          class="join-group"
-          (click)="onCreate()"
-        >
-          Create group
-          <mat-icon>group_add</mat-icon>
-        </button>
+          <button
+            mat-raised-button
+            color="accent"
+            class="join-group"
+            (click)="onCreate()"
+          >
+            Create group
+            <mat-icon>group_add</mat-icon>
+          </button>
+        </div>
       </div>
     </div>
 
@@ -52,7 +57,7 @@
 
         <div
           class="description-about-group"
-          *ngFor="let group of getGroupResult"
+          *ngFor="let group of getGroupResult; let i = index"
         >
           <div class="first-small-container">
             <div class="group-name-title">
@@ -67,19 +72,25 @@
 
           <div class="second-small-container">
             <div class="rating-container">
-              <p>drink and {{ group.createAt }}</p>
+              <p>
+                drink and
+                {{ group.createAt }}
+              </p>
               <p>
                 Total rating:
-                <button>view</button>
+                <button mat-raised-button color="primary">view</button>
               </p>
             </div>
 
             <div class="plan-new-degustation">
-              <button>plan new degustation</button>
+              <button mat-raised-button color="primary">
+                plan new degustation
+              </button>
             </div>
           </div>
         </div>
       </div>
+
       <div *ngIf="isJoin">
         <h3>Find group for join</h3>
 
@@ -92,6 +103,7 @@
           />
         </mat-form-field>
       </div>
+
       <div *ngIf="isCreate" class="create-container">
         <h3>Create new group</h3>
         <mat-form-field appearance="fill">
@@ -100,6 +112,7 @@
             matInput
             placeholder="Please enter the name of the group"
             [(ngModel)]="groupsShort.groupName"
+            [(ngModel)]="defaultValue"
             required
           />
           <mat-error class="mat-error" *ngIf="isCreate"
