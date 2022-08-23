@@ -22,7 +22,8 @@ export class GroupsComponent implements OnInit {
 
   result: any;
 
-  userObjectField: any;
+  /* For select group by id */
+  selectedGroup?: IMyGroupsShort;
 
   /* For reset input when user create new group */
   defaultValue: string = '';
@@ -66,7 +67,7 @@ export class GroupsComponent implements OnInit {
   toInitState(group: any) {
     this.isCreate = false;
     this.isJoin = false;
-    console.log(group)
+    this.selectedGroup = group;
   }
 
   //New group create function
@@ -83,7 +84,7 @@ export class GroupsComponent implements OnInit {
     this._groupsService.createNewGroup(this.result).subscribe(
       (res: any) => {
         this._toastrService.success(res.message);
-        this.defaultValue = ''
+        // this.defaultValue = ''
         this.getGroup();
       },
       (error) => {
@@ -100,7 +101,6 @@ export class GroupsComponent implements OnInit {
     this._groupsService.getGroup(this.getUserId).subscribe(
       (res: any) => {
         this.getGroupResult = res.result;
-        this.isCreate = true;
       },
       (error) => {
         this._toastrService.error(error.error.error)

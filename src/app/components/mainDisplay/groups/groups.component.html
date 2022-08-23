@@ -63,13 +63,10 @@
           <h3>Information about group</h3>
         </div>
 
-        <div
-          class="description-about-group"
-          *ngFor="let group of getGroupResult; let i = index"
-        >
+        <div class="description-about-group" *ngIf="selectedGroup">
           <div class="first-small-container">
             <div class="group-name-title">
-              <h2>{{ group.groupName }}</h2>
+              <h2>{{ selectedGroup.groupName }}</h2>
             </div>
 
             <p>participant 1</p>
@@ -82,7 +79,7 @@
             <div class="rating-container">
               <p>
                 drink and
-                {{ group.createAt }}
+                <!--  {{ group.createAt }}-->
               </p>
               <p>
                 Total rating:
