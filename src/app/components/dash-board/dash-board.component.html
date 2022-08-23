@@ -1,28 +1,33 @@
 <app-main-header></app-main-header>
-<div class="container">
+<div class="main-container">
   <div class="sub-container">
-    <div class="section mat-elevation-z6">
-      <h2>My Drinks</h2>
-      <button mat-raised-button color="primary" routerLink="/drinks">
+    <div class="drinks-container">
+      <h2 class="drinks-title">My Drinks</h2>
+      <button
+        mat-raised-button
+        color="primary"
+        routerLink="/drinks"
+        class="details"
+      >
         Details
       </button>
     </div>
 
-    <div class="section mat-elevation-z6">
+    <div class="groups-container">
       <h2>Groups</h2>
       <button mat-raised-button color="primary" routerLink="/groups">
         Details
       </button>
     </div>
 
-    <div class="section mat-elevation-z6">
+    <div class="events-container">
       <h2>My Events</h2>
       <button mat-raised-button color="primary" routerLink="/events" disabled>
         Details
       </button>
     </div>
 
-    <div class="section mat-elevation-z6">
+    <div class="library-container">
       <h2>Library</h2>
       <button mat-raised-button color="primary" routerLink="/library" disabled>
         Details

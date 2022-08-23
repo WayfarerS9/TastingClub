@@ -1,30 +1,71 @@
-.container {
-  display: flex;
-  height: 100vh;
-  flex-direction: column;
+.main-container {
 
   .sub-container {
-    flex-grow: 1;
+    margin: auto;
+    height: 94vh;
+    width: 70vw;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-evenly;
+    justify-content: center;
     align-items: center;
-    padding-bottom: 8em;
-    padding-top: 1em;
-    padding-right: 7em;
 
-    .section {
+    h2 {
+      text-align: center;
+    }
+
+    .drinks-container {
+      position: relative;
+      width: 42%;
+      height: 42%;
+      margin-right: 10px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      background-image: url('https://www.ripplesnigeria.com/wp-content/uploads/2022/05/images-2022-05-02T144240.675.jpeg');
+      background-position: center;
+      background-repeat: no-repeat;
+
+      .details {
+        opacity: .9;
+        width: 5vw;
+        position: absolute;
+        right: 0;
+        bottom: 0;
+      }
+
+      .drinks-title {
+        color: white;
+      }
+    }
+
+    .groups-container {
+      width: 42%;
+      height: 42%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background-image: url('https://cdn.corporatefinanceinstitute.com/assets/focus-group-1024x684.jpeg');
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    .events-container {
       width: 42%;
       height: 42%;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       padding: .4em 1em 1em;
-      box-sizing: border-box;
+    }
 
-      h2 {
-        text-align: center;
-      }
+    .library-container {
+      width: 42%;
+      height: 42%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: .4em 1em 1em;
     }
   }
 }
