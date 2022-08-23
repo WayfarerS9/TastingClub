@@ -56,7 +56,8 @@
       .groups-list {
 
         .group-block {
-          padding: 10px;
+          position: relative;
+          // height: 5vh;
           margin: 3px 0;
           font-size: 18px;
           font-size: Kanit;
@@ -64,6 +65,12 @@
 
         .group-block:hover {
           cursor: pointer;
+        }
+
+        .details {
+          position: absolute;
+          right: 0;
+          top: 0;
         }
       }
 

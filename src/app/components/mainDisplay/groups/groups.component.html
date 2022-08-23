@@ -18,6 +18,14 @@
         >
           <mat-card class="group-block" (click)="toInitState(group)">
             {{ group.groupName }}
+            <button
+              mat-raised-button
+              color="primary"
+              class="details"
+              (click)="detailsButton($event)"
+            >
+              Details
+            </button>
           </mat-card>
         </div>
 

@@ -107,4 +107,8 @@ export class GroupsComponent implements OnInit {
       }
     )
   }
+
+  detailsButton(event: any) {
+    event.stopPropagation();
+  }
 }
