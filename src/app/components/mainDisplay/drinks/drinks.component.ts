@@ -141,7 +141,6 @@ export class DrinksComponent implements OnInit {
     this._drinksService
       .searchByIdDrinks(this.selectedTastedDrink)
       .subscribe((res: any) => {
-        console.log(res.result)
         this.myTastedDrinkFullInfo = res.result;
         this.tableResult = res.tableResult[0];
         this.isAdd = false;
@@ -186,7 +185,6 @@ export class DrinksComponent implements OnInit {
     this._drinksService
       .getShortInfoAboutDrink(this.getShortInfoAboutDrink)
       .subscribe((res: any) => {
-        console.log(res.result)
         this.myTastedDrinks = this.getDrinksForShow(res.result);
       });
   }
