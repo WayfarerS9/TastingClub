@@ -11,6 +11,7 @@ import { Subject, Subscription, switchMap } from 'rxjs';
 import { debounceTime, filter } from 'rxjs/operators';
 import { DrinksService } from 'src/app/services/drinks.service';
 import { ToastrService } from 'ngx-toastr';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-drinks',
   templateUrl: './drinks.component.html',
@@ -56,6 +57,7 @@ export class DrinksComponent implements OnInit {
     private _location: Location,
     private _drinksService: DrinksService,
     private _toastrService: ToastrService,
+    private _modalService: NgbModal
   ) { }
 
   searchDrinks(event: any) {
@@ -213,5 +215,25 @@ export class DrinksComponent implements OnInit {
 
   matMenu(event: any) {
     event.stopPropagation();
+  }
+
+  closeModal?: string;
+
+  triggerModal(content: any) {
+    this._modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((res) => {
+      this.closeModal = `Closed with: ${res}`;
+    }, (res) => {
+      this.closeModal = `Dismissed ${this.getDismissReason(res)}`;
+    });
+  }
+
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return `with: ${reason}`;
+    }
   }
 }

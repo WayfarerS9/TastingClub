@@ -9,7 +9,7 @@
   <div class="container-header">
     <h2>My Drinks</h2>
   </div>
-  
+
   <div class="sub-container">
     <div class="container-left-side">
       <h3 *ngIf="!isAdd">Drinks I've tasted</h3>
@@ -41,7 +41,15 @@
                 </p>
               </mat-card-content>
               <hr />
-              <button mat-raised-button color="primary">Reviews</button>
+              <button
+                mat-raised-button
+                color="primary"
+                (click)="selectAndGetDrink(drink)"
+                (click)="onEdit()"
+                (click)="triggerModal(modalData)"
+              >
+                Reviews
+              </button>
             </div>
 
             <div class="mat-menu-container">
@@ -54,17 +62,6 @@
                 <mat-icon>more_vert</mat-icon>
               </button>
               <mat-menu #menu="matMenu">
-                <button mat-menu-item (click)="onEdit()" *ngIf="!isAdd">
-                  <button
-                    style="width: 4vw"
-                    color="accent"
-                    mat-raised-button
-                    (click)="selectAndGetDrink(drink)"
-                  >
-                    Edit
-                  </button>
-                </button>
-                <hr />
                 <button mat-menu-item>
                   <button
                     style="width: 4vw; color: white"
@@ -74,6 +71,91 @@
                   >
                     Delete
                   </button>
+                  <ng-template #modalData let-modal>
+                    <div
+                      class="description-about-drink"
+                      *ngIf="myTastedDrinkFullInfo?.image"
+                    >
+                      {{ myTastedDrinkFullInfo?.name }}
+                      {{ myTastedDrinkFullInfo?.typeOfDrink }}
+                    </div>
+                    <div class="modal-body" *ngIf="!isAdd">
+                      <mat-form-field
+                        appearance="outline"
+                        class="example-form-field"
+                      >
+                        <mat-label>Choose a date</mat-label>
+                        <input
+                          matInput
+                          [min]="minDate"
+                          [max]="maxDate"
+                          [matDatepicker]="datepicker"
+                          (dateChange)="onChangeEvent($event)"
+                          disabled
+                        />
+                        <mat-datepicker-toggle
+                          [disabled]="false"
+                          matSuffix
+                          [for]="datepicker"
+                        ></mat-datepicker-toggle>
+                        <mat-datepicker #datepicker [disabled]="false">
+                          <mat-datepicker-actions>
+                            <button mat-button matDatepickerCancel>
+                              Cancel
+                            </button>
+                            <button
+                              mat-raised-button
+                              color="primary"
+                              matDatepickerApply
+                            >
+                              Apply
+                            </button>
+                          </mat-datepicker-actions>
+                        </mat-datepicker>
+                      </mat-form-field>
+
+                      <ngb-rating
+                        [readonly]="false"
+                        [resettable]="false"
+                        (rateChange)="onRateChange($event)"
+                      ></ngb-rating>
+
+                      <form #feedBackForm="ngForm">
+                        <mat-form-field appearance="outline">
+                          <mat-label>Leave a comment</mat-label>
+                          <textarea
+                            matInput
+                            [(ngModel)]="addUpdateFeedBackModel.feedBack"
+                            rows="2"
+                            required
+                            [(ngModel)]="defaultValue"
+                          >
+                          </textarea>
+                          <mat-error class="mat-error" *ngIf="!isAdd && isEdit">
+                            Field are empty, please entry feed back
+                          </mat-error>
+                        </mat-form-field>
+
+                        <button
+                          class="button-edit-check"
+                          mat-raised-button
+                          (click)="update()"
+                          *ngIf="!isEdit"
+                        >
+                          Save review
+                        </button>
+                      </form>
+                    </div>
+                    <div class="modal-footer">
+                      <button
+                        type="button"
+                        class="btn btn-danger"
+                        (click)="modal.close('Save click')"
+                      >
+                        Close
+                      </button>
+                    </div>
+                  </ng-template>
                 </button>
               </mat-menu>
             </div>
@@ -121,7 +203,7 @@
       </div>
     </div>
 
-    <div class="container-right-side">
+    <!-- <div class="container-right-side">
       <div class="feedBack" *ngIf="!isAdd">
         <div class="infAboutDrink">
           <div class="image-container" *ngIf="myTastedDrinkFullInfo?.image">
@@ -229,14 +311,14 @@
               Save review
             </button>
 
-            <!-- <button
+            <button
               class="button-back"
               mat-raised-button
               *ngIf="isAdd || isEdit"
               (click)="backToMyDrinks()"
             >
               Back
-            </button> -->
+            </button>
           </form>
         </div>
         <button
@@ -249,6 +331,6 @@
           Open to edit
         </button>
       </div>
-    </div>
+    </div> -->
   </div>
 </div>
