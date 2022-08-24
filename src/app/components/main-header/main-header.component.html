@@ -1,45 +1,62 @@
 <div class="header">
-  <h2>
-    Hi <span>{{ user.firstName }} {{ user.lastName }}</span
-    >.
-  </h2>
+  <div class="greeting-container">
+    <h2>
+      Hi <span>{{ user.firstName }} {{ user.lastName }}</span
+      >.
+    </h2>
+  </div>
 
   <div class="title">
     <span>Tasting Club</span>
   </div>
 
   <div class="two-elements">
-    <button mat-button [matMenuTriggerFor]="menu">
-      <img src="./images/usa-isolated-flag-vector.jpg" />
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+      <mat-icon>menu</mat-icon>
     </button>
-
     <mat-menu #menu="matMenu">
-      <button
-        mat-menu-item
-        style="display: flex; justify-content: center; align-items: center"
-      >
-        <img style="width: 70px" src="./images/usa-isolated-flag-vector.jpg" />
+      <button mat-menu-item>
+        <button
+          mat-menu-item
+          style="display: flex; justify-content: center; align-items: center"
+        >
+          <img
+            style="width: 50px"
+            src="./images/usa-isolated-flag-vector.jpg"
+          />
+        </button>
+      </button>
+      <button mat-menu-item>
+        <button
+          mat-menu-item
+          style="display: flex; justify-content: center; align-items: center"
+        >
+          <img style="width: 50px" src="./images/russian-flag.png" />
+        </button>
+      </button>
+      <hr />
+      <button mat-menu-item>
+        <button
+          mat-raised-button
+          color="primary"
+          class="profileButton"
+          style="width: 5vw"
+        >
+          Profile
+        </button>
       </button>
 
-      <button
-        mat-menu-item
-        style="display: flex; justify-content: center; align-items: center"
-      >
-        <img style="width: 70px" src="./images/russian-flag.png" />
+      <button mat-menu-item>
+        <button
+          mat-raised-button
+          color="accent"
+          class="submitButton"
+          (click)="logOut()"
+          style="width: 5vw"
+        >
+          Log out
+        </button>
       </button>
     </mat-menu>
-
-    <button mat-raised-button color="primary" class="profileButton">
-      Profile
-    </button>
-
-    <button
-      mat-raised-button
-      color="accent"
-      class="submitButton"
-      (click)="logOut()"
-    >
-      Log out
-    </button>
   </div>
 </div>

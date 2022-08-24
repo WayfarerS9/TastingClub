@@ -1,27 +1,35 @@
 .header {
-  box-sizing: border-box;
+  position: relative;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   padding: 10px;
   width: 100%;
   background-color: rgb(11, 131, 243);
   height: 56px;
 
-  h2 {
-    color: white;
-    font-size: 25px;
-    font-family: Kanit;
-    margin-bottom: 0;
+  .greeting-container {
+    // background-color: #2afcf2;
+    position: absolute;
+    left: 20px;
 
-    span {
-      color: rgb(228, 247, 59);
-      text-shadow: 2px 1px 3px black;
+    h2 {
+      width: 30vw;
+      color: white;
+      font-size: 25px;
+      font-family: Kanit;
+      margin-bottom: 0;
+
+      span {
+        color: rgb(228, 247, 59);
+        text-shadow: 2px 1px 3px black;
+      }
     }
   }
 
   .title {
-    padding-left: 50px;
+    width: 30vw;
+    // background-color: aquamarine;
     text-align: center;
 
     span {
@@ -33,19 +41,13 @@
   }
 
   .two-elements {
-    display: flex;
-    justify-content: space-around;
+    position: absolute;
+    right: 20px;
+    // background-color: gold;
 
     img {
       width: 40px;
     }
-  }
 
-  .submitButton {
-    margin-right: 20px;
-  }
-
-  .profileButton {
-    margin-right: 20px;
   }
 }
