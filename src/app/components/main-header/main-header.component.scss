@@ -51,3 +51,14 @@
 
   }
 }
+
+@media (max-width: 991px) {
+  .two-elements .mat-menu-item {
+    width: 10vw;
+
+  }
+}
+
+@media (max-width: 768px) {}
+
+@media (max-width: 450px) {}

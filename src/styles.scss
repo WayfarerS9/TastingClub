@@ -20,18 +20,26 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
+.mat-menu-content {
+  padding: 0 !important;
+  background-color: none !important;
+}
+
+button.mat-menu-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 !important;
+}
+
 @media (max-width: 991px) {
 
   html {
     font-size: 55%;
   }
 
-  .header {
-    padding: 1.5rem 2rem;
+  button.mat-focus-indicator {
+    display: flex;
+    justify-content: center;
   }
-
-  // section {
-  //   padding: 2rem;
-  // }
-
 }
