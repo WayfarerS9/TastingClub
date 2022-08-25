@@ -43,11 +43,13 @@ button.mat-menu-item {
 
 .modal-content {
   position: relative;
+  flex-grow: 1;
 }
 
 .cdk-overlay-container {
   z-index: 1500;
 }
+
 
 @media (max-width: 991px) {
 

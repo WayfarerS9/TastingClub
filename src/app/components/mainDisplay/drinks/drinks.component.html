@@ -16,7 +16,7 @@
         <h3 *ngIf="!isAdd">My tasted drinks</h3>
       </div>
 
-      <h3 *ngIf="isAdd">Type the name of the drink</h3>
+      <!-- <h3 *ngIf="!isAdd">Type the name of the drink</h3> -->
 
       <div *ngIf="!isAdd" class="list">
         <p *ngFor="let drink of myTastedDrinks; let i = index">
@@ -82,12 +82,12 @@
               <mat-menu #menu="matMenu">
                 <button mat-menu-item>
                   <button
-                    style="width: 4vw; color: white"
                     mat-raised-button
-                    color="warn"
+                    color="accent"
+                    style="width: 5vw; color: white"
                     (click)="delete($event, drink)"
                   >
-                    Delete
+                    Delete <mat-icon>delete</mat-icon>
                   </button>
                 </button>
               </mat-menu>
@@ -142,7 +142,8 @@
                 <div class="modal-footer">
                   <button
                     type="button"
-                    class="btn btn-danger"
+                    mat-raised-button
+                    color="primary"
                     (click)="modal.close('Save click')"
                   >
                     Close
@@ -160,7 +161,11 @@
                   <button mat-raised-button color="primary" style="width: 6vw">
                     Delete
                   </button>
-                  <button mat-raised-button color="primary" style="width: 6vw; margin-top: 5px;">
+                  <button
+                    mat-raised-button
+                    color="primary"
+                    style="width: 6vw; margin-top: 5px"
+                  >
                     Edit
                   </button>
                 </mat-menu>
@@ -170,183 +175,189 @@
         </p>
       </div>
 
-      <div class="findDrink" *ngIf="isAdd">
-        <mat-form-field appearance="fill">
-          <mat-label>Type the drink</mat-label>
-          <input matInput placeholder="Search" (input)="searchDrinks($event)" />
-        </mat-form-field>
-
-        <div class="listOfFind">
-          <p
-            *ngFor="let drink of matchingDrinks; let i = index"
-            class="item"
-            (click)="selectAndGetDrink(drink)"
-            [ngClass]="{ selectedItem: drink === selectedTastedDrink }"
-          >
-            {{ i + 1 }}. {{ drink.title }}
-          </p>
-        </div>
-      </div>
-
-      <div class="four-buttons">
-        <!-- <button
-          class="button-add"
-          color="primary"
-          mat-fab
-          (click)="onAdd()"
-          *ngIf="!isAdd && !isEdit"
-        >
-          <mat-icon>add</mat-icon>
-        </button> -->
-
-        <button
-          class="button-back"
-          mat-raised-button
-          *ngIf="isAdd || isEdit"
-          (click)="backToMyDrinks()"
-        >
-          Back
-        </button>
-      </div>
       <button
         class="button-add"
         color="primary"
         mat-fab
         (click)="onAdd()"
-        *ngIf="!isAdd && !isEdit"
+        *ngIf="!isAdd || !isEdit"
+        (click)="triggerModal(modalData)"
       >
         <mat-icon>add</mat-icon>
+        <ng-template #modalData let-modal>
+          <!-- <h3 *ngIf="!isAdd">Type the name of the drink</h3> -->
+          <div class="findDrink" *ngIf="isAdd">
+            <mat-form-field appearance="fill">
+              <mat-label>Type the drink</mat-label>
+              <input
+                matInput
+                placeholder="Search"
+                (input)="searchDrinks($event)"
+              />
+            </mat-form-field>
+
+            <div class="listOfFind">
+              <span
+                *ngFor="let drink of matchingDrinks; let i = index"
+                class="item"
+                (click)="selectAndGetDrink(drink)"
+                [ngClass]="{ selectedItem: drink === selectedTastedDrink }"
+              >
+                {{ i + 1 }}. {{ drink.title }}
+              </span>
+            </div>
+          </div>
+
+          <div class="container-right-side" *ngIf="!isAdd">
+            <div class="feedBack" *ngIf="!isAdd">
+              <div class="infAboutDrink">
+                <div
+                  class="image-container"
+                  *ngIf="myTastedDrinkFullInfo?.image"
+                >
+                  <img [src]="myTastedDrinkFullInfo?.image" alt="" />
+                </div>
+                <div
+                  class="description-about-drink"
+                  *ngIf="myTastedDrinkFullInfo?.image"
+                >
+                  <h3>
+                    {{ myTastedDrinkFullInfo?.typeOfDrink }}
+                    {{ myTastedDrinkFullInfo?.name }}
+                  </h3>
+                  <p>
+                    <strong>Region:</strong> {{ myTastedDrinkFullInfo?.region }}
+                  </p>
+                  <p>
+                    <strong>Manufacturer:</strong>
+                    {{ myTastedDrinkFullInfo?.manufacturer }}
+                  </p>
+
+                  <p *ngIf="myTastedDrinkFullInfo?.category">
+                    <strong>Category:</strong>
+                    <span
+                      *ngFor="let category of myTastedDrinkFullInfo?.category"
+                    >
+                      {{ category }}
+                    </span>
+                  </p>
+                  <p *ngIf="myTastedDrinkFullInfo?.type">
+                    <strong>Type:</strong> {{ myTastedDrinkFullInfo?.type }}
+                  </p>
+                  <p *ngIf="myTastedDrinkFullInfo?.grape">
+                    <strong>Grape:</strong> {{ myTastedDrinkFullInfo?.grape }}
+                  </p>
+                  <p *ngIf="myTastedDrinkFullInfo?.filtration">
+                    <strong>Filtration:</strong>
+                    {{ myTastedDrinkFullInfo?.filtration }}
+                  </p>
+                  <p>
+                    <strong>Alcohol:</strong>
+                    {{ myTastedDrinkFullInfo?.strength }}%
+                  </p>
+                  <p>
+                    <strong>Volume:</strong>
+                    {{ myTastedDrinkFullInfo?.volume }} liter
+                  </p>
+                  <p>
+                    <strong>Date of degustation: </strong
+                    >{{ tableResult?.dateOfDegustation | date: "yyyy-MM-dd" }}
+                  </p>
+                  <p><strong>My rating: </strong>{{ tableResult?.rating }}</p>
+                  <p>
+                    <strong>My feedback: </strong> {{ tableResult?.feedBack }}
+                  </p>
+
+                  <div *ngIf="isEdit">
+                    <mat-form-field
+                      appearance="outline"
+                      class="example-form-field"
+                    >
+                      <mat-label>Choose a date</mat-label>
+                      <input
+                        matInput
+                        [min]="minDate"
+                        [max]="maxDate"
+                        [matDatepicker]="datepicker"
+                        (dateChange)="onChangeEvent($event)"
+                        disabled
+                      />
+                      <mat-datepicker-toggle
+                        [disabled]="false"
+                        matSuffix
+                        [for]="datepicker"
+                      ></mat-datepicker-toggle>
+                      <mat-datepicker #datepicker [disabled]="false">
+                        <mat-datepicker-actions>
+                          <button mat-button matDatepickerCancel>Cancel</button>
+                          <button
+                            mat-raised-button
+                            color="primary"
+                            matDatepickerApply
+                          >
+                            Apply
+                          </button>
+                        </mat-datepicker-actions>
+                      </mat-datepicker>
+                    </mat-form-field>
+
+                    <ngb-rating
+                      [readonly]="false"
+                      [resettable]="false"
+                      (rateChange)="onRateChange($event)"
+                    ></ngb-rating>
+
+                    <form #feedBackForm="ngForm">
+                      <mat-form-field appearance="outline">
+                        <mat-label>Leave a comment</mat-label>
+                        <textarea
+                          matInput
+                          [(ngModel)]="addUpdateFeedBackModel.feedBack"
+                          rows="2"
+                          required
+                          [(ngModel)]="defaultValue"
+                        >
+                        </textarea>
+                        <mat-error class="mat-error" *ngIf="!isAdd && isEdit">
+                          Field are empty, please entry feed back
+                        </mat-error>
+                      </mat-form-field>
+
+                      <button
+                        class="button-edit-check"
+                        mat-raised-button
+                        (click)="update()"
+                        *ngIf="isEdit"
+                      >
+                        Save
+                      </button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- <div class="four-buttons"></div> -->
+          <button
+            class="button-edit"
+            mat-raised-button
+            color="accent"
+            (click)="onEdit()"
+            *ngIf="!isAdd && !isEdit"
+          >
+            Edit
+          </button>
+          <button
+            class="button-back"
+            mat-raised-button
+            *ngIf="!isAdd || isEdit"
+            (click)="backToMyDrinks()"
+            (click)="modal.close('Save click')"
+          >
+            Back
+          </button>
+        </ng-template>
       </button>
     </div>
   </div>
 </div>
-
-<!-- <div class="container-right-side">
-      <div class="feedBack" *ngIf="!isAdd">
-        <div class="infAboutDrink">
-          <div class="image-container" *ngIf="myTastedDrinkFullInfo?.image">
-            <img [src]="myTastedDrinkFullInfo?.image" alt="" />
-          </div>
-          <div
-            class="description-about-drink"
-            *ngIf="myTastedDrinkFullInfo?.image"
-          >
-            <h3>
-              {{ myTastedDrinkFullInfo?.typeOfDrink }}
-              {{ myTastedDrinkFullInfo?.name }}
-            </h3>
-            <p><strong>Region:</strong> {{ myTastedDrinkFullInfo?.region }}</p>
-            <p>
-              <strong>Manufacturer:</strong>
-              {{ myTastedDrinkFullInfo?.manufacturer }}
-            </p>
-
-            <p *ngIf="myTastedDrinkFullInfo?.category">
-              <strong>Category:</strong>
-              <span *ngFor="let category of myTastedDrinkFullInfo?.category">
-                {{ category }}
-              </span>
-            </p>
-            <p *ngIf="myTastedDrinkFullInfo?.type">
-              <strong>Type:</strong> {{ myTastedDrinkFullInfo?.type }}
-            </p>
-            <p *ngIf="myTastedDrinkFullInfo?.grape">
-              <strong>Grape:</strong> {{ myTastedDrinkFullInfo?.grape }}
-            </p>
-            <p *ngIf="myTastedDrinkFullInfo?.filtration">
-              <strong>Filtration:</strong>
-              {{ myTastedDrinkFullInfo?.filtration }}
-            </p>
-            <p>
-              <strong>Alcohol:</strong> {{ myTastedDrinkFullInfo?.strength }}%
-            </p>
-            <p>
-              <strong>Volume:</strong> {{ myTastedDrinkFullInfo?.volume }} liter
-            </p>
-            <p>
-              <strong>Date of degustation: </strong
-              >{{ tableResult?.dateOfDegustation | date: "yyyy-MM-dd" }}
-            </p>
-            <p><strong>My rating: </strong>{{ tableResult?.rating }}</p>
-            <p><strong>My feedback: </strong> {{ tableResult?.feedBack }}</p>
-          </div>
-        </div>
-
-        <div *ngIf="isEdit">
-          <mat-form-field appearance="outline" class="example-form-field">
-            <mat-label>Choose a date</mat-label>
-            <input
-              matInput
-              [min]="minDate"
-              [max]="maxDate"
-              [matDatepicker]="datepicker"
-              (dateChange)="onChangeEvent($event)"
-              disabled
-            />
-            <mat-datepicker-toggle
-              [disabled]="false"
-              matSuffix
-              [for]="datepicker"
-            ></mat-datepicker-toggle>
-            <mat-datepicker #datepicker [disabled]="false">
-              <mat-datepicker-actions>
-                <button mat-button matDatepickerCancel>Cancel</button>
-                <button mat-raised-button color="primary" matDatepickerApply>
-                  Apply
-                </button>
-              </mat-datepicker-actions>
-            </mat-datepicker>
-          </mat-form-field>
-
-          <ngb-rating
-            [readonly]="false"
-            [resettable]="false"
-            (rateChange)="onRateChange($event)"
-          ></ngb-rating>
-
-          <form #feedBackForm="ngForm">
-            <mat-form-field appearance="outline">
-              <mat-label>Leave a comment</mat-label>
-              <textarea
-                matInput
-                [(ngModel)]="addUpdateFeedBackModel.feedBack"
-                rows="2"
-                required
-                [(ngModel)]="defaultValue"
-              >
-              </textarea>
-              <mat-error class="mat-error" *ngIf="!isAdd && isEdit">
-                Field are empty, please entry feed back
-              </mat-error>
-            </mat-form-field>
-
-            <button
-              class="button-edit-check"
-              mat-raised-button
-              (click)="update()"
-              *ngIf="isEdit"
-            >
-              Save review
-            </button>
-
-            <button
-              class="button-back"
-              mat-raised-button
-              *ngIf="isAdd || isEdit"
-              (click)="backToMyDrinks()"
-            >
-              Back
-            </button>
-          </form>
-        </div>
-        <button
-          class="button-edit"
-          mat-raised-button
-          color="accent"
-          (click)="onEdit()"
-          *ngIf="!isAdd && !isEdit"
-        >
-          Open to edit
-        </button>
-      </div>
-    </div> -->

@@ -55,7 +55,7 @@
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: flex-start;
 }
 
 .sub-container .container-left-side .list mat-card img {
@@ -124,37 +124,6 @@ h3 {
   cursor: pointer;
 }
 
-.four-buttons {
-  position: absolute;
-  bottom: 3px;
-  width: 13vw;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.four-buttons .button-back {
-  background-color: red;
-}
-
-.button-back,
-.button-edit-check {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 6vw;
-  height: 5vh;
-  margin: 5px 0;
-  color: white;
-}
-
-.button-add {
-  color: white;
-  position: absolute;
-  right: 0;
-  bottom: 0;
-}
-
 .textarea {
   resize: none;
   border: none;
@@ -163,10 +132,6 @@ h3 {
 
 .modal-body {
   display: block;
-}
-
-.modal-body .container-for-degustation {
-  // background-color: green;
 }
 
 .modal-body .container-for-degustation span {
@@ -224,98 +189,102 @@ h3 {
   right: 0;
 }
 
-// .container-right-side {
-//   position: relative;
-//   width: 30vw;
-//   height: 67vh;
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: flex-start;
-//   // box-shadow: 1px 1px 5px 1px black;
-//   border: 5px dashed greenyellow;
+.container-right-side {
+  position: relative;
+  width: 26vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+}
 
-//   .feedBack {
-//     width: 100%;
-//     height: 98%;
-//     padding-left: 10px;
-//     display: flex;
-//     flex-direction: column;
-//     justify-content: flex-start;
+.feedBack {
+  width: 100%;
+  padding-left: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
 
-//     .infAboutDrink {
-//       display: flex;
-//       justify-content: space-around;
-//       align-items: center;
+.infAboutDrink {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
 
-//       h3 {
-//         width: 100%;
-//         font-size: 1.6em;
-//       }
+.infAboutDrink h3 {
+  width: 100%;
+  font-size: 1.6em;
+}
 
-//       p {
-//         font-size: 16px;
-//       }
+.infAboutDrink p {
+  font-size: 16px;
+}
 
-//       .image-container img {
-//         width: 250px;
-//         height: 300px;
-//       }
+.infAboutDrink .image-container img {
+  width: 150px;
+  height: 200px;
+}
 
-//       .description-about-drink {
-//         width: 300px;
-//       }
-//     }
+.infAboutDrink .description-about-drink {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
 
-//     mat-form-field {
-//       width: 98%;
-//       height: 8vh;
+mat-form-field {
+  width: 98%;
+  height: 8vh;
+}
 
-//       textarea {
-//         resize: none;
-//       }
-//     }
+mat-form-field textarea {
+  resize: none;
+}
 
-//     ngb-rating {
-//       color: #FFC107;
-//       font-size: 30px;
-//       margin-bottom: 15px;
-//     }
+ngb-rating {
+  color: #FFC107;
+  font-size: 30px;
+  margin-bottom: 15px;
+}
 
-//     .button-edit {
-//       position: absolute;
-//       bottom: 10px;
-//       display: flex;
-//       justify-content: center;
-//       align-items: center;
-//       width: 7vw;
-//       height: 6vh;
-//     }
+.button-edit {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-//     .button-edit-check {
-//       position: absolute;
-//       bottom: 10px;
-//       margin-top: 30px;
-//       color: white;
-//       display: flex;
-//       justify-content: center;
-//       align-items: center;
-//       width: 6vw;
-//       height: 5vh;
-//       background-color: rgb(10, 197, 10);
-//     }
-//   }
+.button-edit-check {
+  position: absolute;
+  top: 50px;
+  right: 5px;
+  // margin-top: 30px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(10, 197, 10);
+}
 
-//   .button-back {
-//     background-color: rgb(231, 56, 56);
-//     display: flex;
-//     justify-content: center;
-//     align-items: center;
-//     width: 6vw;
-//     height: 5vh;
-//     margin-bottom: 5px;
-//     color: white;
-//   }
-// }
+.button-back {
+  background-color: rgb(231, 56, 56);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  position: absolute;
+  bottom: 5px;
+  left: 5px;
+}
+
+.button-add {
+  color: white;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
 
 
 @media (max-width: 991px) {
