@@ -1,237 +1,322 @@
 .main {
   position: relative;
-  padding-bottom: 105px;
-
-  .for-go-back-button {
-    position: absolute;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    top: 50px;
-    left: 0;
-    width: 4vw;
-    padding: 5px;
-
-    .goBackButton {
-      background-color: rgb(231, 56, 56);
-    }
-  }
-
-  .container-header {
-    margin: auto;
-
-    h2 {
-      text-align: center;
-      font-size: 26px;
-      font-family: Kanit;
-    }
-  }
-
-  .sub-container {
-    margin: auto;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    width: 90vw;
-    padding: 50px 0;
-
-    .container-left-side {
-      // background-color: aquamarine;
-      position: relative;
-      width: 30vw;
-      height: 67vh;
-      display: flex;
-      flex-direction: column;
-      padding: 0 7px;
-      // box-shadow: 1px 1px 5px 1px black;
-      border: 5px dashed greenyellow;
-
-      .list {
-        // background-color: red;
-        height: 50vh;
-        overflow: auto;
-        // margin: 0 5px;
-
-        mat-card img {
-          width: 150px;
-          height: 200px;
-        }
-
-        .example-card {
-          margin-top: 2px;
-          margin-left: 2px;
-          width: 98%;
-          display: flex;
-          align-items: center;
-          justify-content: flex-start;
-          box-shadow: 0px 0px 3px 2px aquamarine;
-
-          .container-for-drink-info {
-            width: 10vw;
-
-            mat-card-title,
-            mat-card-subtitle {
-              text-align: left;
-            }
-
-            .rating {
-              color: #FFC107;
-              font-size: 20px;
-            }
-          }
-
-          .mat-menu-container {
-            position: absolute;
-            top: 0;
-            right: 0;
-          }
-
-        }
-      }
-
-      h3 {
-        width: 100%;
-        font-size: 1.6em;
-      }
-
-      .listOfFind {
-        overflow: auto;
-      }
-
-      .findDrink {
-        height: 35vh;
-        margin-bottom: 10px;
-
-        .item {
-          font-size: 20px;
-        }
-
-        .item:hover {
-          cursor: pointer;
-        }
-      }
-
-      .four-buttons {
-        position: absolute;
-        bottom: 3px;
-        width: 13vw;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-
-        .button-back {
-          background-color: red;
-        }
-
-        .button-add,
-        .button-back,
-        .button-edit-check {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          width: 6vw;
-          height: 5vh;
-          margin: 5px 0;
-          color: white;
-        }
-      }
-    }
-
-    // .container-right-side {
-    //   position: relative;
-    //   width: 30vw;
-    //   height: 67vh;
-    //   display: flex;
-    //   flex-direction: column;
-    //   justify-content: flex-start;
-    //   // box-shadow: 1px 1px 5px 1px black;
-    //   border: 5px dashed greenyellow;
-
-    //   .feedBack {
-    //     width: 100%;
-    //     height: 98%;
-    //     padding-left: 10px;
-    //     display: flex;
-    //     flex-direction: column;
-    //     justify-content: flex-start;
-
-    //     .infAboutDrink {
-    //       display: flex;
-    //       justify-content: space-around;
-    //       align-items: center;
-
-    //       h3 {
-    //         width: 100%;
-    //         font-size: 1.6em;
-    //       }
-
-    //       p {
-    //         font-size: 16px;
-    //       }
-
-    //       .image-container img {
-    //         width: 250px;
-    //         height: 300px;
-    //       }
-
-    //       .description-about-drink {
-    //         width: 300px;
-    //       }
-    //     }
-
-    //     mat-form-field {
-    //       width: 98%;
-    //       height: 8vh;
-
-    //       textarea {
-    //         resize: none;
-    //       }
-    //     }
-
-    //     ngb-rating {
-    //       color: #FFC107;
-    //       font-size: 30px;
-    //       margin-bottom: 15px;
-    //     }
-
-    //     .button-edit {
-    //       position: absolute;
-    //       bottom: 10px;
-    //       display: flex;
-    //       justify-content: center;
-    //       align-items: center;
-    //       width: 7vw;
-    //       height: 6vh;
-    //     }
-
-    //     .button-edit-check {
-    //       position: absolute;
-    //       bottom: 10px;
-    //       margin-top: 30px;
-    //       color: white;
-    //       display: flex;
-    //       justify-content: center;
-    //       align-items: center;
-    //       width: 6vw;
-    //       height: 5vh;
-    //       background-color: rgb(10, 197, 10);
-    //     }
-    //   }
-
-    //   .button-back {
-    //     background-color: rgb(231, 56, 56);
-    //     display: flex;
-    //     justify-content: center;
-    //     align-items: center;
-    //     width: 6vw;
-    //     height: 5vh;
-    //     margin-bottom: 5px;
-    //     color: white;
-    //   }
-    // }
-
-  }
 }
+
+.for-go-back-button {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 50px;
+  left: 0;
+  width: 4vw;
+  padding: 5px;
+}
+
+.for-go-back-button .goBackButton {
+  background-color: rgb(231, 56, 56);
+}
+
+.container-header {
+  margin: auto;
+}
+
+.container-header h2 {
+  text-align: center;
+  font-size: 26px;
+  font-family: Kanit;
+}
+
+.sub-container {
+  margin: auto;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 90vw;
+  height: 80vh;
+  padding: 50px 0;
+}
+
+.sub-container .container-left-side {
+  position: relative;
+  width: 90vw;
+  height: 75vh;
+}
+
+.sub-container .container-left-side .tasted-title {
+  text-align: center;
+}
+
+.sub-container .container-left-side .list {
+  margin: auto;
+  width: 90vw;
+  height: 60vh;
+  overflow: auto;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.sub-container .container-left-side .list mat-card img {
+  width: 200px;
+  height: 250px;
+}
+
+.sub-container .container-left-side .list .example-card {
+  margin-top: 2px;
+  margin-left: 2px;
+  width: 20vw;
+  height: 35vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+  position: relative;
+}
+
+.sub-container .container-left-side .list .example-card .container-for-drink-info {
+  width: 10vw;
+  height: 30vh;
+  // background-color: aqua;
+}
+
+.sub-container .container-left-side .list .example-card .container-for-drink-info mat-card-title,
+mat-card-subtitle {
+  text-align: left;
+}
+
+.sub-container .container-left-side .list .example-card .container-for-drink-info .rating {
+  color: #FFC107;
+  font-size: 20px;
+}
+
+.sub-container .container-left-side .list .example-card .mat-menu-container {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.reviews {
+  position: absolute;
+  bottom: 60px;
+}
+
+h3 {
+  width: 100%;
+  font-size: 1.6em;
+}
+
+.listOfFind {
+  overflow: auto;
+}
+
+.findDrink {
+  height: 35vh;
+  margin-bottom: 10px;
+}
+
+.findDrink .item {
+  font-size: 20px;
+}
+
+.findDrink .item:hover {
+  cursor: pointer;
+}
+
+.four-buttons {
+  position: absolute;
+  bottom: 3px;
+  width: 13vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.four-buttons .button-back {
+  background-color: red;
+}
+
+.button-back,
+.button-edit-check {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 6vw;
+  height: 5vh;
+  margin: 5px 0;
+  color: white;
+}
+
+.button-add {
+  color: white;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+
+.textarea {
+  resize: none;
+  border: none;
+  background: none;
+}
+
+.modal-body {
+  display: block;
+}
+
+.modal-body .container-for-degustation {
+  // background-color: green;
+}
+
+.modal-body .container-for-degustation span {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.modal-body .container-for-rating {
+  margin-top: 15px;
+}
+
+.modal-body .container-for-rating span {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.modal-body .container-for-rating .rating {
+  color: #FFC107;
+  font-size: 20px;
+}
+
+.modal-body .container-for-feedback {
+  margin-top: 15px;
+}
+
+.modal-body .container-for-feedback span {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.description-about-drink {
+  padding-top: 10px;
+  text-align: center;
+}
+
+.description-about-drink span {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.description-about-drink .type-of-drink {
+  color: grey;
+  font-size: 18px;
+}
+
+.container-for-feedback textarea {
+  resize: none;
+  background: none;
+  border: none;
+}
+
+.modal-mat-menu {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+// .container-right-side {
+//   position: relative;
+//   width: 30vw;
+//   height: 67vh;
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: flex-start;
+//   // box-shadow: 1px 1px 5px 1px black;
+//   border: 5px dashed greenyellow;
+
+//   .feedBack {
+//     width: 100%;
+//     height: 98%;
+//     padding-left: 10px;
+//     display: flex;
+//     flex-direction: column;
+//     justify-content: flex-start;
+
+//     .infAboutDrink {
+//       display: flex;
+//       justify-content: space-around;
+//       align-items: center;
+
+//       h3 {
+//         width: 100%;
+//         font-size: 1.6em;
+//       }
+
+//       p {
+//         font-size: 16px;
+//       }
+
+//       .image-container img {
+//         width: 250px;
+//         height: 300px;
+//       }
+
+//       .description-about-drink {
+//         width: 300px;
+//       }
+//     }
+
+//     mat-form-field {
+//       width: 98%;
+//       height: 8vh;
+
+//       textarea {
+//         resize: none;
+//       }
+//     }
+
+//     ngb-rating {
+//       color: #FFC107;
+//       font-size: 30px;
+//       margin-bottom: 15px;
+//     }
+
+//     .button-edit {
+//       position: absolute;
+//       bottom: 10px;
+//       display: flex;
+//       justify-content: center;
+//       align-items: center;
+//       width: 7vw;
+//       height: 6vh;
+//     }
+
+//     .button-edit-check {
+//       position: absolute;
+//       bottom: 10px;
+//       margin-top: 30px;
+//       color: white;
+//       display: flex;
+//       justify-content: center;
+//       align-items: center;
+//       width: 6vw;
+//       height: 5vh;
+//       background-color: rgb(10, 197, 10);
+//     }
+//   }
+
+//   .button-back {
+//     background-color: rgb(231, 56, 56);
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//     width: 6vw;
+//     height: 5vh;
+//     margin-bottom: 5px;
+//     color: white;
+//   }
+// }
+
 
 @media (max-width: 991px) {
   .main .sub-container {

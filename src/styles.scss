@@ -23,6 +23,8 @@ body {
 .mat-menu-content {
   padding: 0 !important;
   background-color: none !important;
+  display: flex;
+  flex-direction: column;
 }
 
 button.mat-menu-item {
@@ -30,6 +32,21 @@ button.mat-menu-item {
   justify-content: center;
   align-items: center;
   padding: 0 !important;
+}
+
+.mat-menu-panel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  // min-height: 0 !important;
+}
+
+.modal-content {
+  position: relative;
+}
+
+.cdk-overlay-container {
+  z-index: 1500;
 }
 
 @media (max-width: 991px) {
