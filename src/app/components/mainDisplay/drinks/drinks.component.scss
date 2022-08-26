@@ -43,14 +43,11 @@
   height: 75vh;
 }
 
-.sub-container .container-left-side .tasted-title {
-  text-align: center;
-}
-
 .sub-container .container-left-side .list {
   margin: auto;
-  width: 90vw;
-  height: 60vh;
+  padding-top: 10px;
+  width: 73.2vw;
+  height: 75vh;
   overflow: auto;
   display: flex;
   align-items: center;
@@ -59,36 +56,46 @@
 }
 
 .sub-container .container-left-side .list mat-card img {
-  width: 200px;
-  height: 250px;
+  width: 130px;
+  height: 188px;
 }
 
 .sub-container .container-left-side .list .example-card {
-  margin-top: 2px;
-  margin-left: 2px;
-  width: 20vw;
-  height: 35vh;
+  margin-left: 10px;
+  position: relative;
+  width: 450px;
+  height: 250px;
   display: flex;
   align-items: center;
   justify-content: space-around;
-  box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 8px;
   position: relative;
 }
 
+.border {
+  border: 1 solid grey;
+}
+
 .sub-container .container-left-side .list .example-card .container-for-drink-info {
-  width: 10vw;
-  height: 30vh;
-  // background-color: aqua;
+  position: relative;
+  width: 670px;
+  height: 210px;
+  flex-grow: 1;
 }
 
 .sub-container .container-left-side .list .example-card .container-for-drink-info mat-card-title,
 mat-card-subtitle {
   text-align: left;
+  width: 200px;
+  height: 21px;
+  margin: 5px 0;
 }
 
 .sub-container .container-left-side .list .example-card .container-for-drink-info .rating {
   color: #FFC107;
-  font-size: 20px;
+  width: 200px;
+  height: 20px;
 }
 
 .sub-container .container-left-side .list .example-card .mat-menu-container {
@@ -98,8 +105,16 @@ mat-card-subtitle {
 }
 
 .reviews {
+  background: none;
   position: absolute;
-  bottom: 60px;
+  bottom: 30px;
+  border: none;
+  padding: 0;
+  font-family: Roboto;
+  font-size: 15px;
+  text-transform: uppercase;
+  color: #3F51B5;
+  font-weight: 700;
 }
 
 h3 {
@@ -128,15 +143,34 @@ h3 {
   resize: none;
   border: none;
   background: none;
+  width: 310px;
 }
 
 .modal-body {
   display: block;
+  padding: 0;
+  padding-left: 10px;
 }
 
-.modal-body .container-for-degustation span {
-  font-size: 18px;
+.modal-body .container-for-degustation div {
+  margin-top: 10px;
   font-weight: bold;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.container-for-degustation div span {
+  padding-left: 5px;
+  padding-top: 1.5px;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  color: rgba(0, 0, 0, 0.56);
 }
 
 .modal-body .container-for-rating {
@@ -144,8 +178,10 @@ h3 {
 }
 
 .modal-body .container-for-rating span {
-  font-size: 18px;
-  font-weight: bold;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
 }
 
 .modal-body .container-for-rating .rating {
@@ -153,28 +189,49 @@ h3 {
   font-size: 20px;
 }
 
-.modal-body .container-for-feedback {
-  margin-top: 15px;
+.container-for-feedback div textarea {
+  width: 472px;
+}
+
+.modal-header {
+  padding: 0;
+  padding-left: 11px;
+  padding-top: 15px;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
 }
 
 .modal-body .container-for-feedback span {
-  font-size: 18px;
-  font-weight: bold;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
 }
 
 .description-about-drink {
   padding-top: 10px;
   text-align: center;
+  margin: auto;
 }
 
-.description-about-drink span {
-  font-size: 18px;
-  font-weight: bold;
+.description-about-drink div {
+  width: 327px;
+  height: 42px;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 23px;
+  line-height: 42px;
 }
 
-.description-about-drink .type-of-drink {
-  color: grey;
-  font-size: 18px;
+.description-about-drink div .type-of-drink {
+  font-family: 'Roboto';
+  font-size: 23px;
+  font-style: normal;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.56);
 }
 
 .container-for-feedback textarea {
@@ -260,7 +317,6 @@ ngb-rating {
   position: absolute;
   top: 50px;
   right: 5px;
-  // margin-top: 30px;
   color: white;
   display: flex;
   justify-content: center;
@@ -286,6 +342,130 @@ ngb-rating {
   bottom: 0;
 }
 
+.menu-delete-button {
+  width: 112px;
+  // height: 30px;
+  border: none;
+  background: none;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.menu-delete-button:hover {
+  background-color: white;
+}
+
+.menu-delete-button:active {
+  background-color: red;
+  color: white;
+}
+
+.menu-delete-second-button {
+  width: 112px;
+  height: 45px;
+  border: none;
+  background: none;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.menu-delete-second-button:active {
+  background-color: red;
+  color: white;
+}
+
+.menu-edit-button {
+  width: 112px;
+  height: 45px;
+  border: none;
+  background: none;
+  color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2px;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+}
+
+.menu-edit-button:active {
+  background-color: rgb(155, 252, 10);
+  color: white;
+}
+
+.close-window {
+  width: 112px;
+  height: 45px;
+  border: none;
+  background: none;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  color: red;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.example-form-field {
+  width: 250px;
+}
+
+.two-buttons {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.save-button {
+  width: 112px;
+  height: 45px;
+  border: none;
+  background: none;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #3F51B5;
+}
+
+.save-button:hover,
+.cancel-button:hover {
+  cursor: pointer;
+}
+
+.cancel-button {
+  margin-right: 10px;
+  width: 112px;
+  height: 45px;
+  border: none;
+  background: none;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #3F51B5;
+}
 
 @media (max-width: 991px) {
   .main .sub-container {
