@@ -89,3 +89,8 @@ export interface IDeleteDrink {
   userId: number,
   mongoId: string | undefined
 }
+
+export interface IDeleteReview {
+  userId: number,
+  mongoId: string | undefined
+}

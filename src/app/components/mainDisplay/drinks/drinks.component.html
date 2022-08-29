@@ -12,8 +12,17 @@
 
   <div class="sub-container">
     <div class="container-left-side">
+      <mat-form-field appearance="outline">
+        <mat-label>Type the drink</mat-label>
+        <input
+          matInput
+          placeholder="Search"
+          (input)="shortInfoAboutDrink($event)"
+        />
+      </mat-form-field>
+
       <!-- <h3 *ngIf="!isAdd">Type the name of the drink</h3> -->
-      <div *ngIf="!isAdd" class="list">
+      <div *ngIf="!isAdd || !isEdit" class="list">
         <p *ngFor="let drink of myTastedDrinks; let i = index">
           <mat-card class="example-card">
             <div class="container-image">
@@ -98,29 +107,30 @@
                   <div class="container-for-degustation">
                     <div>
                       Date of degustation:
-                      <span>{{ tableResult?.dateOfDegustation }}</span>
+                      <span>{{ tableResult?.dateOfDegustation | date }}</span>
                     </div>
                   </div>
 
                   <div class="container-for-rating">
                     <span>Rating</span>
-                    <div>
-                      <ngb-rating
-                        [max]="5"
-                        [readonly]="true"
-                        [resettable]="true"
-                        (rateChange)="onRateChange($event)"
-                        [rate]="drink.rating"
-                        class="rating"
-                      ></ngb-rating>
-                    </div>
+                    <mat-card-subtitle>
+                      <div>
+                        <ngb-rating
+                          [max]="5"
+                          [readonly]="true"
+                          [rate]="tableResult?.rating"
+                          class="rating"
+                        ></ngb-rating>
+                      </div>
+                    </mat-card-subtitle>
                   </div>
 
                   <div class="container-for-feedback">
                     <span>Feed back</span>
                     <div>
                       <textarea
-                        [(ngModel)]="drink.feedBack"
+                        [(ngModel)]="tableResult.feedBack"
+                        class="textarea"
                         disabled
                       ></textarea>
                       <!-- <button
@@ -186,20 +196,7 @@
                               matSuffix
                               [for]="datepicker"
                             ></mat-datepicker-toggle>
-                            <mat-datepicker #datepicker>
-                              <mat-datepicker-actions>
-                                <button mat-button matDatepickerCancel>
-                                  Cancel
-                                </button>
-                                <button
-                                  mat-raised-button
-                                  color="primary"
-                                  matDatepickerApply
-                                >
-                                  Apply
-                                </button>
-                              </mat-datepicker-actions>
-                            </mat-datepicker>
+                            <mat-datepicker #datepicker> </mat-datepicker>
                           </mat-form-field>
                         </div>
 
@@ -261,7 +258,11 @@
                       </div>
                     </ng-template>
                   </button>
-                  <button mat-raised-button class="menu-delete-second-button">
+                  <button
+                    mat-raised-button
+                    class="menu-delete-second-button"
+                    (click)="deleteReview()"
+                  >
                     Delete
                   </button>
                 </mat-menu>
@@ -398,6 +399,7 @@
                     </mat-form-field>
 
                     <ngb-rating
+                      [max]="5"
                       [readonly]="false"
                       [resettable]="false"
                       (rateChange)="onRateChange($event)"

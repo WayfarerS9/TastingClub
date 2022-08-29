@@ -217,13 +217,10 @@ h3 {
 }
 
 .description-about-drink div {
-  width: 327px;
-  height: 42px;
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 600;
   font-size: 23px;
-  line-height: 42px;
 }
 
 .description-about-drink div .type-of-drink {
@@ -287,6 +284,11 @@ h3 {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+}
+
+.infAboutDrink .textarea {
+  // background-color: aqua;
+  font-size: 16px;
 }
 
 mat-form-field {
@@ -465,6 +467,13 @@ ngb-rating {
   justify-content: center;
   align-items: center;
   color: #3F51B5;
+}
+
+.container-left-side mat-form-field {
+  width: 15%;
+  position: absolute;
+  top: -20px;
+  left: 171px;
 }
 
 @media (max-width: 991px) {

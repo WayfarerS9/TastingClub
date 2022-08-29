@@ -12,6 +12,7 @@ import { debounceTime, filter } from 'rxjs/operators';
 import { DrinksService } from 'src/app/services/drinks.service';
 import { ToastrService } from 'ngx-toastr';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { IDeleteReview } from './../../../models/alcohol.model';
 
 @Component({
   selector: 'app-drinks',
@@ -29,7 +30,7 @@ export class DrinksComponent implements OnInit {
   searchCriteriaEmmiter = new Subject<string>();
   subscriptionOnSearchingCriteria!: Subscription;
   starRating?: number;
-  datePicker: string = '';
+  datePicker: any;
   updateResult: any;
   tableResult: any;
   userId: any;
@@ -39,6 +40,8 @@ export class DrinksComponent implements OnInit {
 
   minDate = new Date(1990, 0, 1);
   maxDate = new Date();
+
+  closeModal?: string;
 
   addUpdateFeedBackModel: IAddUpdateFeedBack = {
     firstName: '',
@@ -52,6 +55,11 @@ export class DrinksComponent implements OnInit {
   deleteModel: IDeleteDrink = {
     userId: 0,
     mongoId: ''
+  }
+
+  deleteReviews: IDeleteReview = {
+    userId: 0,
+    mongoId: '',
   }
 
   constructor(
@@ -144,7 +152,6 @@ export class DrinksComponent implements OnInit {
     this._drinksService
       .searchByIdDrinks(this.selectedTastedDrink)
       .subscribe((res: any) => {
-        console.log(res)
         this.myTastedDrinkFullInfo = res.result;
         this.tableResult = res.tableResult[0];
         this.isAdd = false;
@@ -184,10 +191,10 @@ export class DrinksComponent implements OnInit {
     this.datePicker = event.value;
   }
 
-  shortInfoAboutDrink() {
+  shortInfoAboutDrink(event?: any) {
     this.getShortInfoAboutDrink = this.addUpdateFeedBackModel.userId;
     this._drinksService
-      .getShortInfoAboutDrink(this.getShortInfoAboutDrink)
+      .getShortInfoAboutDrink(this.getShortInfoAboutDrink, event?.target?.value)
       .subscribe((res: any) => {
         this.myTastedDrinks = this.getDrinksForShow(res.result);
       });
@@ -214,11 +221,25 @@ export class DrinksComponent implements OnInit {
     );
   }
 
+  deleteReview() {
+    console.log('hui')
+    this.deleteReviews = {
+      userId: this.addUpdateFeedBackModel.userId,
+      mongoId: this.myTastedDrinkFullInfo?._id,
+    }
+
+    this._drinksService.deleteReview(this.deleteReviews).subscribe((res: any) => {
+      console.log(res)
+      this._toastrService.success(res.message)
+    },
+      (error) => {
+        this._toastrService.error(error.error.error)
+      })
+  }
+
   matMenu(event: any) {
     event.stopPropagation();
   }
-
-  closeModal?: string;
 
   triggerModal(content: any) {
     this._modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((res) => {
