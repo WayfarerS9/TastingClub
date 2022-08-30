@@ -15,6 +15,7 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { IDeleteReview } from './../../../models/alcohol.model';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { DialogComponent } from 'src/app/dialog/dialog.component';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-drinks',
@@ -45,7 +46,6 @@ export class DrinksComponent implements OnInit {
 
   closeModal?: string;
   autoFocus?: boolean = true;
-  test: any
 
   addUpdateFeedBackModel: IAddUpdateFeedBack = {
     firstName: '',

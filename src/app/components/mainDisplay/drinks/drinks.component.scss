@@ -253,12 +253,18 @@ h3 {
 
 .container-right-side .infAboutDrink {
   display: flex;
-  justify-content: space-around;
-  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
+  // flex-wrap: wrap;
+  // background-color: red;
 }
 
 .container-right-side .infAboutDrink p {
   font-size: 16px;
+}
+
+.container-right-side .infAboutDrink .image-container {
+  text-align: center;
 }
 
 .container-right-side .infAboutDrink .image-container img {
@@ -272,6 +278,7 @@ h3 {
 }
 
 .container-right-side .description-about-drink {
+  width: 300px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -318,8 +325,8 @@ ngb-rating {
 
 .button-edit-check {
   position: absolute;
-  top: 50px;
-  right: 5px;
+  bottom: 0;
+  right: 0;
   color: white;
   display: flex;
   justify-content: center;
