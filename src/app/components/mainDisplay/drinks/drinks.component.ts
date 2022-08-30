@@ -89,6 +89,7 @@ export class DrinksComponent implements OnInit {
         switchMap((term) => this._drinksService.searchByCategoryDrinks(term))
       )
       .subscribe((res: any) => {
+        console.log(res)
         this.matchingDrinks = this.getDrinksForShow(res.result);
       });
 
@@ -116,7 +117,6 @@ export class DrinksComponent implements OnInit {
         name: drink.name,
         image: drink.image
       };
-
       results.push(result);
 
     });
@@ -192,6 +192,7 @@ export class DrinksComponent implements OnInit {
   }
 
   shortInfoAboutDrink(event?: any) {
+    console.log(event?.target?.value)
     this.getShortInfoAboutDrink = this.addUpdateFeedBackModel.userId;
     this._drinksService
       .getShortInfoAboutDrink(this.getShortInfoAboutDrink, event?.target?.value)
@@ -222,7 +223,6 @@ export class DrinksComponent implements OnInit {
   }
 
   deleteReview() {
-    console.log('hui')
     this.deleteReviews = {
       userId: this.addUpdateFeedBackModel.userId,
       mongoId: this.myTastedDrinkFullInfo?._id,

@@ -189,7 +189,7 @@ h3 {
   font-size: 20px;
 }
 
-.container-for-feedback div textarea {
+.container-for-feedback div mat-card-content {
   width: 472px;
 }
 
@@ -237,72 +237,68 @@ h3 {
   border: none;
 }
 
+.container-for-feedback mat-form-field {
+  width: 477px;
+}
+
 .modal-mat-menu {
   position: absolute;
   top: 0;
   right: 0;
 }
 
-.container-right-side {
-  position: relative;
-  width: 26vw;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
-}
-
-.feedBack {
-  width: 100%;
-  padding-left: 10px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-}
-
-.infAboutDrink {
+.container-right-side .infAboutDrink {
   display: flex;
   justify-content: space-around;
-  align-items: center;
 }
 
-.infAboutDrink h3 {
-  width: 100%;
-  font-size: 1.6em;
-}
-
-.infAboutDrink p {
+.container-right-side .infAboutDrink p {
   font-size: 16px;
 }
 
-.infAboutDrink .image-container img {
+.container-right-side .infAboutDrink .image-container img {
   width: 150px;
   height: 200px;
 }
 
-.infAboutDrink .description-about-drink {
+.container-right-side .example-form-field {
+  font-size: 16px;
+  height: 70px;
+}
+
+.container-right-side .description-about-drink {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 }
 
-.infAboutDrink .textarea {
-  // background-color: aqua;
+.container-right-side ngb-rating {
+  width: 100%;
+  margin-top: 10px;
+  font-size: 28px;
+}
+
+.container-right-side .description-about-drink .example-form-field {
+  width: 100%;
+}
+
+.container-right-side .description-about-drink form {
+  width: 100%;
   font-size: 16px;
 }
 
-mat-form-field {
-  width: 98%;
-  height: 8vh;
+.container-right-side .description-about-drink form mat-form-field {
+  width: 100%;
+  resize: none;
 }
 
-mat-form-field textarea {
+.container-right-side .description-about-drink form mat-form-field textarea {
   resize: none;
 }
 
 ngb-rating {
   color: #FFC107;
-  font-size: 30px;
+  font-size: 20px;
   margin-bottom: 15px;
 }
 

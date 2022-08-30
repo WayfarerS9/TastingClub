@@ -128,11 +128,12 @@
                   <div class="container-for-feedback">
                     <span>Feed back</span>
                     <div>
-                      <textarea
-                        [(ngModel)]="tableResult.feedBack"
-                        class="textarea"
-                        disabled
-                      ></textarea>
+                      <mat-card-content appearance="outline">
+                        <textarea class="textarea" disabled>{{
+                          tableResult?.feedBack
+                        }}</textarea>
+                      </mat-card-content>
+
                       <!-- <button
                         class="button-edit-check"
                         mat-raised-button
@@ -223,7 +224,6 @@
                                 <textarea
                                   matInput
                                   [(ngModel)]="addUpdateFeedBackModel.feedBack"
-                                  rows="2"
                                   required
                                   [(ngModel)]="defaultValue"
                                 >
@@ -377,25 +377,12 @@
                         [max]="maxDate"
                         [matDatepicker]="datepicker"
                         (dateChange)="onChangeEvent($event)"
-                        disabled
                       />
                       <mat-datepicker-toggle
-                        [disabled]="false"
                         matSuffix
                         [for]="datepicker"
                       ></mat-datepicker-toggle>
-                      <mat-datepicker #datepicker [disabled]="false">
-                        <mat-datepicker-actions>
-                          <button mat-button matDatepickerCancel>Cancel</button>
-                          <button
-                            mat-raised-button
-                            color="primary"
-                            matDatepickerApply
-                          >
-                            Apply
-                          </button>
-                        </mat-datepicker-actions>
-                      </mat-datepicker>
+                      <mat-datepicker #datepicker> </mat-datepicker>
                     </mat-form-field>
 
                     <ngb-rating
@@ -411,7 +398,6 @@
                         <textarea
                           matInput
                           [(ngModel)]="addUpdateFeedBackModel.feedBack"
-                          rows="2"
                           required
                           [(ngModel)]="defaultValue"
                         >
