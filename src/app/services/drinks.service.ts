@@ -38,7 +38,6 @@ export class DrinksService {
   }
 
   deleteReview(term: IDeleteReview) {
-    console.log(term)
     return this._http.delete(environment.apiUrl + `/delete-review?userId=${term.userId}&mongoId=${term.mongoId}`)
   }
 }

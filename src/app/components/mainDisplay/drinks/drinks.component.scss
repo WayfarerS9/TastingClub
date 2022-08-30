@@ -334,8 +334,8 @@ ngb-rating {
   align-items: center;
   color: white;
   position: absolute;
-  bottom: 5px;
-  left: 5px;
+  top: -15px;
+  right: -15px;
 }
 
 .button-add {
@@ -473,7 +473,7 @@ ngb-rating {
 .container-left-side mat-form-field {
   width: 15%;
   position: absolute;
-  top: -20px;
+  top: -50px;
   left: 171px;
 }
 

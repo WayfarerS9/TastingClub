@@ -65,9 +65,9 @@
               <button
                 class="reviews"
                 color="primary"
-                (click)="selectAndGetDrink(drink)"
-                (click)="onEdit()"
-                (click)="triggerModal(modalData)"
+                (click)="
+                  selectAndGetDrink(drink); onEdit(); triggerModal(modalData)
+                "
               >
                 See all reviews
               </button>
@@ -85,7 +85,7 @@
               <mat-menu #beforeMenu="matMenu" xPosition="before">
                 <button mat-menu-item>
                   <button
-                    (click)="delete($event, drink)"
+                    (click)="deleteDrinkDialog($event, drink)"
                     class="menu-delete-button"
                   >
                     Delete
@@ -133,16 +133,6 @@
                           tableResult?.feedBack
                         }}</textarea>
                       </mat-card-content>
-
-                      <!-- <button
-                        class="button-edit-check"
-                        mat-raised-button
-                        color="primary"
-                        (click)="update()"
-                        *ngIf="isEdit"
-                      >
-                        Save review
-                      </button> -->
                     </div>
                   </div>
                 </div>
@@ -209,7 +199,6 @@
                               [readonly]="false"
                               [resettable]="false"
                               (rateChange)="onRateChange($event)"
-                              [rate]="drink.rating"
                               class="rating"
                             ></ngb-rating>
                           </div>
@@ -261,7 +250,7 @@
                   <button
                     mat-raised-button
                     class="menu-delete-second-button"
-                    (click)="deleteReview()"
+                    (click)="deleteReviewDialog()"
                   >
                     Delete
                   </button>
@@ -276,9 +265,8 @@
         class="button-add"
         color="primary"
         mat-fab
-        (click)="onAdd()"
+        (click)="onAdd(); triggerModal(modalData)"
         *ngIf="!isAdd || !isEdit"
-        (click)="triggerModal(modalData)"
       >
         <mat-icon>add</mat-icon>
         <ng-template #modalData let-modal>
@@ -306,7 +294,7 @@
           </div>
 
           <div class="container-right-side" *ngIf="!isAdd">
-            <div class="feedBack" *ngIf="!isAdd">
+            <div class="feedBack">
               <div class="infAboutDrink">
                 <div
                   class="image-container"
@@ -432,12 +420,10 @@
           </button>
           <button
             class="button-back"
-            mat-raised-button
-            *ngIf="!isAdd || isEdit"
-            (click)="backToMyDrinks()"
+            mat-mini-fab
             (click)="modal.close('Save click')"
           >
-            Back
+            <mat-icon>close</mat-icon>
           </button>
         </ng-template>
       </button>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Optional } from '@angular/core';
 import { Location } from '@angular/common';
 import {
   IAddUpdateFeedBack,
@@ -13,6 +13,8 @@ import { DrinksService } from 'src/app/services/drinks.service';
 import { ToastrService } from 'ngx-toastr';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { IDeleteReview } from './../../../models/alcohol.model';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { DialogComponent } from 'src/app/dialog/dialog.component';
 
 @Component({
   selector: 'app-drinks',
@@ -42,6 +44,8 @@ export class DrinksComponent implements OnInit {
   maxDate = new Date();
 
   closeModal?: string;
+  autoFocus?: boolean = true;
+  test: any
 
   addUpdateFeedBackModel: IAddUpdateFeedBack = {
     firstName: '',
@@ -66,7 +70,9 @@ export class DrinksComponent implements OnInit {
     private _location: Location,
     private _drinksService: DrinksService,
     private _toastrService: ToastrService,
-    private _modalService: NgbModal
+    private _modalService: NgbModal,
+    public _dialog: MatDialog,
+    @Optional() public _dialogRef: MatDialogRef<DialogComponent>
   ) { }
 
   searchDrinks(event: any) {
@@ -130,15 +136,11 @@ export class DrinksComponent implements OnInit {
   onEdit() {
     this.isEdit = true;
     this.defaultValue = ''
-    // this.addUpdateFeedBackModel.dateOfDegustation =
-    //   this.myTastedDrinkFullInfo!.dateOfDegustation;
-    // this.addUpdateFeedBackModel.rating = this.myTastedDrinkFullInfo!.rating;
-    // this.addUpdateFeedBackModel.feedBack = this.myTastedDrinkFullInfo!.feedBack;
   }
 
   onAdd() {
     this.isAdd = true;
-    /* this.myTastedDrinkFullInfo = new tastedDrinkFullWithFeedBack() */
+    this.isEdit = false
   }
 
   backToMyDrinks() {
@@ -192,7 +194,6 @@ export class DrinksComponent implements OnInit {
   }
 
   shortInfoAboutDrink(event?: any) {
-    console.log(event?.target?.value)
     this.getShortInfoAboutDrink = this.addUpdateFeedBackModel.userId;
     this._drinksService
       .getShortInfoAboutDrink(this.getShortInfoAboutDrink, event?.target?.value)
@@ -229,7 +230,6 @@ export class DrinksComponent implements OnInit {
     }
 
     this._drinksService.deleteReview(this.deleteReviews).subscribe((res: any) => {
-      console.log(res)
       this._toastrService.success(res.message)
     },
       (error) => {
@@ -258,4 +258,36 @@ export class DrinksComponent implements OnInit {
       return `with: ${reason}`;
     }
   }
+
+  deleteReviewDialog() {
+    let dialogRef = this._dialog.open(DialogComponent, {
+      width: '400px',
+      autoFocus: false,
+      data: {
+        deleteReview: 'Are you sure you want to delete this review ?',
+      }
+    });
+    dialogRef.afterClosed().subscribe((res) => {
+      if (res) {
+        this.deleteReview();
+      }
+    })
+  }
+
+  deleteDrinkDialog(event: any, drink: any) {
+    let dialogRef = this._dialog.open(DialogComponent, {
+      width: '400px',
+      autoFocus: false,
+      data: {
+        deleteDrink: 'Are you sure you want to delete this drink ?',
+      }
+    });
+    dialogRef.afterClosed().subscribe((res) => {
+      if (res) {
+        this.delete(event, drink);
+      }
+    })
+  }
 }
+
+
