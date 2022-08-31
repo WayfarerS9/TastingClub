@@ -47,7 +47,7 @@ export class DrinksComponent implements OnInit {
   autoFocus?: boolean = true;
 
   query: any;
-  filterData: any;
+  filterData: any = [];
 
   addUpdateFeedBackModel: IAddUpdateFeedBack = {
     firstName: '',
@@ -202,26 +202,11 @@ export class DrinksComponent implements OnInit {
       .getShortInfoAboutDrink(this.getShortInfoAboutDrink, this.query)
       .subscribe((res: any) => {
 
-        this.myTastedDrinks = this.getDrinksForShow(res.result);
-
-        if (event?.target?.value === 0) {
-          this.filterData = [];
-        }
-
-        if (!this.query) {
-          this.filterData = event?.target?.value;
-        }
-
         const args = this.query;
 
-        this.filterData = this.myTastedDrinks.filter((data: any) => {
-          return JSON.stringify(data).toLowerCase().includes(args);
+        return this.myTastedDrinks = this.getDrinksForShow(res.result).filter((data: any) => {
+          return JSON.stringify(data).toLocaleLowerCase().includes(args)
         })
-
-        this.myTastedDrinks = this.filterData;
-        // console.log(this.myTastedDrinks);
-
-        return this.myTastedDrinks;
       });
   }
 

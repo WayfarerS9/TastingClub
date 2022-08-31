@@ -1,150 +1,147 @@
 .main {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   align-items: center;
-  min-height: 94vh;
+  justify-content: center;
+  // min-height: 94vh;
+  // background-color: aqua;
+}
+
+.main h2 {
+  font-size: 26px;
+  margin-top: 10px;
+}
+
+.main .go-back-button {
+  position: absolute;
+  top: 105px;
+  left: 9px;
+  // background-color: rgb(231, 56, 56);
+}
+
+.main .header {
+  width: 100%;
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  height: 45px;
+}
+
+.main-container {
+  display: flex;
+  width: 90vw;
+  flex-grow: 1;
+  // background-color: rgb(233, 195, 168);
+  justify-content: center;
+}
+
+.main-container .container-left-side {
+  position: relative;
+  width: 90vw;
+  height: 89.2vh;
+}
+
+.main-container .container-left-side .left-container {
+  width: 73.2vw;
+  height: 75vh;
+  overflow: auto;
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  margin: auto;
+}
+
+.main-container .container-left-side .groups-list {
+  margin: 0 5px;
+}
+
+.main-container .container-left-side .group-block {
+  width: 450px;
+  height: 200px;
+  position: relative;
+  margin: 3px 0;
+  font-size: 18px;
+  font-size: Kanit;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.main-container .container-left-side .group-block:hover {
+  cursor: pointer;
+}
+
+.main-container .container-left-side .details {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.button-container {
+  background-color: bisque;
+  position: absolute;
+  bottom: 5px;
+  width: 30vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 5px;
+}
+
+
+.container-right-side {
+  width: 30vw;
+  box-shadow: 1px 1px 5px 1px black;
+  padding: 0 5px;
   // background-color: aqua;
 
-  h3 {
-    text-align: center;
-    font-size: 1.5em;
-    padding-top: .5em;
+  .title {
+    // background-color: greenyellow;
   }
 
-  .go-back-button {
-    position: absolute;
-    top: 105px;
-    left: 9px;
-    // background-color: rgb(231, 56, 56);
-  }
-
-  .header {
-    width: 100%;
+  .description-about-group {
+    width: 28vw;
     display: flex;
-    position: relative;
-    justify-content: center;
-    align-items: center;
-    height: 45px;
+    justify-content: space-around;
+    // background-color: green;
 
-    h2 {
-      font-size: 26px;
-      margin-top: 10px;
+    .group-name-title {
+      // background-color: aqua;
     }
-  }
 
-  .main-container {
-    display: flex;
-    width: 70vw;
-    height: 83vh;
-    // background-color: rgb(233, 195, 168);
-    justify-content: space-between;
+    .first-small-container {
+      width: 12vw;
+      // background-color: brown;
 
-    .container-left-side {
+    }
+
+    .second-small-container {
       position: relative;
-      width: 30vw;
-      display: flex;
-      flex-direction: column;
-      box-shadow: 1px 1px 5px 1px black;
-      // background-color: green;
+      width: 15vw;
+      // background-color: blueviolet;
 
-      .left-container {
-        // background-color: gold;
-        height: 60vh;
-        overflow: auto;
-      }
-
-      .groups-list {
-        margin: 0 5px;
-
-        .group-block {
-          background-color: aquamarine;
-          width: 100%;
-          position: relative;
-          // height: 5vh;
-          margin: 3px 0;
-          font-size: 18px;
-          font-size: Kanit;
-        }
-
-        .group-block:hover {
-          cursor: pointer;
-        }
-
-        .details {
-          position: absolute;
-          right: 0;
-          top: 0;
-        }
-      }
-
-      .button-container {
-        // background-color: bisque;
+      .plan-new-degustation {
         position: absolute;
-        bottom: 5px;
-        width: 30vw;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 0 5px;
+        bottom: 2px;
       }
     }
   }
 
-  .container-right-side {
-    width: 30vw;
-    box-shadow: 1px 1px 5px 1px black;
-    padding: 0 5px;
-    // background-color: aqua;
+  .degustations {
+    width: 10vw;
+    background-color: greenyellow;
 
-    .title {
-      // background-color: greenyellow;
+    .rating-container {
+      background-color: blueviolet;
+    }
+  }
+
+  .create-container {
+
+    mat-form-field {
+      width: 15vw;
+      margin-right: 10px;
     }
 
-    .description-about-group {
-      width: 28vw;
-      display: flex;
-      justify-content: space-around;
-      // background-color: green;
 
-      .group-name-title {
-        // background-color: aqua;
-      }
-
-      .first-small-container {
-        width: 12vw;
-        // background-color: brown;
-
-      }
-
-      .second-small-container {
-        position: relative;
-        width: 15vw;
-        // background-color: blueviolet;
-
-        .plan-new-degustation {
-          position: absolute;
-          bottom: 2px;
-        }
-      }
-    }
-
-    .degustations {
-      width: 10vw;
-      background-color: greenyellow;
-
-      .rating-container {
-        background-color: blueviolet;
-      }
-    }
-
-    .create-container {
-
-      mat-form-field {
-        width: 15vw;
-        margin-right: 10px;
-      }
-
-
-    }
   }
 }
