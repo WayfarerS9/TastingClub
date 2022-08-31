@@ -1,39 +1,32 @@
 .main {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  // min-height: 94vh;
-  // background-color: aqua;
-}
-
-.main h2 {
-  font-size: 26px;
-  margin-top: 10px;
-}
-
-.main .go-back-button {
-  position: absolute;
-  top: 105px;
-  left: 9px;
-  // background-color: rgb(231, 56, 56);
-}
-
-.main .header {
-  width: 100%;
-  display: flex;
   position: relative;
+}
+
+.for-go-back-button {
+  position: absolute;
+  display: flex;
   justify-content: center;
   align-items: center;
-  height: 45px;
+  top: 50px;
+  left: 0;
+  width: 4vw;
+}
+
+.for-go-back-button .go-back-button {
+  background-color: rgb(231, 56, 56);
+}
+
+.header {
+  font-size: 26px;
+  margin: auto;
+  text-align: center;
 }
 
 .main-container {
-  display: flex;
   width: 90vw;
-  flex-grow: 1;
-  // background-color: rgb(233, 195, 168);
-  justify-content: center;
+  height: 75vh;
+  margin: auto;
+  position: relative;
 }
 
 .main-container .container-left-side {
@@ -43,6 +36,7 @@
 }
 
 .main-container .container-left-side .left-container {
+  padding-top: 10px;
   width: 73.2vw;
   height: 75vh;
   overflow: auto;
@@ -73,75 +67,192 @@
 .main-container .container-left-side .details {
   position: absolute;
   right: 0;
-  top: 0;
+  bottom: 0;
+  background: none;
+  border: none;
+  font-family: Roboto;
+  font-size: 15px;
+  text-transform: uppercase;
+  color: #3F51B5;
+  font-weight: 700;
 }
 
-.button-container {
-  background-color: bisque;
-  position: absolute;
-  bottom: 5px;
-  width: 30vw;
+.modal-body {
+  position: relative;
+}
+
+.modal-body .create-container {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 5px;
+  justify-content: space-around;
+  align-items: flex-start;
+  flex-direction: column;
 }
 
+.create-container h3 {
+  margin: auto;
+  font-size: 26px;
+  font-family: Kanit;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.modal-body .create-container mat-form-field {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.modal-body .create {
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: Roboto;
+  font-size: 15px;
+  text-transform: uppercase;
+  color: #3F51B5;
+  font-weight: 700;
+  position: absolute;
+  bottom: 0;
+  right: 12px;
+}
+
+.cancel {
+  position: absolute;
+  background-color: red;
+  top: -15px;
+  right: -15px;
+}
 
 .container-right-side {
-  width: 30vw;
-  box-shadow: 1px 1px 5px 1px black;
-  padding: 0 5px;
+  width: 450px;
+  height: 300px;
   // background-color: aqua;
+}
 
-  .title {
-    // background-color: greenyellow;
+.container-right-side .title h3 {
+  font-size: 26px;
+  font-family: Kanit;
+  text-align: center;
+}
+
+.container-right-side .description-about-group {
+  width: 465px;
+  height: 270px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.container-right-side .description-about-group .group-name-title h2 {
+  font-size: 26px;
+  font-family: Kanit;
+}
+
+.container-right-side .description-about-group .group-name-title p {
+  font-size: 16px;
+}
+
+.container-right-side .description-about-group .first-small-container {
+  width: 450px;
+}
+
+.first-small-container mat-card {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.container-right-side .second-small-container {
+  position: relative;
+  width: 200px;
+}
+
+.container-right-side .view {
+  background: none;
+  border: none;
+  font-family: Roboto;
+  font-size: 15px;
+  text-transform: uppercase;
+  color: #3F51B5;
+  font-weight: 700;
+}
+
+.container-right-side .second-small-container .rating-container p {
+  margin-top: 43px;
+}
+
+.container-right-side .second-small-container p {
+  font-size: 16px;
+}
+
+.container-right-side .first-small-container .plan-new-degustation {
+  position: absolute;
+  bottom: 5px;
+  right: 23px;
+}
+
+.container-right-side .first-small-container .plan-new-degustation button {
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: Roboto;
+  font-size: 15px;
+  text-transform: uppercase;
+  color: #3F51B5;
+  font-weight: 700;
+}
+
+.degustations {
+  width: 10vw;
+  background-color: greenyellow;
+
+  .rating-container {
+    background-color: blueviolet;
   }
+}
 
-  .description-about-group {
-    width: 28vw;
-    display: flex;
-    justify-content: space-around;
-    // background-color: green;
-
-    .group-name-title {
-      // background-color: aqua;
-    }
-
-    .first-small-container {
-      width: 12vw;
-      // background-color: brown;
-
-    }
-
-    .second-small-container {
-      position: relative;
-      width: 15vw;
-      // background-color: blueviolet;
-
-      .plan-new-degustation {
-        position: absolute;
-        bottom: 2px;
-      }
-    }
+.create-container {
+  mat-form-field {
+    width: 15vw;
+    margin-right: 10px;
   }
+}
 
-  .degustations {
-    width: 10vw;
-    background-color: greenyellow;
+.modal-window-container .join-group {
+  position: absolute;
+  bottom: 90px;
+  left: 165px;
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: Roboto;
+  font-size: 15px;
+  text-transform: uppercase;
+  color: #3F51B5;
+  font-weight: 700;
+}
 
-    .rating-container {
-      background-color: blueviolet;
-    }
-  }
+.modal-window-container .leave-group {
+  position: absolute;
+  bottom: 60px;
+  left: 165px;
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: Roboto;
+  font-size: 15px;
+  text-transform: uppercase;
+  color: #3F51B5;
+  font-weight: 700;
+}
 
-  .create-container {
+.create-group {
+  position: absolute;
+  right: 0px;
+  bottom: 130px;
+}
 
-    mat-form-field {
-      width: 15vw;
-      margin-right: 10px;
-    }
-
-
-  }
+.close-window {
+  background-color: red;
+  position: absolute;
+  top: -15px;
+  right: -15px;
 }
