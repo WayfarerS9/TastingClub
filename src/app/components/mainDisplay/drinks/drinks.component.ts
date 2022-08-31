@@ -15,7 +15,6 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { IDeleteReview } from './../../../models/alcohol.model';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { DialogComponent } from 'src/app/dialog/dialog.component';
-import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-drinks',
@@ -46,6 +45,9 @@ export class DrinksComponent implements OnInit {
 
   closeModal?: string;
   autoFocus?: boolean = true;
+
+  query: any;
+  filterData: any;
 
   addUpdateFeedBackModel: IAddUpdateFeedBack = {
     firstName: '',
@@ -194,11 +196,32 @@ export class DrinksComponent implements OnInit {
   }
 
   shortInfoAboutDrink(event?: any) {
+    this.query = event?.target?.value;
     this.getShortInfoAboutDrink = this.addUpdateFeedBackModel.userId;
     this._drinksService
-      .getShortInfoAboutDrink(this.getShortInfoAboutDrink, event?.target?.value)
+      .getShortInfoAboutDrink(this.getShortInfoAboutDrink, this.query)
       .subscribe((res: any) => {
+
         this.myTastedDrinks = this.getDrinksForShow(res.result);
+
+        if (event?.target?.value === 0) {
+          this.filterData = [];
+        }
+
+        if (!this.query) {
+          this.filterData = event?.target?.value;
+        }
+
+        const args = this.query;
+
+        this.filterData = this.myTastedDrinks.filter((data: any) => {
+          return JSON.stringify(data).toLowerCase().includes(args);
+        })
+
+        this.myTastedDrinks = this.filterData;
+        // console.log(this.myTastedDrinks);
+
+        return this.myTastedDrinks;
       });
   }
 
