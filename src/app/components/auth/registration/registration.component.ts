@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import * as moment from 'moment';
 import { IUserRegistration } from 'src/app/models/user.model';
 import { Router } from '@angular/router';
@@ -16,20 +16,19 @@ export class RegistrationComponent implements OnInit {
   hidePassword = true;
   hideRepeatPassword = true;
 
-  regForm: UntypedFormGroup = new UntypedFormGroup({
-    firstName: new UntypedFormControl(null, Validators.required),
-    lastName: new UntypedFormControl(null, Validators.required),
-    birthday: new UntypedFormControl(null, Validators.required),
-    email: new UntypedFormControl(null, [Validators.required, Validators.email, Validators.pattern("^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+[.][a-zA-Z0-9-.]+$")]),
-    password: new UntypedFormControl(null, [Validators.required, Validators.maxLength(20)]),
-    passwordConfirm: new UntypedFormControl(null, [
+  regForm: FormGroup = new FormGroup({
+    firstName: new FormControl(null, Validators.required),
+    lastName: new FormControl(null, Validators.required),
+    birthday: new FormControl(null, Validators.required),
+    email: new FormControl(null, [Validators.required, Validators.email, Validators.pattern("^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+[.][a-zA-Z0-9-.]+$")]),
+    password: new FormControl(null, [Validators.required, Validators.maxLength(20)]),
+    passwordConfirm: new FormControl(null, [
       Validators.required,
       this.passwordValidator,
     ]),
   });
 
   constructor(
-    // private _registrationService: RegistrationService,
     private _auth: AuthService,
     private _toastrService: ToastrService,
     private _router: Router
@@ -41,7 +40,7 @@ export class RegistrationComponent implements OnInit {
     );
   }
 
-  passwordValidator(control: UntypedFormControl): { [s: string]: boolean } | null {
+  passwordValidator(control: FormControl): { [s: string]: boolean } | null {
     if (
       control.parent?.get('password')?.value !==
       control.parent?.get('passwordConfirm')?.value
@@ -58,12 +57,18 @@ export class RegistrationComponent implements OnInit {
   registerUser() {
     let regModel = Object.assign({}, this.regForm.value);
     delete regModel.passwordConfirm;
-    this._auth.registerUser(regModel as IUserRegistration).subscribe(
-      (res: any) => {
+
+    this._auth.registerUser(regModel as IUserRegistration).subscribe({
+      next: (res: any) => {
         this._toastrService.success(res.message);
 
-        if (res.token) {
-          localStorage.setItem('TOKEN_TASTYCLUB', res.token);
+        if (res.token && res.refresh) {
+          let TOKEN = {
+            token: res.token,
+            refresh: res.refresh,
+          }
+          
+          localStorage.setItem('TOKEN_TASTYCLUB', JSON.stringify(TOKEN));
         }
 
         if (res.user) {
@@ -72,10 +77,10 @@ export class RegistrationComponent implements OnInit {
 
         this._router.navigate(['home']);
       },
-      (error) => {
-        this.regForm.controls['email'].setErrors({ notUnique: true || false });
+
+      error: (error) => {
         this._toastrService.error(error.error.message);
       }
-    );
+    });
   }
 }

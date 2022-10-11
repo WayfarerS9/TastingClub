@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { IUserSignIn } from 'src/app/models/user.model';
 // import { LoginService } from 'src/app/services/login.service';
 import { AuthService } from 'src/app/services/auth.service';
@@ -14,9 +14,9 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
   hidePassword = true;
 
-  logForm: UntypedFormGroup = new UntypedFormGroup({
-    email: new UntypedFormControl(null, [Validators.required, Validators.email, Validators.pattern("^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+[.][a-zA-Z0-9-.]+$")]),
-    password: new UntypedFormControl(null, [Validators.required, Validators.maxLength(20)]),
+  logForm: FormGroup = new FormGroup({
+    email: new FormControl(null, [Validators.required, Validators.email, Validators.pattern("^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+[.][a-zA-Z0-9-.]+$")]),
+    password: new FormControl(null, [Validators.required, Validators.maxLength(20)]),
   });
 
   constructor(
@@ -30,12 +30,18 @@ export class LoginComponent implements OnInit {
 
   signInUser() {
     let logModel = Object.assign({}, this.logForm.value);
-    this._auth.signInUser(logModel as IUserSignIn).subscribe(
-      (res: any) => {
+    this._auth.signInUser(logModel as IUserSignIn).subscribe({
+      next: (res: any) => {
+        console.log(res)
         this._toastrService.success(res.message);
 
-        if (res.token) {
-          localStorage.setItem('TOKEN_TASTYCLUB', res.token);
+        if (res.token && res.refresh) {
+          let TOKEN = {
+            token: res.token,
+            refresh: res.refresh,
+          }
+          
+          localStorage.setItem('TOKEN_TASTYCLUB', JSON.stringify(TOKEN));
         }
 
         if (res.user) {
@@ -44,9 +50,9 @@ export class LoginComponent implements OnInit {
 
         this._router.navigate(['home']);
       },
-      (error) => {
+      error: (error) => {
         this._toastrService.error(error.error.message);
       }
-    );
+    });
   }
 }

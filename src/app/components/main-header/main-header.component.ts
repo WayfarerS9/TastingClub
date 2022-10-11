@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
+
 @Component({
   selector: 'app-main-header',
   templateUrl: './main-header.component.html',
@@ -8,7 +9,7 @@ import { Router } from '@angular/router';
 export class MainHeaderComponent implements OnInit {
   user!: any;
 
-  constructor(private _router: Router) { }
+  constructor(private _auth: AuthService,) { }
 
   ngOnInit(): void {
     let userString = localStorage.getItem('USER_TASTYCLUB');
@@ -16,8 +17,6 @@ export class MainHeaderComponent implements OnInit {
   }
 
   logOut() {
-    localStorage.removeItem('USER_TASTYCLUB');
-    localStorage.removeItem('TOKEN_TASTYCLUB');
-    this._router.navigate(['/auth/login']);
+    this._auth.logOut()
   }
 }
