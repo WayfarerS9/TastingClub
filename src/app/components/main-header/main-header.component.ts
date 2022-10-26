@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { IUserWithAdditionalInf } from 'src/app/models/user.model';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -6,17 +8,23 @@ import { AuthService } from 'src/app/services/auth.service';
   templateUrl: './main-header.component.html',
   styleUrls: ['./main-header.component.scss'],
 })
-export class MainHeaderComponent implements OnInit {
-  user!: any;
-
+export class MainHeaderComponent implements OnInit, OnDestroy {
+  subscriptionForUserChange!: Subscription;
+  user: IUserWithAdditionalInf | null = this._auth.userInformation;
+ 
   constructor(private _auth: AuthService,) { }
 
   ngOnInit(): void {
-    let userString = localStorage.getItem('USER_TASTYCLUB');
-    this.user = userString ? JSON.parse(userString) : null;
+    this.subscriptionForUserChange = this._auth.userChanges$.subscribe( res => {
+      this.user = res;
+    })
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptionForUserChange.unsubscribe();
   }
 
   logOut() {
-    this._auth.logOut()
+    this._auth.logOut();
   }
 }

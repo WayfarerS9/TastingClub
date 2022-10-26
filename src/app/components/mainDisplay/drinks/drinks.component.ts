@@ -1,20 +1,9 @@
-import { Component, OnInit, Optional } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import {
-  IAddUpdateFeedBack,
-  IDeleteDrink,
-  IDrinkForShow,
-  IDrinkShort,
-  ITastedDrinkFull,
+  IChosenDrink,
+  ITastedDrinkCreateReview,
 } from 'src/app/models/alcohol.model';
-import { Subject, Subscription, switchMap } from 'rxjs';
-import { debounceTime, filter } from 'rxjs/operators';
-import { DrinksService } from 'src/app/services/drinks.service';
-import { ToastrService } from 'ngx-toastr';
-import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-import { IDeleteReview } from './../../../models/alcohol.model';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { DialogComponent } from 'src/app/dialog/dialog.component';
 
 @Component({
   selector: 'app-drinks',
@@ -22,280 +11,46 @@ import { DialogComponent } from 'src/app/dialog/dialog.component';
   styleUrls: ['./drinks.component.scss'],
 })
 export class DrinksComponent implements OnInit {
+  isMyDrinks: boolean = true;
   isAdd: boolean = false;
   isEdit: boolean = false;
-  getShortInfoAboutDrink?: any;
-  myTastedDrinks?: Array<IDrinkForShow>;
-  selectedTastedDrink?: IDrinkForShow;
-  myTastedDrinkFullInfo?: ITastedDrinkFull;
-  matchingDrinks?: Array<IDrinkForShow>;
-  searchCriteriaEmmiter = new Subject<string>();
-  subscriptionOnSearchingCriteria!: Subscription;
-  starRating?: number;
-  datePicker: any;
-  updateResult: any;
-  tableResult: any;
-  userId: any;
+  isCreate: boolean = false;
+  drinkForAddingToStack?: IChosenDrink | ITastedDrinkCreateReview;
 
-  /* For reset textarea when user leave feed back */
-  defaultValue: string = '';
+  constructor(private _location: Location) {}
 
-  minDate = new Date(1990, 0, 1);
-  maxDate = new Date();
-
-  closeModal?: string;
-  autoFocus?: boolean = true;
-
-  query: any;
-  filterData: any = [];
-
-  addUpdateFeedBackModel: IAddUpdateFeedBack = {
-    firstName: '',
-    userId: 0,
-    mongoId: '',
-    dateOfDegustation: '',
-    rating: 0,
-    feedBack: '',
-  };
-
-  deleteModel: IDeleteDrink = {
-    userId: 0,
-    mongoId: ''
-  }
-
-  deleteReviews: IDeleteReview = {
-    userId: 0,
-    mongoId: '',
-  }
-
-  constructor(
-    private _location: Location,
-    private _drinksService: DrinksService,
-    private _toastrService: ToastrService,
-    private _modalService: NgbModal,
-    public _dialog: MatDialog,
-    @Optional() public _dialogRef: MatDialogRef<DialogComponent>
-  ) { }
-
-  searchDrinks(event: any) {
-    if (event.target.value.length < 3) this.matchingDrinks = [];
-    this.searchCriteriaEmmiter.next(event.target.value);
-  }
-
-  ngOnInit(): void {
-    this.addUpdateFeedBackModel.userId = JSON.parse(
-      localStorage.getItem('USER_TASTYCLUB')!
-    ).id;
-    this.addUpdateFeedBackModel.firstName = JSON.parse(
-      localStorage.getItem('USER_TASTYCLUB')!
-    ).firstName;
-
-    this.subscriptionOnSearchingCriteria = this.searchCriteriaEmmiter
-      .pipe(
-        filter((value) => value.length >= 3),
-        debounceTime(300),
-        switchMap((term) => this._drinksService.searchByCategoryDrinks(term))
-      )
-      .subscribe((res: any) => {
-        console.log(res)
-        this.matchingDrinks = this.getDrinksForShow(res.result);
-      });
-
-    this.shortInfoAboutDrink();
-  }
-
-  getDrinksForShow(drinks: Array<IDrinkShort>): Array<IDrinkForShow> {
-    let results: Array<IDrinkForShow> = [];
-
-    drinks.forEach((drink) => {
-      let features;
-      if (drink.category) {
-        features = drink.category.join(', ');
-      }
-
-      if (drink.type) {
-        features = drink.type;
-      }
-      let result = {
-        id: drink._id,
-        type: drink.typeOfDrink,
-        rating: drink.rating,
-        feedBack: drink.feedBack,
-        title: `${drink.typeOfDrink} ${drink.name}, ${drink.region}, ${features}, ${drink.strength}%`,
-        name: drink.name,
-        image: drink.image
-      };
-      results.push(result);
-
-    });
-    return results;
-  }
+  ngOnInit(): void {}
 
   goBack() {
     this._location.back();
   }
 
-  onEdit() {
-    this.isEdit = true;
-    this.defaultValue = ''
-  }
-
-  onAdd() {
+  showAddDrinkComponent() {
     this.isAdd = true;
-    this.isEdit = false
+    this.isMyDrinks = false;
+    this.isEdit = false;
+    this.isCreate = false;
   }
 
-  backToMyDrinks() {
+  showMyDrinkComponent() {
     this.isAdd = false;
+    this.isMyDrinks = true;
     this.isEdit = false;
+    this.isCreate = false;
   }
 
-  selectAndGetDrink(drink: IDrinkForShow) {
-    this.selectedTastedDrink = drink;
+  showEditDrinkComponent(drink: IChosenDrink | ITastedDrinkCreateReview) {
+    this.drinkForAddingToStack = drink;
+    this.isAdd = false;
+    this.isMyDrinks = false;
+    this.isEdit = true;
+    this.isCreate = false;
+  }
+
+  showCreateDrinkComponent() {
+    this.isAdd = false;
+    this.isMyDrinks = false;
     this.isEdit = false;
-    this._drinksService
-      .searchByIdDrinks(this.selectedTastedDrink)
-      .subscribe((res: any) => {
-        this.myTastedDrinkFullInfo = res.result;
-        this.tableResult = res.tableResult[0];
-        this.isAdd = false;
-      });
-  }
-
-  //Update review function
-  update() {
-    this.updateResult = {
-      firstName: this.addUpdateFeedBackModel.firstName,
-      userId: this.addUpdateFeedBackModel.userId,
-      mongoId: this.myTastedDrinkFullInfo?._id,
-      dateOfDegustation: this.datePicker,
-      rating: this.starRating,
-      feedBack: this.addUpdateFeedBackModel.feedBack,
-    };
-    this._drinksService.ratingAndReview(this.updateResult).subscribe(
-      (res: any) => {
-        this._toastrService.success(res.message);
-        this.isEdit = false;
-        //this.selectAndGetDrink(this.selectedTastedDrink!) и this.shortInfoAboutDrink() отображают изменения которые вносит пользователь, без перезагрузки страницы
-        this.selectAndGetDrink(this.selectedTastedDrink!);
-        this.shortInfoAboutDrink();
-      },
-      (error) => {
-        this._toastrService.error(error.error.error);
-      }
-    );
-  }
-
-  /* Function to change star rating value, when user select it */
-  onRateChange(rate: number) {
-    this.starRating = rate;
-  }
-
-  onChangeEvent(event: any) {
-    this.datePicker = event.value;
-  }
-
-  shortInfoAboutDrink(event?: any) {
-    this.query = event?.target?.value;
-    this.getShortInfoAboutDrink = this.addUpdateFeedBackModel.userId;
-    this._drinksService
-      .getShortInfoAboutDrink(this.getShortInfoAboutDrink, this.query)
-      .subscribe((res: any) => {
-
-        const args = this.query;
-
-        return this.myTastedDrinks = this.getDrinksForShow(res.result).filter((data: any) => {
-          return JSON.stringify(data).toLocaleLowerCase().includes(args)
-        })
-      });
-  }
-
-  //Delete drink function
-  delete(event: any, drink: any) {
-    event.stopPropagation();
-    let mongoId = drink;
-
-    this.deleteModel = {
-      userId: this.addUpdateFeedBackModel.userId,
-      mongoId: mongoId.id,
-    }
-
-    this._drinksService.deleteDrink(this.deleteModel).subscribe(
-      (res: any) => {
-        this.shortInfoAboutDrink()
-        this._toastrService.success(res.message);
-      },
-      (error) => {
-        this._toastrService.error(error.error.error);
-      }
-    );
-  }
-
-  deleteReview() {
-    this.deleteReviews = {
-      userId: this.addUpdateFeedBackModel.userId,
-      mongoId: this.myTastedDrinkFullInfo?._id,
-    }
-
-    this._drinksService.deleteReview(this.deleteReviews).subscribe((res: any) => {
-      this._toastrService.success(res.message)
-    },
-      (error) => {
-        this._toastrService.error(error.error.error)
-      })
-  }
-
-  matMenu(event: any) {
-    event.stopPropagation();
-  }
-
-  triggerModal(content: any) {
-    this._modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((res) => {
-      this.closeModal = `Closed with: ${res}`;
-    }, (res) => {
-      this.closeModal = `Dismissed ${this.getDismissReason(res)}`;
-    });
-  }
-
-  private getDismissReason(reason: any): string {
-    if (reason === ModalDismissReasons.ESC) {
-      return 'by pressing ESC';
-    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-      return 'by clicking on a backdrop';
-    } else {
-      return `with: ${reason}`;
-    }
-  }
-
-  deleteReviewDialog() {
-    let dialogRef = this._dialog.open(DialogComponent, {
-      width: '400px',
-      autoFocus: false,
-      data: {
-        deleteReview: 'Are you sure you want to delete this review ?',
-      }
-    });
-    dialogRef.afterClosed().subscribe((res) => {
-      if (res) {
-        this.deleteReview();
-      }
-    })
-  }
-
-  deleteDrinkDialog(event: any, drink: any) {
-    let dialogRef = this._dialog.open(DialogComponent, {
-      width: '400px',
-      autoFocus: false,
-      data: {
-        deleteDrink: 'Are you sure you want to delete this drink ?',
-      }
-    });
-    dialogRef.afterClosed().subscribe((res) => {
-      if (res) {
-        this.delete(event, drink);
-      }
-    })
+    this.isCreate = true;
   }
 }
-
-

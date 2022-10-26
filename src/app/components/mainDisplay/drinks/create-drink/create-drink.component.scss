@@ -1,0 +1,21 @@
+@import "src/globalStyles/template.scss";
+@import "src/globalStyles/colors.scss";
+
+.creationForm {
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  width: 100%;
+
+  .oneSide {
+    @include containerWithOneSide();
+  }
+
+  .returnButton {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+  }
+}

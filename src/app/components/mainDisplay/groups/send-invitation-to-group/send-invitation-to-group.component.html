@@ -1,0 +1,73 @@
+<main>
+  <mat-card class="leftSide mat-elevation-z3">
+    <h3>Find the user to send the invitation to group '{{groupForSendingInvitation?.name}}'</h3>
+
+    <mat-form-field appearance="outline" class="searchingInput">
+      <mat-label>Type the user's first name or last name</mat-label>
+      <input matInput placeholder="Search" (input)="getBySearch($event)" />
+    </mat-form-field>
+
+    <section class="contentSection">
+      <ng-container *ngIf="searchingResults.length > 0; else noResults">
+        <p
+          class="listItem"
+          *ngFor="let user of searchingResults; let i = index"
+          [ngClass]="{ chosenItem: user.id === chosenUser?.id }"
+          (click)="chooseUser(user, groupForSendingInvitation)"
+        >
+          {{ i + 1 }}.
+          {{ user.firstName }}
+          {{ user.lastName }}
+        </p>
+      </ng-container>
+      <ng-template #noResults>
+        <p class="noResults">No searching results</p>
+      </ng-template>
+    </section>
+
+    <section>
+      <button mat-raised-button (click)="goToMyGroups()">
+        Go to my groups
+      </button>
+    </section>
+  </mat-card>
+
+  <mat-card class="rightSide mat-elevation-z3">
+
+
+<div class="stickerForApprovedParticipants" *ngIf="isUserApproved">
+  Participant
+</div>
+
+<div class="stickerForDeclinedParticipants" *ngIf="isUserDeclined">
+  Declined
+</div>
+<div class="stickerForNotRespondedParticipants" *ngIf="isUserNotResponded">
+  Invited
+</div>
+<div class="stickerForRequestedParticipants" *ngIf="isUserRequested">
+  Waiting
+</div>
+
+
+
+    <ng-container *ngIf="chosenUser">
+      <h3>
+        {{ chosenUser?.firstName }}
+        {{ chosenUser?.lastName }}
+      </h3>
+      <section class="contentSection">
+        <p class="pointOfDescription">
+          <span>Date of birth: </span>{{ chosenUser?.birthday | date }}
+        </p>
+
+        <p class="pointOfDescription">
+          <span>Email: </span>{{ chosenUser?.email }}
+        </p>
+      </section>
+      <section>
+        <button mat-raised-button color="primary" [disabled]="isUserApproved || isUserNotResponded || isUserRequested" (click)="sendInvitation(chosenUser.id, userInformation!, groupForSendingInvitation)">Send invitation</button>
+      </section>
+    </ng-container>
+  </mat-card>
+</main>

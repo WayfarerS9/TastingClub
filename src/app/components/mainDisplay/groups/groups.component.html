@@ -1,5 +1,50 @@
-<app-main-header></app-main-header>
-<div class="main">
+<div class="component-wrapper">
+  <header>
+    <div class="button-wrapper">
+      <button mat-fab (click)="goBack()">
+        <mat-icon>arrow_back</mat-icon>
+      </button>
+    </div>
+    <h2>My Groups</h2>
+  </header>
+  <mat-card class="mat-elevation-z4">
+    <app-create-group *ngIf="isCreateGroup" (toMyGroups)="toMyGroups()"></app-create-group>
+    <app-join-group *ngIf="isSearchGroup" (toMyGroups)="toMyGroups()"></app-join-group>
+    <app-my-groups *ngIf="isMyGroups" (toCreateGroups)="toCreateGroup()" (toSearchGroups)="toSearchGroup()" (toSendInvitation)="toSendInvitation($event)"></app-my-groups>
+    <app-send-invitation-to-group *ngIf="isSendInvitationToGroup" (toMyGroups)="toMyGroups()" [groupForSendingInvitationInput]="groupForSendingInvitationInput"></app-send-invitation-to-group>
+  </mat-card>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div class="main">
   <div class="for-go-back-button">
     <button class="go-back-button" mat-fab (click)="goBack()">
       <mat-icon>arrow_back</mat-icon>
@@ -82,19 +127,6 @@
                         </div>
                       </div>
                     </div>
-
-                    <!-- <div *ngIf="isJoin">
-                      <h3>Find group for join</h3>
-
-                      <mat-form-field appearance="fill">
-                        <mat-label>Search groups</mat-label>
-                        <input
-                          matInput
-                          placeholder="Type the title of group"
-                          (input)="searchGroups($event)"
-                        />
-                      </mat-form-field>
-                    </div> -->
                   </div>
                 </div>
               </ng-template>
@@ -161,61 +193,5 @@
         </div>
       </div>
     </div>
-
-    <!-- <div class="container-right-side">
-      <div *ngIf="!isJoin && !isCreate">
-        <div class="title">
-          <h3>Information about group</h3>
-        </div>
-
-        <div class="description-about-group" *ngIf="selectedGroup">
-          <div class="first-small-container">
-            <div class="group-name-title">
-              <h2>{{ selectedGroup.groupName }}</h2>
-            </div>
-
-            <p>participant 1</p>
-            <p>participant 2</p>
-            <p>participant 3</p>
-            <p>participant 4</p>
-          </div>
-
-          <div
-            class="second-small-container"
-            *ngFor="let group of getGroupResult; let i = index"
-          >
-            <div class="rating-container">
-              <p>
-                drink and
-                {{ group.createAt }}
-              </p>
-              <p>
-                Total rating:
-                <button mat-raised-button color="primary">view</button>
-              </p>
-            </div>
-
-            <div class="plan-new-degustation">
-              <button mat-raised-button color="primary">
-                plan new degustation
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div *ngIf="isJoin">
-        <h3>Find group for join</h3>
-
-        <mat-form-field appearance="fill">
-          <mat-label>Search groups</mat-label>
-          <input
-            matInput
-            placeholder="Type the title of group"
-            (input)="searchGroups($event)"
-          />
-        </mat-form-field>
-      </div>
-    </div> -->
   </div>
-</div>
+</div> -->

@@ -62,19 +62,11 @@ export class RegistrationComponent implements OnInit {
       next: (res: any) => {
         this._toastrService.success(res.message);
 
-        if (res.token && res.refresh) {
-          let TOKEN = {
-            token: res.token,
-            refresh: res.refresh,
-          }
-          
-          localStorage.setItem('TOKEN_TASTYCLUB', JSON.stringify(TOKEN));
+        if(res.token && res.refresh && res.user) {
+          this._auth.passInformationToLocalStorage(res.token, res.refresh, res.user);
         }
 
-        if (res.user) {
-          localStorage.setItem('USER_TASTYCLUB', JSON.stringify(res.user));
-        }
-
+        this._auth.userChanges();
         this._router.navigate(['home']);
       },
 

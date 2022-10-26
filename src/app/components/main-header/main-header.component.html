@@ -1,62 +1,51 @@
-<div class="header">
-  <div class="greeting-container">
-    <h2>
-      Hi <span>{{ user.firstName }} {{ user.lastName }}</span
-      >.
-    </h2>
-  </div>
+<header class="header">
+  <h2 class="greeting-container" *ngIf="user">
+    Hi <span>{{ user.firstName }} {{ user.lastName }}</span>
+  </h2>
 
-  <div class="title">
-    <span>Tasting Club</span>
-  </div>
-
-  <div class="two-elements">
-    <button mat-icon-button [matMenuTriggerFor]="menu">
+  <h1 class="title">Tasting Club</h1>
+<div class="message" *ngIf="user">
+  <button mat-icon-button class="messageButton" routerLink="/messages">
+    <mat-icon>mail</mat-icon>
+  </button>
+</div>
+  <div class="menu">
+    <button mat-icon-button [matMenuTriggerFor]="menu" class="menuButton">
       <mat-icon>menu</mat-icon>
     </button>
-    <mat-menu #menu="matMenu">
-      <button mat-menu-item>
-        <button
-          mat-menu-item
-          style="display: flex; justify-content: center; align-items: center"
-        >
-          <img
-            style="width: 50px"
-            src="./images/usa-isolated-flag-vector.jpg"
-          />
+
+
+    <mat-menu #menu="matMenu" >
+      <section class="openedMenu">
+
+        <button mat-menu-item class="openedMenuButton">
+          <img src="./images/usa-isolated-flag-vector.jpg" />
         </button>
-      </button>
-      <button mat-menu-item>
-        <button
-          mat-menu-item
-          style="display: flex; justify-content: center; align-items: center"
-        >
-          <img style="width: 50px" src="./images/russian-flag.png" />
+        <button mat-menu-item class="openedMenuButton">
+          <img src="./images/russian-flag.png" />
         </button>
-      </button>
-      <hr />
-      <button mat-menu-item>
+        <hr />
         <button
-          mat-raised-button
+          *ngIf="user"
+          mat-menu-item
           color="primary"
-          class="profile-button"
-          style="width: 5vw"
+          class="openedMenuButton"
         >
           Profile
         </button>
-      </button>
-
-      <button mat-menu-item>
+  
         <button
-          mat-raised-button
+          *ngIf="user"
+          mat-menu-item
           color="accent"
-          class="submit-button"
+          class="openedMenuButton"
           (click)="logOut()"
-          style="width: 5vw"
-        >
+          >
           Log out
         </button>
-      </button>
+      </section>
     </mat-menu>
+
+
   </div>
-</div>
+</header>

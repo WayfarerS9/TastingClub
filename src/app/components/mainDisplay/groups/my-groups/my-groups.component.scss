@@ -1,0 +1,48 @@
+@import "src/globalStyles/template.scss";
+@import "src/globalStyles/colors.scss";
+
+main {
+  width: 100%;
+
+  h3 {
+    @include header();
+  }
+
+  .leftSide {
+    @include containerWithTwoSides-left();
+
+    .header {
+      @include header();
+    }
+  }
+
+  .rightSide {
+    @include containerWithTwoSides-right();
+
+    .groupDescription {
+      font-size: 18px;
+      margin-bottom: 16px;
+    }
+
+    .contentSection {
+
+      h4 {
+        font-weight: bold;
+        margin-bottom: 6px;
+      }
+    }
+  }
+
+  .buttonSection {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .groupCard {
+    @include groupCard()
+  }
+
+  .chosenGroupCard {
+    background-color: $backgroundGroupCardChosen;
+  }
+}

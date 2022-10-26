@@ -1,0 +1,69 @@
+<div class="component-wrapper">
+  <header>
+    <div class="button-wrapper">
+      <button mat-fab (click)="goBack()">
+        <mat-icon>arrow_back</mat-icon>
+      </button>
+    </div>
+    <h2>My Messages</h2>
+  </header>
+  <mat-card class="mat-elevation-z4">
+    <mat-card class="leftSide mat-elevation-z3">
+      <h3 class="header">Received messages:</h3>
+
+      <section class="contentSection">
+        <mat-card
+          *ngFor="let message of messages"
+          class="messageCard mat-elevation-z2"
+          (click)="chooseMessage(message)"
+          [ngClass]="{ chosenMessageCard: message === chosenMessage }"
+        >
+          <div class="stickerNotRead" *ngIf="!message.isRead">Not read</div>
+
+          <div class="stickerRead" *ngIf="message.isRead">Read</div>
+
+          <div class="stickerNotProcessed" *ngIf="!message.isProcessed">
+            Not processed
+          </div>
+          <h4>
+            <span>Mailer: </span>{{ message.mailer.firstName }}
+            {{ message.mailer.lastName }}
+          </h4>
+          <p>Received: {{ message.messageDate | date: "fullDate" }}</p>
+        </mat-card>
+      </section>
+    </mat-card>
+
+    <mat-card class="rightSide mat-elevation-z3">
+      <h3 class="header">
+        Mail from {{ chosenMessage?.mailer?.firstName }}
+        {{ chosenMessage?.mailer?.lastName }}
+      </h3>
+
+      <section class="contentSection">
+        <p>
+          {{ chosenMessage?.message }}
+        </p>
+      </section>
+
+      <section class="buttonSection">
+        <button
+          mat-raised-button
+          color="primary"
+          (click)="confirmOrRejectJoin(chosenMessage, true)"
+          [disabled]="chosenMessage?.isProcessed || !chosenMessage"
+        >
+          CONFIRM
+        </button>
+        <button
+          mat-raised-button
+          color="warn"
+          (click)="confirmOrRejectJoin(chosenMessage, false)"
+          [disabled]="chosenMessage?.isProcessed || !chosenMessage"
+        >
+          REJECT
+        </button>
+      </section>
+    </mat-card>
+  </mat-card>
+</div>

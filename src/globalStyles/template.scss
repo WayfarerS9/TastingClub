@@ -1,0 +1,133 @@
+@mixin containerWithTwoSides() {
+  width: 48.5%;
+  position: absolute;
+  top: 10px;
+  bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-bottom: 15px;
+
+  .contentSection {
+    flex-grow: 1;
+    margin-bottom: 1em;
+    overflow-y: auto;
+  }
+}
+
+@mixin containerWithTwoSides-left() {
+  @include containerWithTwoSides();
+  left: 10px;
+}
+
+@mixin containerWithOneSide() {
+  @include containerWithTwoSides();
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+@mixin containerWithTwoSides-right() {
+  @include containerWithTwoSides();
+  right: 10px;
+}
+
+@mixin header() {
+  color: $fontRegular;
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+@mixin pointOfDescription() {
+  color: $fontRegular;
+  font-size: 18px;
+
+  span {
+    font-weight: bold;
+  }
+}
+
+@mixin formFieldDescription() {
+  color: $fontRegular;
+  font-size: 18px;
+}
+
+@mixin listItem() {
+  font-size: 18px;
+  line-height: 25px;
+  color: $fontRegular;
+  cursor: pointer;
+  background-color: $backgroundListItem;
+  transition-property: background-color;
+  transition-duration: .2s;
+  padding: 5px;
+  margin-left: -5px;
+  margin-bottom: 6px;
+  border-radius: 5px;
+
+  &:hover {
+    background-color: $backgroundListItemHovered;
+  }
+}
+
+
+@mixin groupCard() {
+  margin-bottom: 10px;
+  background-color: $backgroundGroupCard;
+  cursor: pointer;
+  transition-property: background-color;
+  transition-duration: .2s;
+
+  &:hover {
+    background-color: $backgroundGroupCardHovered;
+  }
+
+  h4 {
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+  p {
+    font-style: italic;
+  }
+}
+
+@mixin sticker() {
+  height: 30px;
+  position: absolute;
+  right: 0;
+  color: white;
+  font-size: 12px;
+  padding-left: 10px;
+  padding-right: 5px;
+  display: flex;
+  align-items: center;
+}
+
+@mixin stickerWithWaitingMessage() {
+  @include sticker();
+  border-radius: 0 0 0 20px;
+  top: 0;
+  background-color: #aba800;
+}
+
+@mixin stickerWithApprovedMessage() {
+  @include sticker();
+  border-radius: 0 0 0 20px;
+  top: 0;
+  background-color: #068200;
+}
+
+@mixin stickerWithAdminMessage() {
+  @include sticker();
+  border-radius: 0 0 0 20px;
+  top: 0;
+  background-color: indigo;
+}
+
+@mixin stickerWithNotProcessedMessage() {
+  @include sticker();
+  border-radius: 20px 0 0 0;
+  bottom: 0;
+  background-color: #a60000;
+}

@@ -1,9 +1,76 @@
 //Model for show drink
-export interface IMyDrinksShort {
+export interface IMyDrinksFindResult {
   _id: string;
   name: string;
-  rating: number;
+  typeOfDrink: string;
+  brand: string;
 }
+
+export interface IChosenDrink extends IMyDrinksFindResult{
+  producer: string;
+  region: string;
+  alcohol: number;
+  isTasted: boolean;
+}
+
+export interface ITastedDrinkCreateReview extends IChosenDrink {
+  tastingDate: Date;
+  tastingRate: number;
+  tastingReview: string;
+  userId: string;
+}
+
+export interface ICreationModelDrink {
+  name: string;
+  typeOfDrink: string;
+  brand: string;
+  producer: string;
+  region: string;
+  alcohol: number;
+  creatorId: string;
+}
+
+
+
+
+/* _id: string;
+name: string;
+typeOfDrink: string;
+brand: string;
+producer: string;
+region: string;
+alcohol: number;
+tastingDate: Date;
+tastingRate: number;
+tastingReview: string; */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //Model for creating new drink
 export interface INewDrink {
   typeName: string;

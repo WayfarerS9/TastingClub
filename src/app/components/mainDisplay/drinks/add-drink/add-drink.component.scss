@@ -1,0 +1,37 @@
+@import "src/globalStyles/template.scss";
+@import "src/globalStyles/colors.scss";
+
+.leftSide {
+  @include containerWithTwoSides-left();
+}
+
+.rightSide {
+  @include containerWithTwoSides-right();
+}
+
+.listItem {
+  @include listItem();
+}
+
+.buttonSection {
+  display: flex;
+  justify-content: space-between;
+}
+
+.informationMessage {
+  font-size: 20px;
+  color: $fontRegular;
+  font-weight: bold;
+}
+
+.chosenItem {
+  background-color: $backgroundListItemChosen;
+}
+
+.pointOfDescription {
+  @include pointOfDescription();
+}
+
+.header {
+  @include header();
+}

@@ -1,0 +1,61 @@
+<main>
+  <mat-card class="leftSide mat-elevation-z3">
+    <h3 class="header">My participation</h3>
+
+    <section class="contentSection">
+      <mat-card
+        *ngFor="let group of groups"
+        class="groupCard mat-elevation-z2"
+        [ngClass]="{ chosenGroupCard: group._id === chosenGroup?._id }"
+        (click)="chooseGroup(group)"
+      >
+        <h4>{{ group.name }}</h4>
+        <p>{{ group.description }}</p>
+      </mat-card>
+    </section>
+
+    <section class="buttonSection">
+      <button mat-raised-button color="primary" (click)="goToCreateGroup()">
+        Create group
+      </button>
+      <button mat-raised-button color="primary" (click)="goToSearchGroup()">
+        Search group
+      </button>
+    </section>
+  </mat-card>
+
+  <mat-card class="rightSide mat-elevation-z3">
+    <h3>{{ chosenGroupWithFullInformation?.name }}</h3>
+
+    <section class="contentSection">
+      <p class="groupDescription">
+        {{ chosenGroupWithFullInformation?.description }}
+      </p>
+      <h4 *ngIf="chosenGroupWithFullInformation">Participants:</h4>
+      <p
+        class="participants"
+        *ngFor="
+          let participant of chosenGroupWithFullInformation?.participantsApproved;
+          let i = index
+        "
+      >
+        {{ i + 1 }}.
+        {{ participant.firstName }}
+        {{ participant.lastName }}
+      </p>
+    </section>
+
+    <section>
+      <button
+        mat-raised-button
+        (click)="goToSendInvitation(chosenGroupWithFullInformation)"
+        [disabled]="
+          !chosenGroupWithFullInformation ||
+          chosenGroupWithFullInformation.creatorId !== userId
+        "
+      >
+        Go to send invitation
+      </button>
+    </section>
+  </mat-card>
+</main>

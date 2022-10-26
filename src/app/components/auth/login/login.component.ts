@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { IUserSignIn } from 'src/app/models/user.model';
-// import { LoginService } from 'src/app/services/login.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
@@ -20,7 +19,6 @@ export class LoginComponent implements OnInit {
   });
 
   constructor(
-    // private _loginService: LoginService,
     private _auth: AuthService,
     private _toastrService: ToastrService,
     private _router: Router
@@ -32,22 +30,13 @@ export class LoginComponent implements OnInit {
     let logModel = Object.assign({}, this.logForm.value);
     this._auth.signInUser(logModel as IUserSignIn).subscribe({
       next: (res: any) => {
-        console.log(res)
         this._toastrService.success(res.message);
 
-        if (res.token && res.refresh) {
-          let TOKEN = {
-            token: res.token,
-            refresh: res.refresh,
-          }
-          
-          localStorage.setItem('TOKEN_TASTYCLUB', JSON.stringify(TOKEN));
+        if(res.token && res.refresh && res.user) {
+          this._auth.passInformationToLocalStorage(res.token, res.refresh, res.user);
         }
 
-        if (res.user) {
-          localStorage.setItem('USER_TASTYCLUB', JSON.stringify(res.user));
-        }
-
+        this._auth.userChanges()
         this._router.navigate(['home']);
       },
       error: (error) => {

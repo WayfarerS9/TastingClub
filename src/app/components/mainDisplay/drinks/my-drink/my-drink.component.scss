@@ -1,0 +1,38 @@
+@import "src/globalStyles/template.scss";
+@import "src/globalStyles/colors.scss";
+
+.informationMessage {
+  font-size: 20px;
+  color: rgb(17, 8, 95);
+  font-weight: bold;
+}
+
+main {
+  width: 100%;
+
+  h3 {
+    @include header();
+  }
+
+  .contentSection {
+    .drinkItem {
+      @include listItem();
+    }
+
+    .pointOfDescription {
+      @include pointOfDescription();
+    }
+
+    .chosenItem {
+      background-color: $backgroundListItemChosen;
+    }
+  }
+
+  .leftSide {
+    @include containerWithTwoSides-left();
+  }
+
+  .rightSide {
+    @include containerWithTwoSides-right();
+  }
+}

@@ -1,0 +1,56 @@
+<main>
+  <mat-card class="oneSide mat-elevation-z3">
+    <section class="contentSection">
+      <form class="creationForm" [formGroup]="createDrinkForm">
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Brand of drink</mat-label>
+          <input matInput placeholder="Bushmills" formControlName="brand" />
+        </mat-form-field>
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Type of drink</mat-label>
+          <input matInput placeholder="Whiskey" formControlName="typeOfDrink" />
+        </mat-form-field>
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Name of drink</mat-label>
+          <input
+            matInput
+            placeholder="Bushmills black bush"
+            formControlName="name"
+          />
+        </mat-form-field>
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Producer of drink</mat-label>
+          <input
+            matInput
+            placeholder="The old Bushmills Distillery"
+            formControlName="producer"
+          />
+        </mat-form-field>
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Region of producer</mat-label>
+          <input
+            matInput
+            placeholder="Antrim, Ireland"
+            formControlName="region"
+          />
+        </mat-form-field>
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Alcohol</mat-label>
+          <input matInput placeholder="40" formControlName="alcohol" />
+        </mat-form-field>
+      </form>
+    </section>
+    <section>
+      <button
+        (click)="createDrink(createDrinkForm)"
+        mat-raised-button
+        color="primary"
+      >
+        Create drink
+      </button>
+    </section>
+  </mat-card>
+  <button (click)="returnToAddDrink()" class="returnButton" mat-raised-button>
+    Return to add drink
+  </button>
+</main>

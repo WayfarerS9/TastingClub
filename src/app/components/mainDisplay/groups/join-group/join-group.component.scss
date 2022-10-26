@@ -1,0 +1,52 @@
+@import "src/globalStyles/template.scss";
+@import "src/globalStyles/colors.scss";
+
+main {
+  width: 100%;
+
+  h3 {
+    @include header();
+  }
+
+  .groupCard {
+    @include groupCard();
+  }
+
+  .waitingSticker {
+    @include stickerWithWaitingMessage
+  }
+
+  .approvedSticker {
+    @include stickerWithApprovedMessage
+  }
+
+  .adminSticker {
+    @include stickerWithAdminMessage
+  }
+
+  .chosenGroupCard {
+    background-color: $backgroundGroupCardChosen;
+  }
+
+  .leftSide {
+    @include containerWithTwoSides-left();
+  }
+
+  .rightSide {
+    @include containerWithTwoSides-right();
+
+    .groupDescription {
+      font-size: 18px;
+      margin-bottom: 16px;
+    }
+
+    .contentSection {
+
+      h4 {
+        font-weight: bold;
+        margin-bottom: 6px;
+      }
+    }
+  }
+
+}

@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './components/auth/login/login.component';
 import { RegistrationComponent } from './components/auth/registration/registration.component';
-import { NavigationComponent } from './components/navigation/navigation.component';
 import { AuthGuard } from './auth.guard';
 import { AlcoholService } from './services/newAlcohol.service';
 import { DashBoardComponent } from './components/dash-board/dash-board.component';
@@ -10,6 +9,7 @@ import { DrinksComponent } from './components/mainDisplay/drinks/drinks.componen
 import { GroupsComponent } from './components/mainDisplay/groups/groups.component';
 import { EventsComponent } from './components/mainDisplay/events/events.component';
 import { LibraryComponent } from './components/mainDisplay/library/library.component';
+import { MessagesComponent } from './components/messages/messages.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -20,6 +20,7 @@ const routes: Routes = [
   { path: 'groups', component: GroupsComponent },
   { path: 'events', component: EventsComponent },
   { path: 'library', component: LibraryComponent },
+  { path: 'messages', component: MessagesComponent },
   {
     path: 'add-new-alcohol',
     component: AlcoholService,

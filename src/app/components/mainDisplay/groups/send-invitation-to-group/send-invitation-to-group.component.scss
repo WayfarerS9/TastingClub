@@ -1,0 +1,66 @@
+@import "src/globalStyles/template.scss";
+@import "src/globalStyles/colors.scss";
+
+main {
+  width: 100%;
+
+  h3 {
+    @include header();
+  }
+
+  .noResults {
+    font-size: 18px;
+    line-height: 25px;
+    color: $fontRegular;
+    padding: 5px;
+    margin-left: -5px;
+    margin-bottom: 6px;
+    border-radius: 5px;
+    font-style: italic;
+  }
+
+
+
+  .listItem {
+    @include listItem();
+  }
+
+  .searchingInput {
+    width: 100%
+  }
+
+  .leftSide {
+    @include containerWithTwoSides-left();
+
+    .chosenItem {
+      background-color: $backgroundListItemChosen;
+    }
+  }
+
+  .rightSide {
+    @include containerWithTwoSides-right();
+
+    .pointOfDescription {
+      @include pointOfDescription()
+    }
+
+    .stickerForApprovedParticipants {
+      @include stickerWithApprovedMessage()
+    }
+
+    .stickerForDeclinedParticipants {
+      @include stickerWithNotProcessedMessage();
+      top: 0;
+      bottom: none;
+      border-radius: 0 0 0 20px;
+    }
+
+    .stickerForNotRespondedParticipants {
+      @include stickerWithAdminMessage()
+    }
+
+    .stickerForRequestedParticipants {
+      @include stickerWithWaitingMessage()
+    }
+  }
+}

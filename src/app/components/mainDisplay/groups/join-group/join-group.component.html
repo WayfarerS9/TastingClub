@@ -1,0 +1,66 @@
+<main>
+  <mat-card class="leftSide mat-elevation-z3">
+    <h3>Existing groups</h3>
+
+    <section class="contentSection">
+      <mat-card
+        *ngFor="let group of groups"
+        class="groupCard mat-elevation-z2"
+        [ngClass]="{ chosenGroupCard: group._id === chosenGroup?._id }"
+        (click)="choseGroup(group)"
+      >
+        <h4>{{ group.name }}</h4>
+        <p>{{ group.description }}</p>
+      </mat-card>
+    </section>
+
+    <section>
+      <button mat-raised-button (click)="goToMyGroups()">To my groups</button>
+    </section>
+  </mat-card>
+
+  <mat-card class="rightSide mat-elevation-z3">
+
+    <div
+      class="waitingSticker"
+      *ngIf="chosenGroupWithFullInformation?.isUserCandidate"
+    >
+      Wait for approve
+    </div>
+
+    <div
+      class="approvedSticker"
+      *ngIf="isUserParticipant"
+    >
+      You are participant
+    </div>
+
+    <div
+      class="adminSticker"
+      *ngIf="isUserAdmin"
+    >
+      You are admin
+    </div>
+
+    <h3>{{ chosenGroup?.name }}</h3>
+    <section class="contentSection">
+      <p class="groupDescription">{{ chosenGroup?.description }}</p>
+      <h4>Participants:</h4>
+        <p class="participants" *ngFor="let participant of chosenGroupWithFullInformation?.participantsApproved; let i = index">
+          {{i+1}}.
+          {{participant.firstName}}
+          {{participant.lastName}}
+        </p>
+    </section>
+    <section>
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="sendRequestForJoin(getUserInformation()!.id, chosenGroup!._id)"
+        [disabled]="chosenGroupWithFullInformation?.isUserCandidate || isUserParticipant || isUserAdmin"
+      >
+        Join group
+      </button>
+    </section>
+  </mat-card>
+</main>

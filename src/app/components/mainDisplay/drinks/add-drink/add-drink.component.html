@@ -1,0 +1,82 @@
+<main>
+  <mat-card class="leftSide mat-elevation-z3">
+    <mat-form-field appearance="outline">
+      <mat-label>Type the drink</mat-label>
+      <input matInput placeholder="Search" (input)="getBySearch($event)" />
+    </mat-form-field>
+
+    <section
+      *ngIf="matchingDrinks && matchingDrinks.length > 0"
+      class="contentSection"
+    >
+      <p
+        *ngFor="let drink of matchingDrinks; let i = index"
+        class="listItem"
+        (click)="getById(drink._id, userId)"
+        [ngClass]="{ chosenItem: drink._id === chosenDrink?._id }"
+      >
+        <span>{{ i + 1 }}. </span>
+        <span>{{ drink!.typeOfDrink }} </span>
+        <span>{{ drink!.brand }} </span>
+        <strong
+          ><span>{{
+            drink!.name | lowercase | titlecase
+          }}</span></strong
+        >
+      </p>
+    </section>
+
+    <section class="buttonSection">
+      <button (click)="returnToMyDrinks()" mat-raised-button>
+        Return to my drinks
+      </button>
+      <button (click)="createNewDrink()" mat-raised-button color="primary">
+        Create new drink
+      </button>
+    </section>
+  </mat-card>
+
+  <mat-card class="rightSide mat-elevation-z3">
+    <ng-container *ngIf="chosenDrink; else notChoose">
+      <h3 class="header">{{ chosenDrink.name }}</h3>
+      <section class="contentSection">
+        <p class="pointOfDescription">
+          <span class="fieldOfDrink">Type of drink: </span
+          >{{ chosenDrink.typeOfDrink }}
+        </p>
+        <p class="pointOfDescription"><span class="fieldOfDrink">Brand: </span>{{ chosenDrink.brand }}</p>
+        <p class="pointOfDescription">
+          <span class="fieldOfDrink">Alcohol: </span>{{ chosenDrink.alcohol }}%
+        </p>
+        <p class="pointOfDescription">
+          <span class="fieldOfDrink">Producer: </span>{{ chosenDrink.producer }}
+        </p>
+        <p class="pointOfDescription">
+          <span class="fieldOfDrink">Region: </span>{{ chosenDrink.region }}
+        </p>
+      </section>
+      <section>
+
+        <ng-container *ngIf="!chosenDrink.isTasted; else tasted">
+          <button
+            (click)="addToTastedStack(chosenDrink)"
+            mat-raised-button color="primary"
+          >
+            Add to tasted stack
+          </button>
+        </ng-container>
+        <ng-template #tasted>
+          <p class="informationMessage">
+            You have tasted this drink
+          </p>
+        </ng-template>
+
+      </section>
+    </ng-container>
+    <ng-template #notChoose>
+      <p class="informationMessage">
+        You haven't chosen any drink
+      </p></ng-template
+    >
+  </mat-card>
+</main>

@@ -1,0 +1,81 @@
+<main>
+  <mat-card class="leftSide mat-elevation-z3">
+    <ng-container *ngIf="userTastedDrinks.length > 0; else notTasted">
+      <h3>My tasted drinks:</h3>
+      <section class="contentSection">
+        <p
+          *ngFor="let drink of userTastedDrinks; let i = index"
+          class="drinkItem"
+          (click)="choseDrink(drink)"
+          [ngClass]="{ chosenItem: drink._id === chosenDrink?._id }"
+        >
+          <span>{{ i + 1 }}. </span>
+          <span>{{ drink!.typeOfDrink }} </span>
+          <span>{{ drink!.brand }} </span>
+          <strong
+            ><span>{{ drink!.name | lowercase | titlecase }}</span></strong
+          >
+        </p>
+      </section>
+    </ng-container>
+    <ng-template #notTasted>
+      <p class="informationMessage">You haven't tasted any drink</p>
+    </ng-template>
+
+    <section>
+      <button (click)="addDrink()" mat-raised-button>Go to ADD Drink</button>
+    </section>
+  </mat-card>
+
+  <mat-card class="rightSide mat-elevation-z3">
+    <ng-container *ngIf="chosenDrinkWithAllFields; else notChoose">
+      <h3>{{ chosenDrinkWithAllFields.name }}</h3>
+      <section class="contentSection">
+        <p class="pointOfDescription">
+          <span class="fieldOfDrink">Type of drink: </span
+          >{{ chosenDrinkWithAllFields.typeOfDrink }}
+        </p>
+        <p class="pointOfDescription">
+          <span class="fieldOfDrink">Brand: </span
+          >{{ chosenDrinkWithAllFields.brand }}
+        </p>
+        <p class="pointOfDescription">
+          <span class="fieldOfDrink">Alcohol: </span
+          >{{ chosenDrinkWithAllFields.alcohol }}%
+        </p>
+        <p class="pointOfDescription">
+          <span class="fieldOfDrink">Producer: </span
+          >{{ chosenDrinkWithAllFields.producer }}
+        </p>
+        <p class="pointOfDescription">
+          <span class="fieldOfDrink">Region: </span
+          >{{ chosenDrinkWithAllFields.region }}
+        </p>
+        <p class="pointOfDescription">
+          <span class="fieldOfDrink">Date of tasting: </span
+          >{{ chosenDrinkWithAllFields.tastingDate | date }}
+        </p>
+        <p class="pointOfDescription">
+          <span class="fieldOfDrink">My rate: </span
+          >{{ chosenDrinkWithAllFields.tastingRate }} points
+        </p>
+        <p class="pointOfDescription">
+          <span class="fieldOfDrink">My review: </span
+          >{{ chosenDrinkWithAllFields.tastingReview }}
+        </p>
+      </section>
+      <section>
+        <button
+          (click)="returnToEditDrinks(chosenDrinkWithAllFields)"
+          mat-raised-button
+          color="primary"
+        >
+          Edit review
+        </button>
+      </section>
+    </ng-container>
+    <ng-template #notChoose>
+      <p class="informationMessage">You haven't chosen any drink</p>
+    </ng-template>
+  </mat-card>
+</main>

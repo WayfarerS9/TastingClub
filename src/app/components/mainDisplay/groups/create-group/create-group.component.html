@@ -1,0 +1,32 @@
+<main>
+  <mat-card class="oneSide mat-elevation-z3">
+    <section class="contentSection">
+      <form class="creationForm" [formGroup]="createGroupForm">
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Name of group</mat-label>
+          <input matInput placeholder="Scorpions" formControlName="name" />
+        </mat-form-field>
+
+        <mat-form-field
+          class="example-full-width"
+          appearance="fill"
+          class="commentField"
+        >
+          <mat-label>Description</mat-label>
+          <textarea
+            matInput
+            placeholder="About group..."
+            formControlName="description"
+          ></textarea>
+        </mat-form-field>
+        <mat-checkbox formControlName="isPublic">Public group</mat-checkbox>
+      </form>
+    </section>
+    <section>
+      <button mat-raised-button color="primary" (click)="create()">Create group</button>
+    </section>
+  </mat-card>
+  <button mat-raised-button (click)="goToMyGroups()" class="returnButton">
+    Return to my groups
+  </button>
+</main>

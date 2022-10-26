@@ -1,0 +1,97 @@
+@import "src/globalStyles/template.scss";
+@import "src/globalStyles/colors.scss";
+
+.component-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100% - 60px);
+
+  h3 {
+    @include header();
+  }
+
+  .buttonSection {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .leftSide {
+    padding: 16px;
+    @include containerWithTwoSides-left();
+
+    .messageCard {
+      padding: 8px;
+      cursor: pointer;
+      background-color: $backgroundGroupCard;
+      transition-property: background-color;
+      transition-duration: .2s;
+
+      h4 {
+        margin-bottom: 8px;
+
+        span {
+          font-weight: bold;
+        }
+      }
+
+      p {
+        font-style: italic;
+      }
+
+      &:hover {
+        background-color: $backgroundGroupCardHovered;
+      }
+
+      .stickerNotRead {
+        @include stickerWithWaitingMessage()
+      }
+
+      .stickerRead {
+        @include stickerWithApprovedMessage()
+      }
+
+      .stickerNotProcessed {
+        @include stickerWithNotProcessedMessage()
+      }
+
+    }
+
+    .chosenMessageCard {
+      background-color: $backgroundGroupCardHovered;
+    }
+  }
+
+  .rightSide {
+    padding: 16px;
+    @include containerWithTwoSides-right();
+  }
+
+  header {
+    position: relative;
+    height: 65px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .button-wrapper {
+      position: absolute;
+      top: 5px;
+      left: 5px;
+    }
+
+    h2 {
+      text-align: center;
+      margin-top: auto;
+      margin-bottom: auto;
+    }
+  }
+
+  mat-card {
+    flex-grow: 1;
+    width: 95%;
+    margin: auto;
+    margin-top: 10px;
+    margin-bottom: 16px;
+    padding: 0;
+  }
+}

@@ -14,6 +14,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatDialog, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatTreeModule } from '@angular/material/tree';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -24,7 +25,6 @@ import {
   HTTP_INTERCEPTORS,
   HttpClient,
 } from '@angular/common/http';
-import { NavigationComponent } from './components/navigation/navigation.component';
 import { UserInterceptorService } from './helpers/user.interceptor';
 
 import { AuthService } from './services/auth.service';
@@ -47,6 +47,15 @@ import { MatCardModule } from '@angular/material/card';
 import { MatListModule } from '@angular/material/list';
 import { DatePipe } from '@angular/common';
 import { DialogComponent } from './dialog/dialog.component';
+import { AddDrinkComponent } from './components/mainDisplay/drinks/add-drink/add-drink.component';
+import { EditDrinkComponent } from './components/mainDisplay/drinks/edit-drink/edit-drink.component';
+import { MyDrinkComponent } from './components/mainDisplay/drinks/my-drink/my-drink.component';
+import { CreateDrinkComponent } from './components/mainDisplay/drinks/create-drink/create-drink.component';
+import { MyGroupsComponent } from './components/mainDisplay/groups/my-groups/my-groups.component';
+import { JoinGroupComponent } from './components/mainDisplay/groups/join-group/join-group.component';
+import { CreateGroupComponent } from './components/mainDisplay/groups/create-group/create-group.component';
+import { MessagesComponent } from './components/messages/messages.component';
+import { SendInvitationToGroupComponent } from './components/mainDisplay/groups/send-invitation-to-group/send-invitation-to-group.component';
 
 export function HttpLoaderFactory(httpClient: HttpClient): TranslateLoader {
   return new TranslateHttpLoader(httpClient);
@@ -57,7 +66,6 @@ export function HttpLoaderFactory(httpClient: HttpClient): TranslateLoader {
     AppComponent,
     RegistrationComponent,
     LoginComponent,
-    NavigationComponent,
     AddingDialogComponent,
     DashBoardComponent,
     MainHeaderComponent,
@@ -66,6 +74,15 @@ export function HttpLoaderFactory(httpClient: HttpClient): TranslateLoader {
     EventsComponent,
     LibraryComponent,
     DialogComponent,
+    AddDrinkComponent,
+    EditDrinkComponent,
+    MyDrinkComponent,
+    CreateDrinkComponent,
+    MyGroupsComponent,
+    JoinGroupComponent,
+    CreateGroupComponent,
+    MessagesComponent,
+    SendInvitationToGroupComponent,
   ],
   imports: [
     BrowserModule,
@@ -90,6 +107,7 @@ export function HttpLoaderFactory(httpClient: HttpClient): TranslateLoader {
     MatSliderModule,
     MatProgressSpinnerModule,
     MatListModule,
+    MatCheckboxModule,
     ToastrModule.forRoot({
       timeOut: 3000,
       positionClass: 'toast-top-center',
