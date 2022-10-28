@@ -65,7 +65,7 @@ export class AddDrinkComponent implements OnInit, OnDestroy {
   }
 
   getBySearch(event: any) {
-    this.searchCriteriaEmmiter.next(event.target.value);
+    this.searchCriteriaEmmiter.next(event.target.value.toLowerCase());
   }
 
   getById(drinkId: string, userId: string) {

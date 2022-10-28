@@ -9,6 +9,7 @@ export class DrinksService {
   constructor(private _http: HttpClient) { }
 
   getBySearch(term: string) {
+    console.log(term)
     return this._http.get(environment.apiUrl + `/drinks/getBySearch?crt=${term}`);
   }
 
